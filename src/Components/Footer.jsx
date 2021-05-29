@@ -3,18 +3,22 @@ import styled from 'styled-components';
 
 const FooterContainer = styled.div`
     color: gray;
-    font-family: 'Questrial';
     font-size: 1.1em;
     background-color: #F3F3F3;
     display: flex;
     flex-wrap: wrap;
-    padding: 4% 15%;
+    padding: 5% 15%;
     font-size: 1.1em;
+
+    @media (max-width: 1100px) {
+        padding: 4% 10%;
+        flex-direction: column;
+    }
 `;
 
 const ApplyInfo = styled.div`
-    width: 78%;
-
+    width: 75%;
+    
     & div {
         margin: 2% auto;
         line-height: 1.3em;
@@ -24,10 +28,21 @@ const ApplyInfo = styled.div`
     & .applyHeader {
         color: #343A40;
     }
+
+    @media (max-width: 500px) {
+        & div {
+            margin: 3% 0;
+            text-align: justify-all;
+        }
+    }
+
+    @media (max-width: 1100px) {
+        width: 100%;
+    }
 `;
 
 const DownloadApp = styled.div`
-    width: 22%;
+    width: 25%;
 
     & div {
         line-height: 1.3em;
@@ -37,6 +52,14 @@ const DownloadApp = styled.div`
 
     & .appIcons > span {
         padding: 0 10% 0 0;
+    }
+
+    @media (max-width: 1100px) {
+        width: 100%;
+
+        & div {
+            margin: 2% 0;
+        }
     }
 `;
 

@@ -1,14 +1,14 @@
 import './App.css';
 import Footer from './Components/Footer';
 import Navbar from './Components/Navbar';
-// import Routes from './Routes/Routes';
+import Routes from './Routes/Routes';
 
 function App() {
   return (
     <div className="App">
       <Navbar />
-      {/* <Routes /> */}
-      {/* <div style={{border: '',height: '100vh'}}></div> */}
+      <Routes />
+      {/* <div style={{border: '',height: '70vh'}}></div> */}
       <Footer />
     </div>
   );
