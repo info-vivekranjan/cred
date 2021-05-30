@@ -90,12 +90,12 @@ const Footer = () => {
                 <div className="appIcons">
                     <span>
                         <a href="https://play.google.com/store/apps/details?id=com.dreamplug.androidapp&pid=Website%20Download%20-%20Android&c=desktop&shortlink=webandroid" target="_blank" rel="noreferrer">
-                            <img src="/Footer/CRED_Footer_Play_Store_icon.png" alt="Play_store_icon" />
+                            <img src="/Careers/Footer/CRED_Footer_Play_Store_icon.png" alt="Play_store_icon" />
                         </a>
                     </span>
                     <span>
                         <a href="https://apps.apple.com/in/app/id1428580080?c=desktop&pid=Website%20Download%20-%20iOS&shortlink=webios" target="_blank" rel="noreferrer">
-                            <img src="/Footer/CRED_Footer_Apple_Store_icon.png" alt="Apple_store_icon" />
+                            <img src="/Careers/Footer/CRED_Footer_Apple_Store_icon.png" alt="Apple_store_icon" />
                         </a>
                     </span>
                 </div>

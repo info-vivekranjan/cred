@@ -8,8 +8,6 @@ const NavbarContainer = styled.div`
     border-bottom: 1px solid #eee;
 
     & .link {
-        color: black;
-        cursor: pointer;
         text-decoration: none;
     }
 `;
@@ -18,8 +16,8 @@ const Navbar = () => {
     return (
         <>
             <NavbarContainer>
-                <Link to='/careers.cred.club' classNmae="link">
-                    <img src="/Navbar/CRED_Navbar_logo.png" alt="Cred_logo" />
+                <Link to='/careers.cred.club' className="link">
+                    <img src="/Careers/Navbar/CRED_Navbar_logo.png" alt="Cred_logo" />
                 </Link>
             </NavbarContainer>
         </>
