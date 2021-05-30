@@ -1,10 +1,10 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import AllJobs from '../Pages/AllJobs';
-import Careers from '../Pages/Careers';
-import ErrorPage from '../Pages/ErrorPage';
-import Form from '../Pages/Form';
-import JobPost from '../Pages/JobPost';
+import AllJobs from '../Careers/Pages/AllJobs';
+import Careers from '../Careers/Pages/Careers';
+import ErrorPage from '../Careers/Pages/ErrorPage';
+import Form from '../Careers/Pages/Form';
+import JobPost from '../Careers/Pages/JobPost';
 
 const Routes = () => {
     return (

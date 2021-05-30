@@ -1,7 +1,7 @@
 import './App.css';
 import Footer from './Careers/Components/Footer';
 import Navbar from './Careers/Components/Navbar';
-import Routes from './Careers/Routes/Routes';
+import Routes from './Routes/Routes';
 
 function App() {
   // DOCUMENT TITLE
