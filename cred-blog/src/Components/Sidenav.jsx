@@ -89,16 +89,16 @@ function SideNavbar() {
                                     </div>
 
                                 <div>
-                                    <div>
+                                    <div onClick={() => alert("Welcome to facebook")}>
                                         <i class="ri-facebook-fill"></i>
                                     </div>
-                                    <div>
+                                    <div onClick={() => alert("Welcome to twitter")}>
                                         <i class="ri-twitter-fill"></i>
                                     </div>
-                                    <div>
+                                    <div onClick={() => alert("Welcome to linkedIn")}>
                                         <i class="ri-linkedin-fill"></i>
                                     </div>
-                                    <div>
+                                    <div onClick={() => alert("Welcome to Instagram")}>
                                         <i class="ri-instagram-line"></i>
                                     </div>
                                 </div>

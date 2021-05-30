@@ -4,6 +4,7 @@ import { BlogHome } from './BlogHome';
 
 import { CreditCards } from './BlogCategory/CreditCards'
 import { CreditCardsPayment } from './BlogCategory/CreditCardsPayment';
+import { MoneyMatters } from './BlogCategory/MoneyMatters';
 
 
 function BlogRoutes() {
@@ -12,6 +13,7 @@ function BlogRoutes() {
 
 
             <Switch>
+
                 <Route path="/" exact>
                     <BlogHome />
                 </Route>
@@ -21,6 +23,10 @@ function BlogRoutes() {
                 <Route path="/category/credit-card-payment" exact>
                     <CreditCardsPayment />
                 </Route>
+                <Route path="/category/money-matters" exact>
+                    <MoneyMatters />
+                </Route>
+
             </Switch>
         </div>
     );
