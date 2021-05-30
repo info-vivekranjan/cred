@@ -162,11 +162,28 @@ const WhyCred = styled.div`
         & .reasons {
             padding: 0 28%;
         }
+
+        @media (max-width: 500px) {
+            & p {
+                padding: 0%;
+                font-size: 0.75em;
+                text-align: justify-all;
+            }
+
+            & .reasons {
+                padding: 0 10%;
+            }
+        }
+
+        @media (max-width: 300px) {
+            & .reasons {
+                padding: 0;
+            }
+        }
     }
 `;
 
 const WorkLife = styled.div`
-    border: 1px solid red;
     padding: 5%;
 
     & .what {
@@ -183,6 +200,14 @@ const WorkLife = styled.div`
             padding: 1% 23%;
             line-height: 1.3em;
             margin: 0;
+
+            @media (max-width:720px) {
+                padding: 1% 10%;
+            }
+
+            @media (max-width:390px) {
+                font-size: 1.5em;
+            }
         }
 
         & > p:nth-child(2) {
@@ -191,8 +216,22 @@ const WorkLife = styled.div`
             padding: 1% 33% 1% 1%;
             font-size: 1.3em;
             margin: 0;
-            color: gray;
+            color: #5a5a5a;
 
+            @media (max-width:900px) {
+                padding: 1% 23%;
+            }
+
+            @media (max-width:720px) {
+                padding: 1% 10%;
+            }
+
+            @media (max-width:390px) {
+                font-size: 1.2em;
+            }
+        }
+        @media (max-width:900px) {
+            grid-template-columns: 100%;
         }
     }
 
@@ -200,7 +239,8 @@ const WorkLife = styled.div`
         padding: 10% 13%;
         display: grid;
         grid-template-columns: 50% 50%;
-        grid-gap: 2%;
+        grid-column-gap: 2%;
+        grid-row-gap: 45%;
 
         & > div {
             display: grid;
@@ -208,7 +248,7 @@ const WorkLife = styled.div`
 
             & * {
                 margin: 0;
-                border: 1px solid red;
+                /* border: 1px solid red; */
             }
 
             & img {
@@ -216,7 +256,7 @@ const WorkLife = styled.div`
             }
 
             & > div {
-                padding: 0 13%;
+                padding: 0 10%;
 
                 & h4 {
                     padding: 1%;
@@ -226,15 +266,119 @@ const WorkLife = styled.div`
                 }
 
                 & p {
+                    margin-top: 10%;
                     padding: 1%;
+                    line-height: 1.2em;
+                    color: #5a5a5a;
+
+                    @media (max-width: 600px) {
+                        margin-top: 2%;
+                    }
+                }
+
+                @media (max-width: 350px) {
+                    padding: 0;
                 }
             }
+
+            @media (max-width: 350px) {
+                grid-template-columns: 100%;
+                grid-gap: 5%;
+                margin-bottom: 15%;
+
+                & img {
+                    width: 20%;
+                    margin: auto;
+                }
+            }
+        }
+
+        @media (max-width: 900px) {
+            padding: 10% 7%;
+            grid-column-gap: 2%;
+            grid-row-gap: 25%;
+        }
+
+        @media (max-width: 600px) {
+            padding: 10% 7%;
+            grid-template-columns: 100%;
+            grid-row-gap: 5%;
+            padding-bottom: 40%;
+        }
+
+        @media (max-width: 350px) {
+            grid-row-gap: 3%;
+            padding-bottom: 20%;
+        }
+    }
+
+    & .stories {
+        padding: 13%;
+
+        & .storiesHeading {
+            width: 40%;
+            padding-bottom: 13%;
+            color: #3a44a1;
+            font-size: 2.7em;
+            text-shadow: 2px 0 #3a44a1;
+            letter-spacing: 0.1em;
+
+            @media (max-width: 440px) {
+                font-size: 2em;
+                padding: 13% 7%;
+            }
+        }
+
+        & .video {
+            width: 100%;
+            border-radius: 25px;
+            position: relative;
+
+            animation: slide 1s;
+
+            @keyframes slide {
+                0% {
+                    right: -5em
+                }
+                100% {
+                    right: 0
+                }
+            }
+        }
+
+        & .videoDots {
+            /* border: 1px solid red; */
+            padding-top: 5%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            & .dots {
+                width: 15px;
+                height: 15px;
+                border-radius: 50%;
+                background-color: #d6d6d6;
+                cursor: pointer;
+                margin: 0 1%;
+                border: none;
+                outline: none;
+
+                :disabled {
+                    background-color: #636363;
+                }
+            }
+        }
+
+        @media (max-width: 280px) {
+            padding: 0;
         }
     }
 
 `;
 
 const Careers = () => {
+
+    // IMAGES
     const images = [
         {source: "/Careers/LandingPage/Images/landingPage_1.jpg", altText: "landingPage_1"},
         {source: "/Careers/LandingPage/Images/landingPage_2.jpg", altText: "landingPage_2"},
@@ -243,6 +387,19 @@ const Careers = () => {
         {source: "/Careers/LandingPage/Images/landingPage_5.jpg", altText: "landingPage_5"},
         {source: "/Careers/LandingPage/Images/landingPage_6.jpg", altText: "landingPage_6"},
     ];
+
+    // VIDEO NUMBER
+    const [num,setNum] = React.useState(1);
+
+    const videoRef = React.useRef();
+
+    // VIDEO CHANGE
+    const handleNum = (val) => {
+        videoRef.current.pause();
+        setNum(val);
+        videoRef.current.load();
+    }
+
     return (
         <div>
             <Opportunities>
@@ -283,11 +440,14 @@ const Careers = () => {
                     <p>the CRED manifesto is crowd sourced from these very people, all rooted in different backgrounds but sharing the same ethos; to continuously push oneself and in the process, the community.</p>
                 </div>
             </WhyCred>
+
             <WorkLife>
+                
                 <div className="what">
                     <p>want to know what it's like to work at CRED?</p>
                     <p>hard truths: pushing oneself comes with the role. and we realise pushing oneself is hard work. which is why CRED is in the continuous process of building an environment that helps the team rejuvenate oneself.</p>
                 </div>
+
                 <div className="how">
                     <div>
                         <img src="/Careers/LandingPage/Icons/knife&fork.png" alt="knife&fork" />
@@ -296,6 +456,7 @@ const Careers = () => {
                             <p>a stacked pantry with an all you can eat lunch & dinner.</p>
                         </div>
                     </div>
+
                     <div>
                         <img src="/Careers/LandingPage/Icons/gift.png" alt="gift" />
                         <div>
@@ -303,6 +464,7 @@ const Careers = () => {
                             <p>paid sick leaves, because your health comes first.</p>
                         </div>
                     </div>
+
                     <div>
                         <img src="/Careers/LandingPage/Icons/half-heart.png" alt="half-heart" />
                         <div>
@@ -310,11 +472,36 @@ const Careers = () => {
                             <p>a comprehensive health insurance, so you can focus on the healing instead of never ending hospital bills.</p>
                         </div>
                     </div>
+
                     <div>
                         <img src="/Careers/LandingPage/Icons/clock.png" alt="clock" />
                         <div>
-                            <h4>what einstein said about time.</h4>
+                            <h4>what Einstein said about time.</h4>
                             <p>no work timings. because you can’t time a creative process.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="stories">
+                    <div>
+                        <h1 className="storiesHeading">listen to their stories</h1>
+                    </div>
+                    <div>
+                        {/* VIDEO WINDOW */}
+                        <div key={num}>
+                            <video className="video" ref={videoRef} controls autoPlay muted>
+                                <source src={`/Careers/LandingPage/Videos/video_${num}.mp4`} type="video/mp4" /> 
+                            </video>
+                        </div>
+
+                        {/* VIDEO CHANGE DOTS */}
+                        <div className="videoDots">
+                            <button className="dots" disabled={num === 1} onClick={() => handleNum(1)}></button>
+                            <button className="dots" disabled={num === 2} onClick={() => handleNum(2)}></button>
+                            <button className="dots" disabled={num === 3} onClick={() => handleNum(3)}></button>
+                            <button className="dots" disabled={num === 4} onClick={() => handleNum(4)}></button>
+                            <button className="dots" disabled={num === 5} onClick={() => handleNum(5)}></button>
+
                         </div>
                     </div>
                 </div>

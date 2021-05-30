@@ -1,14 +1,16 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import AllJobs from '../Careers/Pages/AllJobs';
-import Careers from '../Careers/Pages/Careers';
-import ErrorPage from '../Careers/Pages/ErrorPage';
-import Form from '../Careers/Pages/Form';
-import JobPost from '../Careers/Pages/JobPost';
+import AllJobs from '../Pages/Careers/AllJobs';
+import Careers from '../Pages/Careers/Careers';
+import ErrorPage from '../Pages/Careers/ErrorPage';
+import Form from '../Pages/Careers/Form';
+import JobPost from '../Pages/Careers/JobPost';
 
 const Routes = () => {
     return (
         <Switch>
+
+            {/* ---------------------------------------- CAREERS ---------------------------------- */}
 
             {/* HOMEPAGE OF CRED CAREERS "careers.cred.club" */}
             <Route exact path="/careers.cred.club">
@@ -33,6 +35,9 @@ const Routes = () => {
             <Route>
                 <ErrorPage />
             </Route>
+
+            {/* ------------------------------------------------------------------------------------ */}
+            
         </Switch>
     )
 }
