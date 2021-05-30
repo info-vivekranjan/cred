@@ -1,5 +1,5 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const NavbarContainer = styled.div`
@@ -18,9 +18,9 @@ const Navbar = () => {
     return (
         <>
             <NavbarContainer>
-                {/* <Link to='careers.cred.club' classNmae="link"> */}
+                <Link to='/careers.cred.club' classNmae="link">
                     <img src="/Navbar/CRED_Navbar_logo.png" alt="Cred_logo" />
-                {/* </Link> */}
+                </Link>
             </NavbarContainer>
         </>
     )

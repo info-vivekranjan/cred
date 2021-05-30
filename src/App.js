@@ -4,11 +4,13 @@ import Navbar from './Components/Navbar';
 import Routes from './Routes/Routes';
 
 function App() {
+  // DOCUMENT TITLE
+  document.title = "CRED Careers";
+
   return (
     <div className="App">
       <Navbar />
       <Routes />
-      {/* <div style={{border: '',height: '70vh'}}></div> */}
       <Footer />
     </div>
   );
