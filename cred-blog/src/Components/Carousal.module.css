@@ -1,0 +1,8 @@
+.nextBackButton  i{
+    color: #262626; 
+    font-size: 200px;
+    font-weight: 700; 
+}
+.nextBackButton  i:hover{
+    color: #1b1b1b;
+}

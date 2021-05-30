@@ -9,27 +9,30 @@ import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
 import { Link } from 'react-router-dom';
-
+import styles from './Carousal.module.css';
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 const tutorialSteps = [
     {
-
-        imgPath: 'How To Increase Your Credit Card Limit',
+        id: 1,
+        imgPath: 'Update on Oxygen mission: 100 Million O2 Litres Deployed',
     },
     {
-        imgPath: 'How to Apply for a Credit Card in India?',
+        id: 2,
+        imgPath: 'Update on Oxygen mission: 450 oxygen concentrators received.',
     },
     {
-        imgPath: 'How to Apply for a Credit Card in India?',
+        id: 3,
+        imgPath: 'How we at CRED are responding to the COVID crisis',
     },
     {
-
-        imgPath: 'What Is A Credit Card? 5 Major Advantages',
+        id: 4,
+        imgPath: 'The Cosmos of CRED Application Security',
     },
     {
-        imgPath: 'How to Apply for a Credit Card in India?',
+        id: 5,
+        imgPath: 'How To Convert Credit Card Payment To EMI?',
     },
 
 ];
@@ -40,25 +43,18 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
 
     },
-    header: {
-        display: 'flex',
-        alignItems: 'center',
-        // height: 50,
-        paddingLeft: theme.spacing(5),
-
-    },
     img: {
         height: "70vh",
         display: 'block',
-        width: "100%",
+        width: "82%",
         overflow: 'hidden',
-
+        margin: "auto"
     },
     dots: {
 
         backgroundColor: "transparent",
-        width: "8%",
-        height: "10vh",
+        width: "100%",
+        height: "15vh",
         margin: "auto",
     }
 }));
@@ -98,7 +94,7 @@ function SwipeableTextMobileStepper() {
 
                 >
                     {tutorialSteps.map((step, index) => (
-                        <div className={classes.img}>
+                        <div className={classes.img} key={step.id}>
 
                             <Link style={{ color: "white", textDecoration: "none" }}>
                                 <h1 style={{ fontSize: "70px", width: "70%", margin: " auto", }}> {step.imgPath} </h1>
@@ -112,25 +108,6 @@ function SwipeableTextMobileStepper() {
 
             </>
 
-            {/* <MobileStepper
-
-                style={{ backgroundColor: "transparent", color: "white", }}
-
-                activeStep={activeStep}
-                nextButton={
-                    <Button style={{ color: "white" }} size="large" onClick={handleNext} disabled={activeStep === maxSteps - 1}>
-
-                        <i style={{ color: "white", fontSize: "200px", fontWeight: "700" }} className="ri-arrow-right-s-line"></i>
-                    </Button>
-                }
-                backButton={
-                    <Button style={{ color: "white" }} size="large" onClick={handleBack} disabled={activeStep === 0}>
-                        <i style={{ color: "white", fontSize: "200px", fontWeight: "700" }} className="ri-arrow-left-s-line"></i>
-                    </Button>
-                }
-
-            /> */}
-
 
             <MobileStepper
                 steps={maxSteps}
@@ -139,6 +116,18 @@ function SwipeableTextMobileStepper() {
 
                 activeStep={activeStep}
 
+
+                nextButton={
+                    <Button className={styles.nextBackButton} size="large" onClick={handleNext} disabled={activeStep === maxSteps - 1}>
+
+                        <i className="ri-arrow-right-s-line"></i>
+                    </Button>
+                }
+                backButton={
+                    <Button className={styles.nextBackButton} size="large" onClick={handleBack} disabled={activeStep === 0}>
+                        <i className="ri-arrow-left-s-line"></i>
+                    </Button>
+                }
             />
         </div>
     );
