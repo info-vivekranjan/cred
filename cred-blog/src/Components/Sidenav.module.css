@@ -2,17 +2,47 @@ div {
     display: block;
 }
 
+.sideNavMainCont{
+
+  position: fixed; 
+  z-index: 9999; 
+  right: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgba(0, 0, 0, 0.4); 
+
+}
+
 .sideNavCont{
+    
+    right: -300px;
+    top: 0px;
     background-color: white; 
-    width: 400px; 
+    width: 29.7%; 
     height: 100%;
-    position: fixed; 
-    right: 0px;
-    top: 0px; 
+    position: absolute; 
     overflow: auto;
     display: block ;
+    margin-left: 70.3%;
+
+    animation-duration: 200ms;
     
+    animation-fill-mode: forwards;
+    animation-name: fadeInRight;
 }
+
+@keyframes fadeInRight {
+    0% {
+       opacity: 0;
+       transform: translateX(0px);
+    }
+    100% {
+       opacity: 2;
+       transform: translateX(-300px);
+    }
+ }
 
 .sideNavUpside{
     background-color: #191c27; 
