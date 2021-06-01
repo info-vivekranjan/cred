@@ -52,76 +52,99 @@ function EachBlogCategoryNavbar({ data }) {
             <div className={styles.blogNavbarCont}>
 
 
-                <div className={styles.blogNavbar}>
 
-                    <div className={styles.blogNavbarLeft}>
-                        {
-                            links.map((item) => {
-                                return <div className={styles.navbarLinksCont}>
-
-                                    <div className={styles.blogNavLogo}>
-                                        <Link to={item.to}>
-                                            {item.blogLogo}
-                                        </Link>
-
-                                    </div>
-                                </div>
-                            })
-                        }
-
-                    </div>
-
-                    <div className={styles.blogNavbarRight}>
-                        {
-                            links.map((item) => {
-                                return <div className={styles.navbarLinksCont}>
-                                    <div className={styles.navbarLinks}>
-
-                                        <div className={styles.blogLinksCont}>
-                                            <Link className={styles.blogLink} to={item.to}>
-                                                {item.title}
-                                            </Link>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            })
-                        }
-
-                    </div>
+                <>
 
 
-                </div>
-
-                <div>
-
-
-                    <div style={{ position: "absloute", width: "100%", height: "100%", top: "0", left: "0" }}>
+                    <div className={styles.navImageCont} >
 
                         {
                             data.mainImg !== "" &&
-                            <div style={{ zIndex: "0" }}>
+                            <div className={styles.navImageDiv} >
                                 <img src={data.mainImg} alt="BLOG-IMG" />
                             </div>
                         }
 
                         {
                             data.mainImg === "" &&
-                            <div >
+                            <div className={styles.navImageDiv}>
 
                             </div>
                         }
 
 
-
                     </div>
 
-                    <div style={{ position: "absloute", zIndex: "2" }}>
+                </>
+
+
+                <>
+                    <div className={styles.navImageBigText} >
+                        <h2>
+                            {data?.mainHeaderQuestion?.charAt(0)}
+                        </h2>
+                    </div>
+                </>
+
+
+                <>
+                    <div className={styles.navImageTextDive}>
+
                         <h1>{data.mainHeaderQuestion}</h1>
+                        <p>
+                            {data.raedTime}
+                        </p>
+                        <p>
+                            {data.category} / {data.mainHeaderQuestion}
+                        </p>
+                    </div>
+                </>
+
+                <>
+
+                    <div className={styles.blogNavbar}>
+
+                        <div className={styles.blogNavbarLeft}>
+                            {
+                                links.map((item) => {
+                                    return <div className={styles.navbarLinksCont}>
+
+                                        <div className={styles.blogNavLogo}>
+                                            <Link to={item.to}>
+                                                {item.blogLogo}
+                                            </Link>
+
+                                        </div>
+                                    </div>
+                                })
+                            }
+
+                        </div>
+
+                        <div className={styles.blogNavbarRight}>
+                            {
+                                links.map((item) => {
+                                    return <div className={styles.navbarLinksCont}>
+                                        <div className={styles.navbarLinks}>
+
+                                            <div className={styles.blogLinksCont}>
+                                                <Link className={styles.blogLink} to={item.to}>
+                                                    {item.title}
+                                                </Link>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                })
+                            }
+
+                        </div>
+
+
                     </div>
 
 
-                </div>
+                </>
 
             </div>
 

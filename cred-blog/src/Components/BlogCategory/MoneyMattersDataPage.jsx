@@ -343,6 +343,31 @@ function MoneyMattersDataPage() {
                                             </div>
 
 
+                                            <div>
+                                                <h3 className={cx(styles.allHeaders)}>{data1?.conclusion}</h3>
+
+
+                                                <div>
+                                                    <div className={cx(styles.allParas)}>
+                                                        {data1?.conclusionAns?.para1}
+                                                    </div>
+
+                                                    <div className={cx(styles.allParas)}>
+                                                        {data1?.conclusionAns?.para2}
+                                                    </div>
+
+                                                    <div className={cx(styles.allParas)}>
+                                                        {data1?.conclusionAns?.para3}
+                                                    </div>
+
+                                                    <div className={cx(styles.allParas)}>
+                                                        {data1?.conclusionAns?.para4}
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+
                                         </>
 
                             }
