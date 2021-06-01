@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { SideNavbar } from '../Sidenav';
 import { EachBlogCategoryNavbar } from './BlogCategoryEachPageNav/EachBlogCategoryNavbar';
-import styles from './CreditCardsDataPage.module.css'
+import styles from './AllCateDataPage.module.css'
 import cx from 'classnames';
 
 function CreditCardsDataPage() {
