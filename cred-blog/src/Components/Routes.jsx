@@ -5,7 +5,7 @@ import { BlogHome } from './BlogHome';
 import { CreditCards } from './BlogCategory/CreditCards'
 import { CreditCardsPayment } from './BlogCategory/CreditCardsPayment';
 import { MoneyMatters } from './BlogCategory/MoneyMatters';
-
+import { CreditCardsDataPage } from './BlogCategory/CreditCardsDataPage'
 
 function BlogRoutes() {
     return (
@@ -26,6 +26,10 @@ function BlogRoutes() {
                 <Route path="/category/money-matters" exact>
                     <MoneyMatters />
                 </Route>
+                <Route path="/category/credit-cards/:id" exact>
+                    <CreditCardsDataPage />
+                </Route>
+
 
             </Switch>
         </div>
