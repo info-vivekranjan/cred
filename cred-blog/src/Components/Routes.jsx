@@ -6,6 +6,8 @@ import { CreditCards } from './BlogCategory/CreditCards'
 import { CreditCardsPayment } from './BlogCategory/CreditCardsPayment';
 import { MoneyMatters } from './BlogCategory/MoneyMatters';
 import { CreditCardsDataPage } from './BlogCategory/CreditCardsDataPage'
+import { MoneyMattersDataPage } from './BlogCategory/MoneyMattersDataPage';
+import { CreditCardsPaymentDataPage } from './BlogCategory/CreditCardsPaymentDataPage';
 
 function BlogRoutes() {
     return (
@@ -28,6 +30,15 @@ function BlogRoutes() {
                 </Route>
                 <Route path="/category/credit-cards/:id" exact>
                     <CreditCardsDataPage />
+                </Route>
+
+                <Route path="/category/money-matters/:id" exact>
+                    <MoneyMattersDataPage />
+                </Route>
+
+
+                <Route path="/category/credit-card-payment/:id" exact>
+                    <CreditCardsPaymentDataPage />
                 </Route>
 
 

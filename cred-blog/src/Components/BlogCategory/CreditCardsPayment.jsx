@@ -80,7 +80,7 @@ function CreditCardsPayment() {
                                     <p>{item.headerExplanation.para1}</p>
                                 </div>
                                 <div className={styles.readOnCont}>
-                                    <Link className={styles.readOn} to={` /category/credit-cards/${item.mainHeaderQuestion}`}>Read on</Link>
+                                    <Link className={styles.readOn} to={`credit-card-payment/${item.id}`}>Read on</Link>
                                 </div>
                             </div>
                         })

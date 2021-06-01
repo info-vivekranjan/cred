@@ -81,7 +81,7 @@ function MoneyMatters() {
                                     <p>{item.headerExplanation.para1}</p>
                                 </div>
                                 <div className={styles.readOnCont}>
-                                    <Link className={styles.readOn} to={` /category/money-matters/${item.mainHeaderQuestion}`}>Read on</Link>
+                                    <Link className={styles.readOn} to={`money-matters/${item.id}`}>Read on</Link>
                                 </div>
                             </div>
                         })
