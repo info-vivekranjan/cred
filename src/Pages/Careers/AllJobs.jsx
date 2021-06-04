@@ -40,8 +40,8 @@ const JobsContainer = styled.div`
 
     .searchBar {
         text-align: center;
-        border: 1px solid blue;
-        margin-right: -7em;
+        margin: 3% auto;
+        margin-left: 7em;
 
         & input {
             background-color: #ebebeb;
@@ -56,11 +56,17 @@ const JobsContainer = styled.div`
             :focus {
                 border-color: #6fc4e6;
             }
+
+            @media (max-width: 500px) {
+                font-size: 1.3em;
+                padding: 5% 7%;
+            }
+
         }
 
         & button {
             position: relative;
-            right: 7em;
+            right: 15%;
             background-color: #3a44a1;
             color: white;
             cursor: pointer;
@@ -69,11 +75,28 @@ const JobsContainer = styled.div`
             outline: none;
             border-radius: 15px;
             font-size: 1.5em;
+
+            @media (max-width: 1000px) {
+                right: 17%;
+            }
+            @media (max-width: 820px) {
+                padding: 2% 3%;
+                position: static;
+            }
+        }
+        @media (max-width: 820px) {
+            margin: 3% auto;
+        }
+        @media (max-width: 500px) {
+            width: 110%;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            flex-direction: column;
         }
     }
 
     .filter {
-        /* border: 1px solid red; */
         margin: 1% 13%;
 
         /* * {
@@ -448,7 +471,7 @@ const AllJobs = () => {
                                     {/* DEPARTMENT FILTERS LIST */}
                                     {
                                         department.map((ele) => 
-                                        
+
                                                 <div key={ele.id}>
                                                     <div className={ele.filter ? "checked checkbox" : "unchecked checkbox"} onClick={() => toggleDeptFilter(ele.id,ele.name)}>
                                                         {
