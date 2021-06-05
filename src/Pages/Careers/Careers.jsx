@@ -211,9 +211,8 @@ const WorkLife = styled.div`
         }
 
         & > p:nth-child(2) {
-            /* border: 1px solid red; */
             line-height: 1.8em;
-            padding: 1% 33% 1% 1%;
+            padding: 1% 26% 1% 7%;
             font-size: 1.3em;
             margin: 0;
             color: #5a5a5a;
@@ -404,7 +403,7 @@ const Careers = () => {
         <div>
             <Opportunities>
                 <h1>opportunities are infinite.</h1>
-                <Link to="/careers.cred.club/allJob" className="link">find yours <IoIosArrowForward className="arrow" /></Link>
+                <Link to="/careers/allJob" className="link">find yours <IoIosArrowForward className="arrow" /></Link>
             </Opportunities>
 
             <ImageContainer>

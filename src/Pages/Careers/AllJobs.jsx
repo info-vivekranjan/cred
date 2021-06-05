@@ -5,11 +5,10 @@ import { RiArrowRightSLine } from 'react-icons/ri';
 import { BsFillExclamationCircleFill } from 'react-icons/bs';
 import { FaSearch } from 'react-icons/fa';
 import { IoMdClose } from 'react-icons/io';
-import { Link } from 'react-router-dom';
+import {useHistory} from 'react-router-dom'
 
 const Thumbnail = styled.div`
     text-align: center;
-    /* border: 1px solid blue; */
     margin-bottom: -5em;
 
     & img {
@@ -103,15 +102,11 @@ const JobsContainer = styled.div`
         }
         @media (max-width: 500px) {
             width: 110%;
-            /* display: flex;
-            justify-content: space-evenly;
-            align-items: center;
-            flex-direction: column; */
         }
     }
 
     .filter {
-        margin: 1% 13%;
+        margin: 5% 13%;
 
         @media (max-width: 1095px) {
             margin: 1% 5%;
@@ -239,18 +234,27 @@ const JobsContainer = styled.div`
                 color:#505050;
             }
 
-            & .department, .time {
+            & .departments {
                 padding-bottom: 3%;
+            }
+
+            & .time {
+                @media (max-width: 750px) {
+                    padding-bottom: 2%;
+                }
+            }
+
+            & .department, .time {
                 letter-spacing: 0.1em;
                 
                 & > div {
                     display: grid;
-                    grid-template-columns: 10% 90%;
+                    grid-template-columns: 13% 87%;
                     margin: 7% 0;
 
                     @media (max-width: 750px) {
                         margin: 3% 0;
-                        grid-template-columns: 5% 95%;
+                        grid-template-columns: 6% 93%;
                     }
 
                     @media (max-width: 420px) {
@@ -260,7 +264,15 @@ const JobsContainer = styled.div`
 
                     @media (max-width: 250px) {
                         margin: 3% 0;
-                        grid-template-columns: 13% 87%;
+                        grid-template-columns: 15% 87%;
+                    }
+                }
+
+                & .filterHover {
+
+                    & :hover {
+                        color: black;
+                        cursor: pointer;
                     }
                 }
 
@@ -271,7 +283,7 @@ const JobsContainer = styled.div`
                 }
 
                 & .unchecked {
-                    border: 2px solid gray;
+                    border: 3px solid gray;
                 }
 
                 & .uncheckedText {
@@ -282,7 +294,7 @@ const JobsContainer = styled.div`
                 }
 
                 & .checked {
-                    border: 2px solid #010181;
+                    border: 3px solid #010181;
                     background-color: #010181;
                     color: white;
                 }
@@ -377,6 +389,7 @@ const JobsContainer = styled.div`
 `;
 
 const AllJobs = () => {
+    const history = useHistory();
 
     const departmentList = [
         {name: "infrastructure & security", filter: false, id: "164aaae0-8060-4797-b671-7aead2d44c9a"},
@@ -455,6 +468,22 @@ const AllJobs = () => {
 
     const [query,setQuery] = React.useState("");
 
+    const [showFilter,setShowFilter] = React.useState(true); 
+
+    const [width,setWidth] = React.useState(window.innerWidth);
+
+    const checkDimensions = () => {
+        setWidth(window.innerWidth);
+    }
+
+    const checkFilters = () => {
+        if (time.filter(ele => ele.filter === true).length === 0 && job.filter(ele => ele.selected === true).length === 0  && query.trim().length === 0) {
+            removeAllFilters();
+        }
+        job.map(ele => console.log(ele.dept,ele.time,ele.selected));
+        console.log("")
+    }
+
     const handleSearch = (e) => {
         e.preventDefault();
         let tempJobs = [];
@@ -475,19 +504,27 @@ const AllJobs = () => {
         setJob(tempJobs);
     }
 
-    const toggleDeptFilter = (filterId,dept) => {
+    const toggleDeptFilter = (filterId,status,dept) => {
         setDepartment(department.map(ele => ele.id === filterId ? {...ele, filter: !ele.filter} : ele));
+        
         if (jobCount === jobList.length) {
-            setJob(job.map(ele => ele.dept === dept ? ele : {...ele, selected: !ele.selected}));
+            setJob(job.map(ele => ele.dept !== dept ? {...ele, selected: !ele.selected} : ele));
         }
         else {
-            setJob(job.map(ele => ele.dept === dept ? ele : {...ele, selected: !ele.selected}), ...job);
+            setJob(job.map(ele => ele.dept === dept ? {...ele, selected: !ele.selected} : ele));
         }
+
     }
 
-    const toggleTimeFilter = (filterId,name) => {
+    const toggleTimeFilter = (filterId,status,name) => {
         setTime(time.map(ele => ele.id === filterId ? {...ele, filter: !ele.filter} : ele));
-        setJob(job.map(ele => ele.time === name ? ele : {...ele, selected: !ele.selected}));
+
+        if (jobCount === jobList.length) {
+            setJob(job.map(ele => ele.time !== name ? {...ele, selected: !ele.selected} : ele));
+        }
+        else {
+            setJob(job.map(ele => ele.time === name ? {...ele, selected: !ele.selected} : ele))
+        }
     }
 
     const removeAllFilters = () => {
@@ -498,24 +535,14 @@ const AllJobs = () => {
     }
 
     // ONCLICK ON A JOB CARD
-    const handleClick = (job) => {
+    const handleClick = (jobId) => {
         console.log(job + " card clicked !");
-        if (true) {
-            return <Link to={`/careers/allJob/${job.toLowerCase()}`} />
-        }
-    }
-
-    const [showFilter,setShowFilter] = React.useState(true); 
-
-    const [width,setWidth] = React.useState(window.innerWidth);
-
-
-    const checkDimensions = () => {
-        setWidth(window.innerWidth);
+        history.push(`/careers/allJob/${jobId}`);
     }
 
     React.useEffect(() => {
         setJobCount(job.filter(ele => ele.selected === true).length);
+        checkFilters();
         // eslint-disable-next-line
     },[handleSearch,toggleDeptFilter,toggleTimeFilter,removeAllFilters]);
 
@@ -533,7 +560,7 @@ const AllJobs = () => {
             <JobsContainer>
                 {/* SEARCH BAR FOR SEARCHING JOBS */}
                 <form className="searchBar">
-                    <input id="query" type="text" name="searchQuery" value={query} onChange={e => setQuery(e.target.value)} placeholder="search for jobs" ></input>
+                    <input id="query" type="text" name="searchQuery" value={query} onChange={e => setQuery(e.target.value)} placeholder="search for jobs" autoComplete="off"/>
                     <button onClick={handleSearch}>{width >= 1050 ? "search" : <FaSearch/> }</button>
                 </form>
 
@@ -555,12 +582,12 @@ const AllJobs = () => {
 
                                 {/* SELECTED DEPARTMENT FILTERS (DEFAULT: EMPTY) */}
                                 {
-                                    department.filter(ele => ele.filter === true).map(ele => <p key={ele.id} onClick={() => toggleDeptFilter(ele.id,ele.name)}>{ele.name} <IoMdClose className="filterClose"/> </p>)
+                                    department.filter(ele => ele.filter === true).map(ele => <p key={ele.id} onClick={() => toggleDeptFilter(ele.id,ele.filter,ele.name)}><span>{ele.name}</span> <span><IoMdClose className="filterClose"/></span> </p>)
                                 }
 
                                 {/* SELECTED TIME / DURATION FILTERS (DEFAULT: EMPTY) */}
                                 {
-                                    time.filter(ele => ele.filter === true).map(ele => <p key={ele.id} onClick={() => toggleTimeFilter(ele.id,ele.name)}>{ele.name} <IoMdClose className="filterClose"/> </p>)
+                                    time.filter(ele => ele.filter === true).map(ele => <p key={ele.id} onClick={() => toggleTimeFilter(ele.id,ele.filter,ele.name)}><span>{ele.name}</span> <span><IoMdClose className="filterClose"/></span></p>)
                                 }
 
                                 {/* EMPTY BLOCK SPACE (USED WHEN FILTERS ARE EMPTY) */}
@@ -586,13 +613,13 @@ const AllJobs = () => {
                                     {
                                         department.map((ele) => 
 
-                                                <div key={ele.id}>
-                                                    <div className={ele.filter ? "checked checkbox" : "unchecked checkbox"} onClick={() => toggleDeptFilter(ele.id,ele.name)}>
+                                                <div key={ele.id} className="filterHover" onClick={() => toggleDeptFilter(ele.id,ele.filter,ele.name)}>
+                                                    <div className={ele.filter ? "checked checkbox" : "unchecked checkbox"}>
                                                         {
                                                             ele.filter ? <GoCheck /> : false
                                                         }
                                                     </div>
-                                                    <div className={ele.filter ? "checkedText" : "uncheckedText"} onClick={() => toggleDeptFilter(ele.id,ele.name)}>
+                                                    <div className={ele.filter ? "checkedText" : "uncheckedText"}>
                                                         {ele.name}
                                                     </div>
                                                 </div>
@@ -608,13 +635,13 @@ const AllJobs = () => {
                                     {
                                         time.map((ele) => {
                                             return (
-                                                <div key={ele.id}>
-                                                    <div className={ele.filter ? "checked checkbox" : "unchecked checkbox" } onClick={() => toggleTimeFilter(ele.id,ele.name)}>
+                                                <div key={ele.id} className="filterHover" onClick={() => toggleTimeFilter(ele.id,ele.filter,ele.name)}>
+                                                    <div className={ele.filter ? "checked checkbox" : "unchecked checkbox" }>
                                                         {
                                                             ele.filter ? <GoCheck /> : false
                                                         }
                                                     </div>
-                                                    <div className={ele.filter ? "checkedText" : "uncheckedText"} onClick={() => toggleTimeFilter(ele.id,ele.name)}>
+                                                    <div className={ele.filter ? "checkedText" : "uncheckedText"}>
                                                         {ele.name}
                                                     </div>
                                                 </div>
@@ -629,8 +656,8 @@ const AllJobs = () => {
                         <div className="jobList">
                             {
                                 // JOB LIST
-                                job.length ? job.filter(ele => ele.selected === true).map(ele => 
-                                    <div key={ele.id} className="jobCard" onClick={() => handleClick(ele.name)}>
+                                jobCount ? job.filter(ele => ele.selected === true).map(ele => 
+                                    <div key={ele.id} className="jobCard" onClick={() => handleClick(ele.id)}>
                                         <div>
                                             <h3>{ele.name}</h3>
                                             <p>{ele.place}</p>
@@ -642,7 +669,7 @@ const AllJobs = () => {
                                         </div>
                                     </div>
                                 ) :
-
+                                
                                 // NO JOBS (JOB COUNT === 0)
                                 <div className='noResults'>
                                     <h1><BsFillExclamationCircleFill/> NO RESULTS FOUND</h1>
