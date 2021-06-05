@@ -3,7 +3,9 @@ import styled from 'styled-components';
 import { GoCheck } from 'react-icons/go';
 import { RiArrowRightSLine } from 'react-icons/ri';
 import { BsFillExclamationCircleFill } from 'react-icons/bs';
-import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
+import { FaSearch } from 'react-icons/fa';
+import { IoMdClose } from 'react-icons/io';
+import { Link } from 'react-router-dom';
 
 const Thumbnail = styled.div`
     text-align: center;
@@ -46,7 +48,7 @@ const JobsContainer = styled.div`
         & input {
             background-color: #ebebeb;
             border-radius: 30px;
-            font-size: 1.5em;
+            font-size: 1.7em;
             padding: 2.5% 3%;
             font-weight: bolder;
             width: 50%;
@@ -55,6 +57,11 @@ const JobsContainer = styled.div`
 
             :focus {
                 border-color: #6fc4e6;
+            }
+
+            @media (max-width: 1000px) {
+                font-size: 1.5em;
+                padding: 3% 7%;
             }
 
             @media (max-width: 500px) {
@@ -76,12 +83,19 @@ const JobsContainer = styled.div`
             border-radius: 15px;
             font-size: 1.5em;
 
-            @media (max-width: 1000px) {
-                right: 17%;
+            @media (max-width: 1050px) {
+                background-color: transparent;
+                color: gray;
+                right: 10%;
             }
             @media (max-width: 820px) {
-                padding: 2% 3%;
-                position: static;
+                right: 13%;
+            }
+            @media (max-width: 440px) {
+                right: 15%;
+            }
+            @media (max-width: 330px) {
+                display: none;
             }
         }
         @media (max-width: 820px) {
@@ -89,15 +103,27 @@ const JobsContainer = styled.div`
         }
         @media (max-width: 500px) {
             width: 110%;
-            display: flex;
+            /* display: flex;
             justify-content: space-evenly;
             align-items: center;
-            flex-direction: column;
+            flex-direction: column; */
         }
     }
 
     .filter {
         margin: 1% 13%;
+
+        @media (max-width: 1095px) {
+            margin: 1% 5%;
+        }
+
+        @media (max-width: 800px) {
+            margin: 1%;
+        }
+
+        @media (max-width: 750px) {
+            margin: 1% 3%;
+        }
 
         /* * {
             border: 1px solid blue;
@@ -114,6 +140,10 @@ const JobsContainer = styled.div`
             & > div {
                 padding: 1% 3%;
             }
+
+            @media (max-width: 750px) {
+                grid-template-columns: 100%;
+            }
         }
 
         & .jobCount {
@@ -121,6 +151,11 @@ const JobsContainer = styled.div`
             font-weight: 900;
             color: #414141;
             font-size: 1.3em;
+
+            @media (max-width: 750px) {
+                margin: 0;
+                text-align: center;
+            }
         }
 
         & .filterReset {
@@ -131,6 +166,15 @@ const JobsContainer = styled.div`
             & p:nth-child(1) {
                 color: #5e5e5e;
                 font-size: 1.2em;
+
+                @media (max-width:750px) {
+                    color: gray;
+                    cursor: pointer;
+
+                    :hover {
+                        color: black;
+                    }
+                }
             }
 
             & p:nth-child(2) {
@@ -149,12 +193,19 @@ const JobsContainer = styled.div`
             flex-wrap: wrap;
 
             & p {
+                display: flex;
+                justify-content: space-evenly;
+                align-items: center;
                 border-radius: 30px;
                 border: 1px solid gray;
                 color: gray;
                 cursor: pointer;
                 padding: 1% 3%;
                 margin: 1% 1%;
+
+                & .filterClose {
+                    padding-left: 5%;
+                }
 
                 :hover {
                     color: black
@@ -163,11 +214,20 @@ const JobsContainer = styled.div`
 
             & .emptyBlock {
                 visibility: hidden;
+                
+                @media (max-width: 750px) {
+                    padding: 2% 0;
+                }
             }
+        }
+
+        & .hideFilter {
+            display: none;
         }
 
         & .selectOptions {
             border-right: 1px solid lightgray;
+
             
             & > div {
                 position: sticky;
@@ -187,6 +247,21 @@ const JobsContainer = styled.div`
                     display: grid;
                     grid-template-columns: 10% 90%;
                     margin: 7% 0;
+
+                    @media (max-width: 750px) {
+                        margin: 3% 0;
+                        grid-template-columns: 5% 95%;
+                    }
+
+                    @media (max-width: 420px) {
+                        margin: 3% 0;
+                        grid-template-columns: 10% 90%;
+                    }
+
+                    @media (max-width: 250px) {
+                        margin: 3% 0;
+                        grid-template-columns: 13% 87%;
+                    }
                 }
 
                 & .checkbox {
@@ -218,6 +293,12 @@ const JobsContainer = styled.div`
                     letter-spacing: 0.1em;
                     cursor: default;
                 }
+
+            }
+
+            @media (max-width: 750px) {
+                border: none;
+                border-bottom: 1px solid lightgray;
             }
         }
 
@@ -239,6 +320,10 @@ const JobsContainer = styled.div`
                         font-size: 1.3em;
                         letter-spacing: 0.1em;
                         text-shadow: 1px 1px 1px 1px;
+                    }
+
+                    @media (max-width: 350px) {
+                        font-size: 0.9em;
                     }
                 }
 
@@ -266,12 +351,22 @@ const JobsContainer = styled.div`
                     justify-content: center;
                     align-items: center;
                 }
+
+                @media (max-width: 600px) {
+                    line-height: 2em;
+                }
+
+                @media (max-width: 420px) {
+                    font-size: 0.9em;
+                }
             }
 
             & .noResultsLink {
                 color: gray;
                 text-decoration: underline;
                 cursor: pointer;
+                font-size: 1.1em;
+                color: #5a5a5a;
 
                 :hover {
                     color: black;
@@ -382,7 +477,12 @@ const AllJobs = () => {
 
     const toggleDeptFilter = (filterId,dept) => {
         setDepartment(department.map(ele => ele.id === filterId ? {...ele, filter: !ele.filter} : ele));
-        setJob(job.map(ele => ele.dept === dept ? ele : {...ele, selected: !ele.selected}));
+        if (jobCount === jobList.length) {
+            setJob(job.map(ele => ele.dept === dept ? ele : {...ele, selected: !ele.selected}));
+        }
+        else {
+            setJob(job.map(ele => ele.dept === dept ? ele : {...ele, selected: !ele.selected}), ...job);
+        }
     }
 
     const toggleTimeFilter = (filterId,name) => {
@@ -401,14 +501,25 @@ const AllJobs = () => {
     const handleClick = (job) => {
         console.log(job + " card clicked !");
         if (true) {
-            return <Redirect push to={`/careers/allJob/${job.toLowerCase()}`} />
+            return <Link to={`/careers/allJob/${job.toLowerCase()}`} />
         }
+    }
+
+    const [showFilter,setShowFilter] = React.useState(true); 
+
+    const [width,setWidth] = React.useState(window.innerWidth);
+
+
+    const checkDimensions = () => {
+        setWidth(window.innerWidth);
     }
 
     React.useEffect(() => {
         setJobCount(job.filter(ele => ele.selected === true).length);
         // eslint-disable-next-line
     },[handleSearch,toggleDeptFilter,toggleTimeFilter,removeAllFilters]);
+
+    window.addEventListener('resize',checkDimensions);
 
     return (
         <div>
@@ -423,7 +534,7 @@ const AllJobs = () => {
                 {/* SEARCH BAR FOR SEARCHING JOBS */}
                 <form className="searchBar">
                     <input id="query" type="text" name="searchQuery" value={query} onChange={e => setQuery(e.target.value)} placeholder="search for jobs" ></input>
-                    <button onClick={handleSearch}>search</button>
+                    <button onClick={handleSearch}>{width >= 1050 ? "search" : <FaSearch/> }</button>
                 </form>
 
                 {/* FILTER CONTAINER */}
@@ -431,7 +542,9 @@ const AllJobs = () => {
                     <div>
                         {/* FILTER RESET LINK */}
                         <div className="filterReset">
-                            <p>filter</p>
+                            {
+                                width <= 750 ? <p onClick={() => setShowFilter(!showFilter)}>{showFilter ? "SHOW FILTER" : "HIDE FILTER"}</p> : <p>filter</p>
+                            }
                             <p onClick={removeAllFilters}>reset all</p>
                         </div>
 
@@ -442,12 +555,12 @@ const AllJobs = () => {
 
                                 {/* SELECTED DEPARTMENT FILTERS (DEFAULT: EMPTY) */}
                                 {
-                                    department.filter(ele => ele.filter === true).map(ele => <p key={ele.id} onClick={() => toggleDeptFilter(ele.id,ele.name)}>{ele.name} X</p>)
+                                    department.filter(ele => ele.filter === true).map(ele => <p key={ele.id} onClick={() => toggleDeptFilter(ele.id,ele.name)}>{ele.name} <IoMdClose className="filterClose"/> </p>)
                                 }
 
                                 {/* SELECTED TIME / DURATION FILTERS (DEFAULT: EMPTY) */}
                                 {
-                                    time.filter(ele => ele.filter === true).map(ele => <p key={ele.id} onClick={() => toggleTimeFilter(ele.id,ele.name)}>{ele.name} X</p>)
+                                    time.filter(ele => ele.filter === true).map(ele => <p key={ele.id} onClick={() => toggleTimeFilter(ele.id,ele.name)}>{ele.name} <IoMdClose className="filterClose"/> </p>)
                                 }
 
                                 {/* EMPTY BLOCK SPACE (USED WHEN FILTERS ARE EMPTY) */}
@@ -461,7 +574,8 @@ const AllJobs = () => {
                     <div>
 
                         {/* FILTERS CHECKBOXES CONTAINER */}
-                        <div className="selectOptions">
+                        <div className={width >= 750 ? "selectOptions" : showFilter ? "hideFilter" : "selectOptions"}>
+
                             <div>
 
                                 {/* FILTER HEADER */}
@@ -521,6 +635,7 @@ const AllJobs = () => {
                                             <h3>{ele.name}</h3>
                                             <p>{ele.place}</p>
                                             <p>{ele.time}</p>
+                                            <p>{ele.dept}</p>
                                         </div>
                                         <div>
                                             <RiArrowRightSLine className="jobArrow" />
