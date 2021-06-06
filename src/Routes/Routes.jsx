@@ -13,22 +13,22 @@ const Routes = () => {
             {/* ---------------------------------------- CAREERS ---------------------------------- */}
 
             {/* HOMEPAGE OF CRED CAREERS "careers.cred.club" */}
-            <Route exact path="/careers.cred.club">
+            <Route exact path="/careers">
                 <Careers />
             </Route>
 
             {/* ALL JOBS PAGE */}
-            <Route path="/careers.cred.club/allJob">
+            <Route exact path="/careers/allJob">
                 <AllJobs />
             </Route>
 
             {/* DETAILS OF A PARTICULAR JOB POST */}
-            <Route path="/careers.cred.club/jobPosting">
+            <Route path={`/careers/allJob/:jobId`}>
                 <JobPost />
             </Route>
 
             {/* FORM FOR JOB APPLICANTS */}
-            <Route path="/careers.cred.club/form">
+            <Route path={`/careers/form/:jobId`}>
                 <Form />
             </Route>
 

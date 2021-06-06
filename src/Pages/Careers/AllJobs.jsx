@@ -5,7 +5,9 @@ import { RiArrowRightSLine } from 'react-icons/ri';
 import { BsFillExclamationCircleFill } from 'react-icons/bs';
 import { FaSearch } from 'react-icons/fa';
 import { IoMdClose } from 'react-icons/io';
+import axios from 'axios';
 import {useHistory} from 'react-router-dom'
+import LoadingSpinner from '../../Components/Careers/LoadingSpinner';
 
 const Thumbnail = styled.div`
     text-align: center;
@@ -315,6 +317,13 @@ const JobsContainer = styled.div`
         }
 
         & .jobList {
+
+            & .loadingSpinnerMiddle {
+                margin-top: 10%;
+                font-size: 2em;
+                display: flex;
+                justify-content: center;
+            }
             
             & .jobCard {
                 box-shadow: 1px 1px 10px #eeeeee;
@@ -391,99 +400,117 @@ const JobsContainer = styled.div`
 const AllJobs = () => {
     const history = useHistory();
 
-    const departmentList = [
-        {name: "infrastructure & security", filter: false, id: "164aaae0-8060-4797-b671-7aead2d44c9a"},
-        {name: "engineering", filter: false, id: "9fa64e73-33d2-433a-9c5c-6ea416f0f4a0"},
-        {name: "ea", filter: false, id: "76180dfe-b998-443b-90e3-3778d9fdf801"},
-        {name: "business", filter: false, id: "d41afa03-af29-40fd-ae27-1773d7ad61b0"},
-        {name: "risk analytics", filter: false, id: "3866232d-3c16-4015-af98-794c45beb5dd"},
-        {name: "product", filter: false, id: "b8c42dcc-f0ab-47fa-980e-b10a1b687301"},
-        {name: "talent & culture", filter: false, id: "b5b70bd7-b6db-466b-81ee-e81012b6ab9b"},
-        {name: "analytics", filter: false, id: "f20d8781-bbd3-4071-9519-511b4bd60f02"},
-        {name: "marketing", filter: false, id: "4951a753-4a2d-47f8-9b73-85f133284897"},
-        {name: "operations", filter: false, id: "ccdd4a15-6f08-46f3-b3b5-896c2b2d25b4"}
-    ];
+    const [loading,setLoading] = React.useState(false);
+    const [error,setError] = React.useState(false);
+    const [errorMsg,setErrorMsg] = React.useState(false);
 
-    const jobList = [
 
-        // infrastructure & security
-        {name: "application security engineer", place: "bengaluru", selected: true, time: "full-time", dept: "infrastructure & security", id: "e7b7fd7b-3432-48e4-9ab5-351192038920"},
-        {name: "data engineer", place: "bengaluru", selected: true, time: "full-time", dept: "infrastructure & security", id: "ad0eec0b-4902-4102-a4c8-1a41f1ededce"},
-        {name: "database administrator", place: "bengaluru", selected: true, time: "full-time", dept: "infrastructure & security", id: "762c6c62-1107-48d8-8bd5-4ac8dc96249c"},
-        {name: "infrastructure security engineer", place: "bengaluru", selected: true, time: "full-time", dept: "infrastructure & security", id: "c1541fda-1c21-4e76-aba3-f5ee70b2525a"},
-        {name: "principal site reliability engineer", place: "bengaluru", selected: true, time: "full-time", dept: "infrastructure & security", id: "84b159aa-fb66-46a2-868e-5064d5b3194f"},
-        {name: "security compliance", place: "bengaluru", selected: true, time: "full-time", dept: "infrastructure & security", id: "5d8b5cc8-b06f-4a27-a299-cd1fe7ca9b17"},
+    // MANUAL DATA
+    // const departmentList = [
+    //     {name: "infrastructure & security", filter: false, id: "164aaae0-8060-4797-b671-7aead2d44c9a"},
+    //     {name: "engineering", filter: false, id: "9fa64e73-33d2-433a-9c5c-6ea416f0f4a0"},
+    //     {name: "ea", filter: false, id: "76180dfe-b998-443b-90e3-3778d9fdf801"},
+    //     {name: "business", filter: false, id: "d41afa03-af29-40fd-ae27-1773d7ad61b0"},
+    //     {name: "risk analytics", filter: false, id: "3866232d-3c16-4015-af98-794c45beb5dd"},
+    //     {name: "product", filter: false, id: "b8c42dcc-f0ab-47fa-980e-b10a1b687301"},
+    //     {name: "talent & culture", filter: false, id: "b5b70bd7-b6db-466b-81ee-e81012b6ab9b"},
+    //     {name: "analytics", filter: false, id: "f20d8781-bbd3-4071-9519-511b4bd60f02"},
+    //     {name: "marketing", filter: false, id: "4951a753-4a2d-47f8-9b73-85f133284897"},
+    //     {name: "operations", filter: false, id: "ccdd4a15-6f08-46f3-b3b5-896c2b2d25b4"}
+    // ];
 
-        // engineering
-        {name: "backend developer", place: "bengaluru", selected: true, time: "full-time", dept: "engineering", id: "6e452949-4440-49fe-a6fc-603b10db2f1e"},
-        {name: "engineering manager", place: "bengaluru", selected: true, time: "full-time", dept: "engineering", id: "4099243d-c4f2-4ae0-aaeb-934c4e4f7202"},
-        {name: "ios developer", place: "bengaluru", selected: true, time: "full-time", dept: "engineering", id: "cfbef182-9bcd-49da-9433-65a06b346b6f"},
-        {name: "SDET backend", place: "bengaluru", selected: true, time: "full-time", dept: "engineering", id: "c71bad0f-2668-4471-83c3-fa6cf8e959e4"},
-        {name: "technical program manager (TPM)", place: "bengaluru", selected: true, time: "full-time", dept: "engineering", id: "332c9dac-216b-4adf-8869-640c246e3c8e "},
+    // const jobList = [
 
-        // ea
-        {name: "executive assistant", place: "bengaluru", selected: true, time: "consultant", dept: "ea", id: "a441476e-16e1-48b3-bf66-73de8dee3ad0"},
+    //     // infrastructure & security
+    //     {name: "application security engineer", place: "bengaluru", selected: true, time: "full-time", dept: "infrastructure & security", id: "e7b7fd7b-3432-48e4-9ab5-351192038920"},
+    //     {name: "data engineer", place: "bengaluru", selected: true, time: "full-time", dept: "infrastructure & security", id: "ad0eec0b-4902-4102-a4c8-1a41f1ededce"},
+    //     {name: "database administrator", place: "bengaluru", selected: true, time: "full-time", dept: "infrastructure & security", id: "762c6c62-1107-48d8-8bd5-4ac8dc96249c"},
+    //     {name: "infrastructure security engineer", place: "bengaluru", selected: true, time: "full-time", dept: "infrastructure & security", id: "c1541fda-1c21-4e76-aba3-f5ee70b2525a"},
+    //     {name: "principal site reliability engineer", place: "bengaluru", selected: true, time: "full-time", dept: "infrastructure & security", id: "84b159aa-fb66-46a2-868e-5064d5b3194f"},
+    //     {name: "security compliance", place: "bengaluru", selected: true, time: "full-time", dept: "infrastructure & security", id: "5d8b5cc8-b06f-4a27-a299-cd1fe7ca9b17"},
 
-        // business
-        {name: "key accounts - CRED Pay", place: "bengaluru", selected: true, time: "full-time", dept: "business", id: "a75dcaef-4a21-438b-bd2c-a6c8bd9896fc"},
-        {name: "regional manager - field collection", place: "bengaluru", selected: true, time: "full-time", dept: "business", id: "85db5ab0-62a1-49cf-94ad-c9c5516ac3fb"},
-        {name: "sales operations associate", place: "bengaluru", selected: true, time: "consultant", dept: "business", id: "ac2023e8-31bf-44f1-8838-84807fc5b9dc"},
-        {name: "soft collections associate", place: "bengaluru", selected: true, time: "consultant", dept: "business", id: "67288058-f4bb-42de-a65d-d8d9239db599"},
-        {name: "soft collections lead", place: "bengaluru", selected: true, time: "full-time", dept: "business", id: "9735f265-9ea9-4c52-b8d3-036a9d7aad80"},
-        {name: "territorial lead - field collections", place: "bengaluru", selected: true, time: "full-time", dept: "business", id: "f740df86-b117-467e-b615-82591b426327"},
+    //     // engineering
+    //     {name: "backend developer", place: "bengaluru", selected: true, time: "full-time", dept: "engineering", id: "6e452949-4440-49fe-a6fc-603b10db2f1e"},
+    //     {name: "engineering manager", place: "bengaluru", selected: true, time: "full-time", dept: "engineering", id: "4099243d-c4f2-4ae0-aaeb-934c4e4f7202"},
+    //     {name: "ios developer", place: "bengaluru", selected: true, time: "full-time", dept: "engineering", id: "cfbef182-9bcd-49da-9433-65a06b346b6f"},
+    //     {name: "SDET backend", place: "bengaluru", selected: true, time: "full-time", dept: "engineering", id: "c71bad0f-2668-4471-83c3-fa6cf8e959e4"},
+    //     {name: "technical program manager (TPM)", place: "bengaluru", selected: true, time: "full-time", dept: "engineering", id: "332c9dac-216b-4adf-8869-640c246e3c8e "},
 
-        // risk analytics
-        {name: "lending analytics", place: "bengaluru", selected: true, time: "full-time", dept: "risk analytics", id: "81cd5d5f-2407-4371-a905-d4fa60cac4fa"},
+    //     // ea
+    //     {name: "executive assistant", place: "bengaluru", selected: true, time: "consultant", dept: "ea", id: "a441476e-16e1-48b3-bf66-73de8dee3ad0"},
 
-        // product
-        {name: "payment product operations", place: "bengaluru", selected: true, time: "full-time", dept: "product", id: "9ddb62f1-f55c-458c-a49c-db8b518250e7"},
-        {name: "payment manager - commerce", place: "bengaluru", selected: true, time: "full-time", dept: "product", id: "fff2af20-356d-445a-8d6c-e4a5633593ac"},
+    //     // business
+    //     {name: "key accounts - CRED Pay", place: "bengaluru", selected: true, time: "full-time", dept: "business", id: "a75dcaef-4a21-438b-bd2c-a6c8bd9896fc"},
+    //     {name: "regional manager - field collection", place: "bengaluru", selected: true, time: "full-time", dept: "business", id: "85db5ab0-62a1-49cf-94ad-c9c5516ac3fb"},
+    //     {name: "sales operations associate", place: "bengaluru", selected: true, time: "consultant", dept: "business", id: "ac2023e8-31bf-44f1-8838-84807fc5b9dc"},
+    //     {name: "soft collections associate", place: "bengaluru", selected: true, time: "consultant", dept: "business", id: "67288058-f4bb-42de-a65d-d8d9239db599"},
+    //     {name: "soft collections lead", place: "bengaluru", selected: true, time: "full-time", dept: "business", id: "9735f265-9ea9-4c52-b8d3-036a9d7aad80"},
+    //     {name: "territorial lead - field collections", place: "bengaluru", selected: true, time: "full-time", dept: "business", id: "f740df86-b117-467e-b615-82591b426327"},
 
-        // talent & culture
-        {name: "people business partner", place: "bengaluru", selected: true, time: "full-time", dept: "talent & culture", id: "bdec84f6-bc0e-42c3-a66a-55a39355cd89"},
-        {name: "principal recruiter", place: "bengaluru", selected: true, time: "full-time", dept: "talent & culture", id: "0b64ba72-3ba3-43e1-8d2f-2c40f8509312"},
+    //     // risk analytics
+    //     {name: "lending analytics", place: "bengaluru", selected: true, time: "full-time", dept: "risk analytics", id: "81cd5d5f-2407-4371-a905-d4fa60cac4fa"},
 
-        // analytics
-        {name: "product analysis", place: "bengaluru", selected: true, time: "full-time", dept: "analytics", id: "c485a1e4-2981-4077-bf77-36643cb1bc86"},
+    //     // product
+    //     {name: "payment product operations", place: "bengaluru", selected: true, time: "full-time", dept: "product", id: "9ddb62f1-f55c-458c-a49c-db8b518250e7"},
+    //     {name: "payment manager - commerce", place: "bengaluru", selected: true, time: "full-time", dept: "product", id: "fff2af20-356d-445a-8d6c-e4a5633593ac"},
 
-        // marketing
-        {name: "product marketing", place: "bengaluru", selected: true, time: "full-time", dept: "marketing", id: "2ccb03d0-03e7-48ce-9b8d-71a3cc9f66d4"},
+    //     // talent & culture
+    //     {name: "people business partner", place: "bengaluru", selected: true, time: "full-time", dept: "talent & culture", id: "bdec84f6-bc0e-42c3-a66a-55a39355cd89"},
+    //     {name: "principal recruiter", place: "bengaluru", selected: true, time: "full-time", dept: "talent & culture", id: "0b64ba72-3ba3-43e1-8d2f-2c40f8509312"},
 
-        // operations
-        {name: "quality lead - customer success", place: "bengaluru", selected: true, time: "full-time", dept: "operations", id: "277fcbed-f4e1-40ca-9fb3-f5ad6ba51a7d"},
-    ];
+    //     // analytics
+    //     {name: "product analysis", place: "bengaluru", selected: true, time: "full-time", dept: "analytics", id: "c485a1e4-2981-4077-bf77-36643cb1bc86"},
 
-    const timeList = [
-        {name: "full-time", filter: false, id: "7ba44cac-21f1-44d9-93fe-e04806d1657e"},
-        {name: "consultant", filter: false, id: "8711dd1d-2a2a-4eb0-aad2-d2cb8539656d"}
-    ];
+    //     // marketing
+    //     {name: "product marketing", place: "bengaluru", selected: true, time: "full-time", dept: "marketing", id: "2ccb03d0-03e7-48ce-9b8d-71a3cc9f66d4"},
 
+    //     // operations
+    //     {name: "quality lead - customer success", place: "bengaluru", selected: true, time: "full-time", dept: "operations", id: "277fcbed-f4e1-40ca-9fb3-f5ad6ba51a7d"},
+    // ];
+
+    // const timeList = [
+    //     {name: "full-time", filter: false, id: "7ba44cac-21f1-44d9-93fe-e04806d1657e"},
+    //     {name: "consultant", filter: false, id: "8711dd1d-2a2a-4eb0-aad2-d2cb8539656d"}
+    // ];
+
+    // DATA FROM JSON GETS SAVED IN THESE VARIABLES
+    
+    const [timeList,setTimeList] = React.useState([]);
+    const [jobList,setJobList] = React.useState([]);
+    const [departmentList,setDepartmentList] = React.useState([]);
+
+    // DATA MANIPULATION 
     const [time,setTime] = React.useState(timeList);
-
     const [job,setJob] = React.useState(jobList);
-
     const [department,setDepartment] = React.useState(departmentList);
-
     const [jobCount,setJobCount] = React.useState(job.length);
-
     const [query,setQuery] = React.useState("");
 
+    // TOGGLES SHOW / HIDE FILTERS IN SAMLLER SCREENS
     const [showFilter,setShowFilter] = React.useState(true); 
 
+    // WIDTH OF SCREEN SIZE
     const [width,setWidth] = React.useState(window.innerWidth);
 
+    // CHECKS SCREEN SIZE ON SCREEN RESIZE
     const checkDimensions = () => {
         setWidth(window.innerWidth);
     }
 
+    // EVENT LISTENER FOR WINDOW RESIZE
+    window.addEventListener('resize',checkDimensions);
+
+    // BUG FIX (WHEN CHECKBOXES ARE CHECKED AND UNCHECKED, JOB LIST FILTERS & LEADS TO JOB LIST EMPTY)
     const checkFilters = () => {
         if (time.filter(ele => ele.filter === true).length === 0 && job.filter(ele => ele.selected === true).length === 0  && query.trim().length === 0) {
             removeAllFilters();
         }
-        job.map(ele => console.log(ele.dept,ele.time,ele.selected));
-        console.log("")
+        // CONSOLE TO CHECK FILTER CHANGES
+        // job.map(ele => console.log(ele.dept,ele.time,ele.deptSelected,ele.timeSelected));
+        // console.log("")
     }
 
+    // HANDLES SEARCH
     const handleSearch = (e) => {
         e.preventDefault();
         let tempJobs = [];
@@ -504,6 +531,7 @@ const AllJobs = () => {
         setJob(tempJobs);
     }
 
+    // TOGGLES DEPARTMENT(DEPT) FILTERS 
     const toggleDeptFilter = (filterId,status,dept) => {
         setDepartment(department.map(ele => ele.id === filterId ? {...ele, filter: !ele.filter} : ele));
         
@@ -516,6 +544,7 @@ const AllJobs = () => {
 
     }
 
+    // TOGGLES TIME(COMMITMENT) FILTERS 
     const toggleTimeFilter = (filterId,status,name) => {
         setTime(time.map(ele => ele.id === filterId ? {...ele, filter: !ele.filter} : ele));
 
@@ -527,6 +556,7 @@ const AllJobs = () => {
         }
     }
 
+    // RESETS ALL TO INIT STATE
     const removeAllFilters = () => {
         setDepartment(departmentList);
         setTime(timeList);
@@ -534,19 +564,47 @@ const AllJobs = () => {
         setQuery("");
     }
 
-    // ONCLICK ON A JOB CARD
+    // ONCLICK ON A JOB CARD TAKES TO JOB DETAILS PAGE
     const handleClick = (jobId) => {
-        console.log(job + " card clicked !");
         history.push(`/careers/allJob/${jobId}`);
     }
 
+    // FETCHES DATA FROM JSON
+    const getData = () => {
+        setLoading(true);
+        setError(false);
+        setError("");
+
+        axios.get(`https://young-mountain-65223.herokuapp.com/db`)
+            .then (res => {
+                // console.log(res.data);
+                setTimeList(res.data.timeList);
+                setDepartmentList(res.data.deptList);
+                setJobList(res.data.jobList);
+            })
+            .catch(err => {
+                setError(true);
+                setErrorMsg(err.message);
+                console.log(err.message);
+            })
+            .finally(() => {
+                setLoading(false);
+            })
+    }
+
+    // SETS COUNT WHEN ANY OF THE DEPENDENCIES ARE TRIGGERED
     React.useEffect(() => {
         setJobCount(job.filter(ele => ele.selected === true).length);
-        checkFilters();
+        if (jobCount === 0) {
+            checkFilters();
+        }
         // eslint-disable-next-line
     },[handleSearch,toggleDeptFilter,toggleTimeFilter,removeAllFilters]);
 
-    window.addEventListener('resize',checkDimensions);
+    // ONLOAD OF PAGE TRIGGERS getData FUNCTION
+    React.useEffect(() => {
+        getData();
+    },[]);
 
     return (
         <div>
@@ -611,18 +669,19 @@ const AllJobs = () => {
 
                                     {/* DEPARTMENT FILTERS LIST */}
                                     {
+                                        loading ? <div><LoadingSpinner/></div> : error ? <div>{errorMsg}</div> :
                                         department.map((ele) => 
 
-                                                <div key={ele.id} className="filterHover" onClick={() => toggleDeptFilter(ele.id,ele.filter,ele.name)}>
-                                                    <div className={ele.filter ? "checked checkbox" : "unchecked checkbox"}>
-                                                        {
-                                                            ele.filter ? <GoCheck /> : false
-                                                        }
-                                                    </div>
-                                                    <div className={ele.filter ? "checkedText" : "uncheckedText"}>
-                                                        {ele.name}
-                                                    </div>
+                                            <div key={ele.id} className="filterHover" onClick={() => toggleDeptFilter(ele.id,ele.filter,ele.name)}>
+                                                <div className={ele.filter ? "checked checkbox" : "unchecked checkbox"}>
+                                                    {
+                                                        ele.filter ? <GoCheck /> : false
+                                                    }
                                                 </div>
+                                                <div className={ele.filter ? "checkedText" : "uncheckedText"}>
+                                                    {ele.name}
+                                                </div>
+                                            </div>
                                             
                                         )
                                     }
@@ -633,6 +692,7 @@ const AllJobs = () => {
                                 {/* TIME FILTERS LIST */}
                                 <div className="time">
                                     {
+                                        loading ? <div><LoadingSpinner/></div> : error ? <div>{errorMsg}</div> :
                                         time.map((ele) => {
                                             return (
                                                 <div key={ele.id} className="filterHover" onClick={() => toggleTimeFilter(ele.id,ele.filter,ele.name)}>
@@ -655,6 +715,7 @@ const AllJobs = () => {
                         {/* JOB LIST CONTAINER */}
                         <div className="jobList">
                             {
+                                loading ? <div className="loadingSpinnerMiddle"><LoadingSpinner /></div> : error ? <div>{errorMsg}</div> :
                                 // JOB LIST
                                 jobCount ? job.filter(ele => ele.selected === true).map(ele => 
                                     <div key={ele.id} className="jobCard" onClick={() => handleClick(ele.id)}>
@@ -662,7 +723,7 @@ const AllJobs = () => {
                                             <h3>{ele.name}</h3>
                                             <p>{ele.place}</p>
                                             <p>{ele.time}</p>
-                                            <p>{ele.dept}</p>
+                                            {/* <p>{ele.dept}</p> */}
                                         </div>
                                         <div>
                                             <RiArrowRightSLine className="jobArrow" />

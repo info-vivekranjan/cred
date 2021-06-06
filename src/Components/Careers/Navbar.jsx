@@ -16,7 +16,7 @@ const Navbar = () => {
     return (
         <>
             <NavbarContainer>
-                <Link to='/careers.cred.club' className="link">
+                <Link to='/careers' className="link">
                     <img src="/Careers/Navbar/CRED_Navbar_logo.png" alt="Cred_logo" />
                 </Link>
             </NavbarContainer>
