@@ -26,6 +26,10 @@ const Opportunities = styled.div`
         & .arrow {
             font-size: 2em;
         }
+
+        :hover {
+            filter: contrast(70%);
+        }
     }
 
     h1 {
@@ -243,7 +247,7 @@ const WorkLife = styled.div`
 
         & > div {
             display: grid;
-            grid-template-columns: 17% 83%;
+            grid-template-columns: 15% 85%;
 
             & * {
                 margin: 0;
@@ -260,7 +264,7 @@ const WorkLife = styled.div`
                 & h4 {
                     padding: 1%;
                     line-height: 1.5em;
-                    font-size: 1.1em;
+                    font-size: 1.2em;
                     letter-spacing: 0.1em;
                 }
 
@@ -312,11 +316,11 @@ const WorkLife = styled.div`
     }
 
     & .stories {
-        padding: 13%;
+        padding: 13% 13% 5%;
 
         & .storiesHeading {
             width: 40%;
-            padding-bottom: 13%;
+            padding-bottom: 7%;
             color: #3a44a1;
             font-size: 2.7em;
             text-shadow: 2px 0 #3a44a1;

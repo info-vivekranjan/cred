@@ -11,6 +11,13 @@ import { FiMail } from 'react-icons/fi';
 
 const JobDetails = styled.div`
 
+    & .errorMessage {
+        text-align: center;
+        font-size: 1.5em;
+        color: #f03232 !important;
+        font-weight: bolder;
+    }
+
     & .buttonContainer {
         text-align: center;
 
@@ -64,15 +71,6 @@ const JobDetails = styled.div`
             margin: 1%;
         }
 
-        & .spinner {
-            display: flex;
-            justify-content: center;
-
-            * {
-                color: white;
-            }
-        }
-
         & div:nth-child(1) {
             font-size: 3em;
             font-weight: bolder;
@@ -82,6 +80,15 @@ const JobDetails = styled.div`
             color: #c2c2c2;
             font-weight: bolder;
         }
+        & .spinner {
+            display: flex;
+            justify-content: center;
+
+            * {
+                color: white;
+            }
+        }
+
         @media (max-width: 700px) {
             font-size: 0.8em;
         }
@@ -129,6 +136,15 @@ const JobDetails = styled.div`
 
                 & > li {
                     margin: 2% 0;
+                }
+
+                & .spinner {
+                    display: flex;
+                    justify-content: center;
+
+                    * {
+                        color: #3a44a1;
+                    }
                 }
             }
         }
@@ -192,6 +208,9 @@ const JobDetails = styled.div`
                 background-color: #1060f5;
             }
         }
+        @media (max-width: 650px) {
+            width: 80%;
+        }
         @media (max-width: 360px) {
             display: none;
         }
@@ -211,10 +230,14 @@ const JobPost = () => {
 
     const [data,setData] = React.useState([]);
 
+    const handleApply = () => {
+        history.push(`/careers/form/${jobId}`);
+    }
+
     const getData = () => {
         setLoading(true);
         setError(false);
-        setError("");
+        setErrorMsg("");
 
         axios.get(`https://young-mountain-65223.herokuapp.com/jobList/${jobId}`)
             .then (res => {
@@ -230,27 +253,27 @@ const JobPost = () => {
                 setLoading(false);
             })
     }
-
-    const handleApply = () => {
-        history.push(`/careers/form/${jobId}`);
-    }
     
-    React.useState(() => {
+    React.useEffect(() => {
         getData();
+        // eslint-disable-next-line
     },[]);
     
-    return (
+    return  (
         <JobDetails>
             <div className='applyContainer'>
                 {
-                    loading ? <div className="spinner"><LoadingSpinner/></div> :
-                    <>
+                    loading || error ? <div className="spinner"><LoadingSpinner/></div> :
+                    <>  
                         <div>{data.name}</div>
                         <div>for {data.place}</div>
                         <div className="buttonContainer">
                             <button className="applyButton1" onClick={handleApply}>apply for this job</button>
                         </div>
                     </>
+                }
+                {
+                    error ? <div className="errorMessage">ERROR: {errorMsg}</div> : false
                 }
             </div>
             <div className="details">
@@ -259,21 +282,29 @@ const JobPost = () => {
                 </div>
                 <div className='credIntro'>
                     <div className='bold'>what is cred?</div>
-                    <div>
-                        CRED is an exclusive community for India’s most trustworthy and creditworthy individuals, where the members are rewarded for good financial behaviour. CRED was born out of a need to bring back the focus on a long lost virtue, one of trust, the idea is to create a community centered around this virtue. a community that constantly strives to become more virtuous in this regard till they finally scale their behaviour to create a utopia where being trustworthy is the norm and not the exception. to build a community like this requires a community of its own; a community special in its own way, working towards making this vision come true. 
-                    </div>
-                    <div>
-                        here’s a thought experiment: what do you get when you put a group of incredibly passionate and driven people and entrust them with the complete freedom to chase down their goals in a completely uninhibited manner? answer: you get something close to what we have at CRED; CRED just has it better. 
-                    </div>
-                    <div>
-                        here’s what will be in store for you at CRED once you join as a security engineer.
-                    </div>
+                    {
+                        error ? <div>ERROR LOADING CONTENT</div> :
+                        <>
+                            <div>
+                                CRED is an exclusive community for India’s most trustworthy and creditworthy individuals, where the members are rewarded for good financial behaviour. CRED was born out of a need to bring back the focus on a long lost virtue, one of trust, the idea is to create a community centered around this virtue. a community that constantly strives to become more virtuous in this regard till they finally scale their behaviour to create a utopia where being trustworthy is the norm and not the exception. to build a community like this requires a community of its own; a community special in its own way, working towards making this vision come true. 
+                            </div>
+                            <div>
+                                here’s a thought experiment: what do you get when you put a group of incredibly passionate and driven people and entrust them with the complete freedom to chase down their goals in a completely uninhibited manner? answer: you get something close to what we have at CRED; CRED just has it better. 
+                            </div>
+                            <div>
+                                here’s what will be in store for you at CRED once you join as a security engineer.
+                            </div>
+                        </>
+                    }
                 </div>
                 <div className="work">
                     <div className='bold'>what you will do:</div>
                     <ul className="listContainer">
                         {
-                            error ? <div>ERROR: {errorMsg}</div> : data.work.map((ele,index) => <li key={index}>{ele}</li>)
+                            loading || !data.name ? <div className="spinner"><LoadingSpinner/></div> : data.work.map((ele,index) => <li key={index}>{ele}</li>)
+                        }
+                        {
+                            error ? <div className="errorMessage">ERROR: {errorMsg}</div> : false
                         }
                     </ul>
                 </div>
@@ -281,41 +312,55 @@ const JobPost = () => {
                     <div className='bold'>you should apply if:</div>
                     <ul className="listContainer">
                         {
-                            error ? <div>ERROR: {errorMsg}</div> : data.expected.map((ele,index) => <li key={index * 2}>{ele}</li>)
+                            loading || !data.name ? <div className="spinner"><LoadingSpinner/></div> : data.expected.map((ele,index) => <li key={index * 2}>{ele}</li>)
+                        }
+                        {
+                            error ? <div className="errorMessage">ERROR: {errorMsg}</div> : false
                         }
                     </ul>
                 </div>
                 <div className="lifeInCred">
                     <div className='bold'>how is life at CRED?</div>
-                    <div>
-                        working at CRED would instantly make you realize one thing: you are working with the best talent around you. not just in the role you occupy, but everywhere you go. talk to someone around you; most likely you will be talking to a singer, standup comic, artist, writer, athlete, maybe a magician. at CRED people always have talent up their sleeves. with the right company, even conversations can be rejuvenating. at CRED, we guarantee a good company.
-                    </div>
-                    <div>
-                        hard truths: pushing oneself comes with the role. and we realise pushing oneself is hard work. which is why CRED is in the continuous process of building an environment that helps the team rejuvenate oneself: included but not limited to a stacked, in-house pantry, with lunch and dinner provided for all the team members, paid sick leaves and comprehensive health insurance. 
-                    </div>
-                    <div>
-                        to make things smoother and to make sure you spend time and energy only on the most important things,  CRED strives to make every process transparent: there are no work timings because we do not believe in archaic methods of calculating productivity, your work should speak for you. there are no job designations because you will be expected to hold down roles that cannot be described in one word. since trust is a major virtue in the community we have built, we make it a point to highlight it in the community behind CRED: all our employees get their salaries before their joining date. a show of trust that speaks volumes because of the skin in the game. 
-                    </div>
-                    <div>
-                        there are many more such eccentricities that make CRED what it is but that’s for one to discover. if you feel at home reading this, get in touch.
-                    </div>
+                    {
+                        error ? <div>ERROR LOADING CONTENT</div> :
+                        <>
+                            <div>
+                                working at CRED would instantly make you realize one thing: you are working with the best talent around you. not just in the role you occupy, but everywhere you go. talk to someone around you; most likely you will be talking to a singer, standup comic, artist, writer, athlete, maybe a magician. at CRED people always have talent up their sleeves. with the right company, even conversations can be rejuvenating. at CRED, we guarantee a good company.
+                            </div>
+                            <div>
+                                hard truths: pushing oneself comes with the role. and we realise pushing oneself is hard work. which is why CRED is in the continuous process of building an environment that helps the team rejuvenate oneself: included but not limited to a stacked, in-house pantry, with lunch and dinner provided for all the team members, paid sick leaves and comprehensive health insurance. 
+                            </div>
+                            <div>
+                                to make things smoother and to make sure you spend time and energy only on the most important things,  CRED strives to make every process transparent: there are no work timings because we do not believe in archaic methods of calculating productivity, your work should speak for you. there are no job designations because you will be expected to hold down roles that cannot be described in one word. since trust is a major virtue in the community we have built, we make it a point to highlight it in the community behind CRED: all our employees get their salaries before their joining date. a show of trust that speaks volumes because of the skin in the game. 
+                            </div>
+                            <div>
+                                there are many more such eccentricities that make CRED what it is but that’s for one to discover. if you feel at home reading this, get in touch.
+                            </div>
+                        </>
+                    }
                 </div>
             </div>
-            <div className="buttonContainer">
-                <button className="applyButton2" onClick={handleApply}>apply for this job</button>
-            </div>
-            <div className="shareContainer">
-                <h2>have a friend who would love this?</h2>
-                <p>share this with your network</p>
-                <div className="shareIcons">
-                    <div><FaFacebookF/></div>
-                    <div><FaTwitter/></div>
-                    <div><FaLinkedinIn/></div>
-                    <div><FiMail/></div>
+            {
+                error ? false : 
+                <div className="buttonContainer">
+                    <button className="applyButton2" onClick={handleApply}>apply for this job</button>
                 </div>
-            </div>
+            }
+            {
+                error ? false :
+                <div className="shareContainer">
+                    <h2>have a friend who would love this?</h2>
+                    <p>share this with your network</p>
+                    <div className="shareIcons">
+                        <div><FaFacebookF/></div>
+                        <div><FaTwitter/></div>
+                        <div><FaLinkedinIn/></div>
+                        <div><FiMail/></div>
+                    </div>
+                </div>
+            }
         </JobDetails>
     )
 }
 
-export default JobPost
+export default JobPost;

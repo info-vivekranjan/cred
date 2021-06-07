@@ -5,19 +5,21 @@ const FooterContainer = styled.div`
     color: gray;
     font-size: 1.1em;
     background-color: #F3F3F3;
-    display: flex;
+    display: grid;
+    grid-template-columns: 75% 25%;
     flex-wrap: wrap;
     padding: 5% 15%;
     font-size: 1.1em;
 
     @media (max-width: 1100px) {
         padding: 4% 10%;
-        flex-direction: column;
+    }
+    @media (max-width: 800px) {
+        grid-template-columns: 100%;
     }
 `;
 
 const ApplyInfo = styled.div`
-    width: 75%;
     
     & div {
         margin: 2% auto;
@@ -42,7 +44,6 @@ const ApplyInfo = styled.div`
 `;
 
 const DownloadApp = styled.div`
-    width: 25%;
 
     & div {
         line-height: 1.3em;
@@ -52,6 +53,10 @@ const DownloadApp = styled.div`
 
     & .appIcons > span {
         padding: 0 10% 0 0;
+
+        & img:hover {
+            filter: brightness(1%);
+        }
     }
 
     @media (max-width: 1100px) {

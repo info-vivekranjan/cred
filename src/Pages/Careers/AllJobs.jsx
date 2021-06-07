@@ -400,6 +400,7 @@ const JobsContainer = styled.div`
 const AllJobs = () => {
     const history = useHistory();
 
+    // TO HANDLE DATA LOADING & ERROR STATE
     const [loading,setLoading] = React.useState(false);
     const [error,setError] = React.useState(false);
     const [errorMsg,setErrorMsg] = React.useState(false);
@@ -472,9 +473,9 @@ const AllJobs = () => {
     //     {name: "full-time", filter: false, id: "7ba44cac-21f1-44d9-93fe-e04806d1657e"},
     //     {name: "consultant", filter: false, id: "8711dd1d-2a2a-4eb0-aad2-d2cb8539656d"}
     // ];
+    
 
     // DATA FROM JSON GETS SAVED IN THESE VARIABLES
-    
     const [timeList,setTimeList] = React.useState([]);
     const [jobList,setJobList] = React.useState([]);
     const [departmentList,setDepartmentList] = React.useState([]);
