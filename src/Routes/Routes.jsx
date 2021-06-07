@@ -28,7 +28,7 @@ const Routes = () => {
             </Route>
 
             {/* FORM FOR JOB APPLICANTS */}
-            <Route path={`/careers/form/:jobId`}>
+            <Route path={`/careers/form/:jobDepartment/:jobId/:jobName`}>
                 <Form />
             </Route>
 

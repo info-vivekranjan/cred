@@ -231,7 +231,7 @@ const JobPost = () => {
     const [data,setData] = React.useState([]);
 
     const handleApply = () => {
-        history.push(`/careers/form/${jobId}`);
+        history.push(`/careers/form/${data.dept}/${data.id}/${data.name}`);
     }
 
     const getData = () => {
@@ -253,6 +253,7 @@ const JobPost = () => {
                 setLoading(false);
             })
     }
+    
     
     React.useEffect(() => {
         getData();
