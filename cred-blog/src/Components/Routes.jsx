@@ -8,6 +8,11 @@ import { MoneyMatters } from './BlogCategory/MoneyMatters';
 import { CreditCardsDataPage } from './BlogCategory/CreditCardsDataPage'
 import { MoneyMattersDataPage } from './BlogCategory/MoneyMattersDataPage';
 import { CreditCardsPaymentDataPage } from './BlogCategory/CreditCardsPaymentDataPage';
+import { BookMarks } from './Bookmarks/Bookmarks';
+import { BestCreditCards } from './BlogCategory/BestCreditCards';
+import { BestCreditCardsDataPage } from './BlogCategory/BestCreditCardsDataPage';
+import { SocialAnnouncement } from './BlogCategory/SocialAnnouncement';
+import { SocialDataPage } from './BlogCategory/SocialAnnouncementDataPage';
 
 function BlogRoutes() {
     return (
@@ -28,6 +33,22 @@ function BlogRoutes() {
                 <Route path="/category/money-matters" exact>
                     <MoneyMatters />
                 </Route>
+
+                <Route path="/category/best-credit-cards" exact>
+                    <BestCreditCards />
+                </Route>
+
+                <Route path="/category/social-announcement" exact>
+                    <SocialAnnouncement />
+                </Route>
+
+
+                <Route path="/category/bookmarks" exact>
+                    <BookMarks />
+                </Route>
+
+
+
                 <Route path="/category/credit-cards/:id" exact>
                     <CreditCardsDataPage />
                 </Route>
@@ -41,6 +62,19 @@ function BlogRoutes() {
                     <CreditCardsPaymentDataPage />
                 </Route>
 
+                <Route path="/category/best-credit-cards/:id" exact>
+                    <BestCreditCardsDataPage />
+                </Route>
+
+
+                <Route path="/category/social-announcement/:id" exact>
+                    <SocialDataPage />
+                </Route>
+
+
+                <Route>
+                    <h3 style={{ paddingTop: "300px" }}>404 | Page Not Found</h3>
+                </Route>
 
             </Switch>
         </div>

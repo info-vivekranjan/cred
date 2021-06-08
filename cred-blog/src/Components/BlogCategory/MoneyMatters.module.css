@@ -68,9 +68,25 @@ p{
     cursor: pointer;
 }
 
+ 
+.blogBottomBtnCont{
+    display: flex;
+    width: 95%;
+    justify-content: space-between;
+    margin: auto;
+    /* margin-bottom: 150px;
+    margin-top: 40px; */
+ 
+}
+.blogBottomBtnCont div:nth-child(2) i{
+    font-size: 25px;
+    cursor: pointer;
+}
+
+
 
 .blogHomePara{
-    width: 95%;
+    /* width: 95%; */
     margin: auto;
     font-size: 16px;
     line-height: 1.88;

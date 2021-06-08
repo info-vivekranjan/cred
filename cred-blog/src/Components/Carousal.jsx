@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import MobileStepper from '@material-ui/core/MobileStepper';
 import Paper from '@material-ui/core/Paper';
@@ -17,22 +17,33 @@ const tutorialSteps = [
     {
         id: 1,
         imgPath: 'Update on Oxygen mission: 100 Million O2 Litres Deployed',
+        to: "category/social-announcement/1",
+        firstLetter: "U"
+
     },
     {
         id: 2,
         imgPath: 'Update on Oxygen mission: 450 oxygen concentrators received.',
+        to: "category/social-announcement/2",
+        firstLetter: "U"
     },
     {
         id: 3,
         imgPath: 'How we at CRED are responding to the COVID crisis',
+        to: "category/social-announcement/3",
+        firstLetter: "H"
     },
     {
         id: 4,
         imgPath: 'The Cosmos of CRED Application Security',
+        to: "#",
+        firstLetter: "T"
     },
     {
         id: 5,
         imgPath: 'How To Convert Credit Card Payment To EMI?',
+        to: "category/credit-card-payment/1",
+        firstLetter: "H"
     },
 
 ];
@@ -56,6 +67,7 @@ const useStyles = makeStyles((theme) => ({
         width: "100%",
         height: "15vh",
         margin: "auto",
+
     }
 }));
 
@@ -91,17 +103,31 @@ function SwipeableTextMobileStepper() {
                     index={activeStep}
                     onChangeIndex={handleStepChange}
                     enableMouseEvents
+                    autoplay={false}
 
                 >
                     {tutorialSteps.map((step, index) => (
-                        <div className={classes.img} key={step.id}>
+                        <div className={styles.carousalContDiv}>
+                            <div className={classes.img} key={step.id}>
 
-                            <Link style={{ color: "white", textDecoration: "none" }}>
-                                <h1 style={{ fontSize: "70px", width: "70%", margin: " auto", }}> {step.imgPath} </h1>
-                            </Link>
+                                <Link to={step.to} style={{ color: "white", textDecoration: "none" }}>
+                                    <h1 style={{ fontSize: "65px", width: "75%", margin: " auto", }}> {step.imgPath} </h1>
+                                </Link>
+                                <Link className={styles.readOnBtn} to={step.to}>
+                                    <button>READ ON</button>
+                                </Link>
+
+                            </div>
+
+                            <div className={styles.firstLetterDiv}>
+                                <h1>{step.firstLetter}</h1>
+                            </div>
 
                         </div>
+
                     ))}
+
+
                 </AutoPlaySwipeableViews>
 
 
@@ -129,6 +155,7 @@ function SwipeableTextMobileStepper() {
                     </Button>
                 }
             />
+
         </div>
     );
 }

@@ -65,6 +65,19 @@ function SideNavbar() {
                                             <Link className={style.sideNavLink} to="/category/tech">Tech</Link>
                                         </div>
 
+
+                                        <div className={style.sideNavLinkDiv}>
+                                            <Link className={style.sideNavLink} to="/category/social-announcement">Social Announcement</Link>
+                                        </div>
+
+
+                                        <div className={style.sideNavLinkDiv}>
+                                            <Link target="no_blank" className={style.sideNavLink} to="/category/bookmarks">Bookmarks</Link>
+                                        </div>
+
+
+
+
                                     </div>
 
 

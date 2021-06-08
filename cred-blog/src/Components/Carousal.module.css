@@ -6,3 +6,22 @@
 .nextBackButton  i:hover{
     color: #1b1b1b;
 }
+
+.readOnBtn{
+    text-decoration: none;
+}
+
+.readOnBtn > button{
+    padding: 0 20px;
+    height: 40px;
+    outline: none;
+    background: white;
+    color: #191c27;
+    border: 1px solid white;
+    cursor: pointer;
+    min-width: 160px;
+    margin-top: 50px;
+    font-size: 12px;
+    font-weight: 600;
+}
+

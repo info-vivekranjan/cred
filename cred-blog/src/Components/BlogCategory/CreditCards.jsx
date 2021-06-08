@@ -30,6 +30,18 @@ function CreditCards() {
     }
 
 
+    const toggleBookmark = (id, bookmark) => {
+        axios.patch(`https://json-server-mocker-sm2-196.herokuapp.com/blogCreditCards/${id}`, {
+            bookmark: !bookmark
+        })
+            .then((res) => {
+                return getCreditCardData()
+            }).catch((err) => {
+                console.log(err);
+            })
+    }
+
+
 
     useEffect(() => {
         getCreditCardData();
@@ -68,9 +80,33 @@ function CreditCards() {
                                                     <h1>{item.mainHeaderQuestion}</h1>
                                                 </div>
 
-                                                <div className={styles.readTime}>
-                                                    <p>{item.raedTime}</p>
+
+                                                <div className={styles.blogBottomBtnCont}>
+                                                    <div className={styles.readTime}>
+                                                        <p>{item.raedTime}</p>
+                                                    </div>
+                                                    <div>
+                                                        {
+                                                            !item.bookmark &&
+                                                            <i onClick={() => toggleBookmark(item.id, item.bookmark)} id={styles.bookmarkTooltip} className="ri-bookmark-line">
+                                                                <span className={styles.bookmarkTooltipText}>
+                                                                    Bookmark it
+                                                                </span>
+                                                            </i>
+                                                        }
+
+                                                        {
+                                                            item.bookmark &&
+                                                            <i onClick={() => toggleBookmark(item.id, item.bookmark)} id={styles.bookmarkTooltip} className="ri-bookmark-fill">
+                                                                <span className={styles.bookmarkTooltipText}>
+                                                                    Remove from Bookmark
+                                                                </span>
+                                                            </i>
+                                                        }
+                                                    </div>
                                                 </div>
+
+
 
                                                 {
                                                     item.mainImg !== "" &&
@@ -90,9 +126,13 @@ function CreditCards() {
                                                 <div className={styles.blogHomePara}>
                                                     <p>{item.headerExplanation.para1}</p>
                                                 </div>
+
                                                 <div className={styles.readOnCont}>
                                                     <Link className={styles.readOn} to={`credit-cards/${item.id}`}>Read on</Link>
                                                 </div>
+
+
+
                                             </div>
                                         })
                                     }
