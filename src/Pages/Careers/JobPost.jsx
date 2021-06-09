@@ -2,9 +2,8 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
-import { useHistory } from 'react-router-dom';
-import LoadingSpinner from '../../Components/Careers/LoadingSpinner';
 import { Link } from 'react-router-dom';
+import LoadingSpinner from '../../Components/Careers/LoadingSpinner';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import { FaLinkedinIn, FaTwitter, FaFacebookF } from 'react-icons/fa';
 import { FiMail } from 'react-icons/fi';
@@ -222,18 +221,15 @@ const JobPost = () => {
     // ID OF THE JOB
     const {jobId} = useParams();
 
-    const history = useHistory();
-
+    // HANDLE DATA ON LOADING & ERROR STATE
     const [loading,setLoading] = React.useState(false);
     const [error,setError] = React.useState(false);
     const [errorMsg,setErrorMsg] = React.useState(false);
 
+    // FETCHED DATA GETS STORED TO DATA
     const [data,setData] = React.useState([]);
 
-    const handleApply = () => {
-        history.push(`/careers/form/${data.dept}/${data.id}/${data.name}`);
-    }
-
+    // FETCHES DATA OF THAT JOBID
     const getData = () => {
         setLoading(true);
         setError(false);
@@ -254,7 +250,7 @@ const JobPost = () => {
             })
     }
     
-    
+    // ONLOAD FETCHING DATA
     React.useEffect(() => {
         getData();
         // eslint-disable-next-line
@@ -262,14 +258,21 @@ const JobPost = () => {
     
     return  (
         <JobDetails>
+
+            {/* TOP CONTAINER SHOWING JOB TITLE */}
             <div className='applyContainer'>
                 {
                     loading || error ? <div className="spinner"><LoadingSpinner/></div> :
                     <>  
+                        {/* TITLE & PLACE  */}
                         <div>{data.name}</div>
                         <div>for {data.place}</div>
+
+                        {/* APPLY BUTTON */}
                         <div className="buttonContainer">
-                            <button className="applyButton1" onClick={handleApply}>apply for this job</button>
+                            <Link to={`/careers/form/${data.dept}/${data.id}/${data.name}`} className="link">
+                                <button className="applyButton1">apply for this job</button>
+                            </Link>
                         </div>
                     </>
                 }
@@ -277,10 +280,16 @@ const JobPost = () => {
                     error ? <div className="errorMessage">ERROR: {errorMsg}</div> : false
                 }
             </div>
+
+            {/* ALL JOB RELATED DETAILS */}
             <div className="details">
                 <div>
+
+                    {/* BACK TO ALLJOBS PAGE LINK */}
                     <Link to='/careers/allJob' className="link"><AiOutlineArrowLeft/> <span>back to jobs</span></Link>
                 </div>
+
+                {/* INTRO TO CRED */}
                 <div className='credIntro'>
                     <div className='bold'>what is cred?</div>
                     {
@@ -298,6 +307,8 @@ const JobPost = () => {
                         </>
                     }
                 </div>
+
+                {/* WORK & DUTIES EXPECTED FOR THIS ROLE */}
                 <div className="work">
                     <div className='bold'>what you will do:</div>
                     <ul className="listContainer">
@@ -309,6 +320,8 @@ const JobPost = () => {
                         }
                     </ul>
                 </div>
+
+                {/* EXPECTED SKILLS, QUALIFICATIONS & EXPERIENCES FOR THE ROLE */}
                 <div className="expected">
                     <div className='bold'>you should apply if:</div>
                     <ul className="listContainer">
@@ -320,6 +333,8 @@ const JobPost = () => {
                         }
                     </ul>
                 </div>
+
+                {/* WORK LIFE IN CRED */}
                 <div className="lifeInCred">
                     <div className='bold'>how is life at CRED?</div>
                     {
@@ -341,12 +356,18 @@ const JobPost = () => {
                     }
                 </div>
             </div>
+
+            {/* APPLY BUTTON */}
             {
                 error ? false : 
                 <div className="buttonContainer">
-                    <button className="applyButton2" onClick={handleApply}>apply for this job</button>
+                    <Link to={`/careers/form/${data.dept}/${data.id}/${data.name}`} className="link">
+                        <button className="applyButton2">apply for this job</button>
+                    </Link>
                 </div>
             }
+
+            {/* SHARE JOB INFO TO SOCIAL FRIENDS / GROUPS CONTAINER */}
             {
                 error ? false :
                 <div className="shareContainer">

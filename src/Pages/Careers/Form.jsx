@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { v4 as uuid } from 'uuid';
 import styled from 'styled-components';
-import { useHistory } from 'react-router-dom';
+import LoadingSpinner from '../../Components/Careers/LoadingSpinner';
 
 const FormContainer = styled.div`
     font-size: 1.2em;
@@ -33,7 +33,17 @@ const FormContainer = styled.div`
         }
 
         * {
-            margin: 3% 0;
+            margin: 4% 0;
+        }
+
+        @media (max-width: 750px) {
+            & .stickyTitle {
+                padding: 3% 7%;
+            }
+
+            * {
+                margin: 2% 0;
+            }
         }
     }
 
@@ -55,6 +65,10 @@ const FormContainer = styled.div`
                 background: transparent;
                 margin-bottom: 5%;
                 width: 80%;
+
+                @media (max-width: 560px) {
+                    font-size: 1.5em;
+                }
             }
 
             /* INPUT NUMBER TYPE ARROW HIDE */
@@ -87,16 +101,21 @@ const FormContainer = styled.div`
             & input[type=file] {
                 font-size: 1em;
                 margin: 1% 0;
-                border: 1px solid red;;
+                /* border: 1px solid red; */
+
             }
 
             & .fileInput {
-                /* display: block !important; */
+                /* display: none; */
             }
 
             & .nameContainer {
                 display: grid;
                 grid-template-columns: 50% 50%;
+
+                @media (max-width: 560px) {
+                    grid-template-columns: 100%;
+                }
             }
 
             & .requiredStar {
@@ -107,15 +126,43 @@ const FormContainer = styled.div`
                 color: #868686;
                 font-size: 0.8em;
             }
+
+            & .errorMsg {
+                margin: 3% auto;
+                color: red;
+            }
+
+            & .uploading {
+                margin: 3% auto;
+                display: flex;
+                align-items: center;
+            }
+
+            & .successMsg {
+                margin: 3% auto;
+                color: green;
+                
+            }
         }
+    }
+
+    @media (max-width: 1000px) {
+        margin: 5%;
+        font-size: 1em;
+    }
+    @media (max-width: 750px) {
+        margin: 10%;
+        grid-template-columns: 100%;
+        font-size: 1em;
+    }
+    @media (max-width: 380px) {
+        margin: 2% 0;
     }
 `;
 
 const Form = () => {
 
     const {jobId,jobName,jobDepartment} = useParams();
-
-    const history = useHistory();
 
     const [loading,setLoading] = React.useState(false);
     const [error,setError] = React.useState(false);
@@ -132,38 +179,102 @@ const Form = () => {
 
     const [form,setForm] = React.useState(initForm);
 
+    const [success,setSuccess] = React.useState(false);
+
+    const data = new FormData();
+
+    // const [link,setLink] = React.useState(null);
+
+    const file = React.useRef();
+
     const handleFormChange = (target) => {
-        const {name,value} = target;
+        const {name,value,type} = target;
+        if (type === "file") {
+            // console.log(value);
+
+            // const blob = new Blob([file.current.files[0]] , {type: "application/pdf"});
+            // console.log(blob);
+
+            // const reader = new FileReader();
+            // reader.readAsArrayBuffer(blob);
+            // console.log(reader);
+
+            // console.log(target.files);
+
+            data.append(name.toString(),JSON.stringify(file.current.files[0]));
+
+            // console.log(data.get(name.toString()));
+
+            for(const pair of data.entries()) {
+                console.log(pair[0],pair[1]);
+            }
+
+            // console.log(data.get('file'));
+
+            // setLink(URL.createObjectURL(blob));
+
+            return setForm({
+                ...form,
+                [name]: JSON.stringify(file.current.files[0])
+            })
+        }
         setForm({
             ...form,
-            [name]: value
-        })
+            [name]: value.trim()
+        });
+
+        data.append(name.toString(),value);
+
+        // console.log(data.get(name.toString()));
+
+        for(const pair of data.entries()) {
+            console.log(pair[0]+ ' - '+ pair[1]);
+        }
+
+        // console.log(data)
+    }
+
+    const postData = (data) => {
+        data.append("id",form.id);
+
+        var object = {};
+
+        for(const pair of data.entries()) {
+            object[pair] = [pair];
+        }
+        // form.forEach(function(value, key){
+        //     object[key] = value;
+        // });
+        console.log(object)
+        var json = JSON.stringify(object);
+
+        console.log(json);
+
+        setLoading(true);
+        setError(false);
+        setErrorMsg("");
+
+        axios.post(`https://young-mountain-65223.herokuapp.com/applications/${jobId}`,form)
+            .then (res => {
+                console.log(res);
+                setSuccess(true);
+            })
+            .catch(err => {
+                setError(true);
+                setErrorMsg(err.message);
+                console.log(err.message);
+            })
+            .finally(() => {
+                setLoading(false);
+            })
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(form);
+        console.log(data);
+        postData(data);
     }
-
-    // const getData = () => {
-    //     setLoading(true);
-    //     setError(false);
-    //     setErrorMsg("");
-
-    //     axios.get(`https://young-mountain-65223.herokuapp.com/jobList/${jobId}`)
-    //         .then (res => {
-    //             // console.log(res.data);
-    //             setData(res.data);
-    //         })
-    //         .catch(err => {
-    //             setError(true);
-    //             setErrorMsg(err.message);
-    //             console.log(err.message);
-    //         })
-    //         .finally(() => {
-    //             setLoading(false);
-    //         })
-    // }
 
     return (
         <FormContainer>
@@ -206,15 +317,25 @@ const Form = () => {
                         <input type='number' placeholder='9876543210' value={form.mobileNumber} name="mobileNumber" onChange={e => handleFormChange(e.target)} autoComplete="off" required/> 
                     </div>
                     <div>
-                        <label>your resume<span className="requiredStar">*</span></label>
+                        <label>your resume (pdf)<span className="requiredStar">*</span></label>
                         <br/>
-                        <input className="fileInput" type='file' accept=".pdf" name="resume" onChange={e => handleFormChange(e.target)} required/>
+                        <input className="fileInput" ref={file} type='file' accept=".pdf" name="resume" onChange={e => handleFormChange(e.target)} required/>
+                        {/* <button type='file'>choose</button> */}
                         <br />
+                        {/* {
+                            link ? <a href="">{link}</a> : false
+                        } */}
                         <label>(file size should not be more than 5MB)</label>
                     </div>
                     <div>
                         <input type='submit' value='finish' />
                     </div>
+                    {
+                        loading ? <div className="uploading"><LoadingSpinner/> Uploading data....</div> : error ? <div className="errorMsg">ERROR: {errorMsg}</div> : false
+                    }
+                    {
+                        success ? <div className="successMsg">UPLOAD SUCCESS</div> : false
+                    }
                 </form>
                 <p>
                     we take privacy very seriously at CRED, and the information that you have shared with us will only be used to process your application and further possible candidature.

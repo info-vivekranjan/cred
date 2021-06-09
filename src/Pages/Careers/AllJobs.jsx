@@ -6,7 +6,7 @@ import { BsFillExclamationCircleFill } from 'react-icons/bs';
 import { FaSearch } from 'react-icons/fa';
 import { IoMdClose } from 'react-icons/io';
 import axios from 'axios';
-import {useHistory} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import LoadingSpinner from '../../Components/Careers/LoadingSpinner';
 
 const Thumbnail = styled.div`
@@ -324,6 +324,11 @@ const JobsContainer = styled.div`
                 display: flex;
                 justify-content: center;
             }
+
+            & .link {
+                text-decoration: none;
+                color: black;
+            }
             
             & .jobCard {
                 box-shadow: 1px 1px 10px #eeeeee;
@@ -333,6 +338,10 @@ const JobsContainer = styled.div`
                 padding: 3% 7%;
                 margin: 3%;
                 cursor: pointer;
+
+                :hover {
+                    box-shadow: 1px 1px 10px #d3d3d3;
+                }
 
                 & div:nth-child(1) {
                     
@@ -398,9 +407,8 @@ const JobsContainer = styled.div`
 `;
 
 const AllJobs = () => {
-    const history = useHistory();
 
-    // TO HANDLE DATA LOADING & ERROR STATE
+    // HANDLE DATA ON LOADING & ERROR STATE
     const [loading,setLoading] = React.useState(false);
     const [error,setError] = React.useState(false);
     const [errorMsg,setErrorMsg] = React.useState(false);
@@ -514,6 +522,10 @@ const AllJobs = () => {
     // HANDLES SEARCH
     const handleSearch = (e) => {
         e.preventDefault();
+
+        // TRIMMING ALL WHITE-SPACES FROM QUERY 
+        const trimmedQuery = query.replace(/\s+/g, '');
+
         let tempJobs = [];
 
         if (!query.trim().length) {
@@ -523,7 +535,9 @@ const AllJobs = () => {
         for (let i in jobList) {
             const {name} = jobList[i];
 
-            const result = name.includes(query);
+            const result = name.replace(/\s+/g, '').includes(trimmedQuery);
+
+            console.log(result)
 
             if (result) {
                 tempJobs.push(jobList[i]);
@@ -563,11 +577,6 @@ const AllJobs = () => {
         setTime(timeList);
         setJob(jobList);
         setQuery("");
-    }
-
-    // ONCLICK ON A JOB CARD TAKES TO JOB DETAILS PAGE
-    const handleClick = (jobId) => {
-        history.push(`/careers/allJob/${jobId}`);
     }
 
     // FETCHES DATA FROM JSON
@@ -719,17 +728,20 @@ const AllJobs = () => {
                                 loading ? <div className="loadingSpinnerMiddle"><LoadingSpinner /></div> : error ? <div>{errorMsg}</div> :
                                 // JOB LIST
                                 jobCount ? job.filter(ele => ele.selected === true).map(ele => 
-                                    <div key={ele.id} className="jobCard" onClick={() => handleClick(ele.id)}>
-                                        <div>
-                                            <h3>{ele.name}</h3>
-                                            <p>{ele.place}</p>
-                                            <p>{ele.time}</p>
-                                            {/* <p>{ele.dept}</p> */}
+                                    // 
+                                    <Link to={`/careers/allJob/${ele.id}`} key={ele.id} className="link">
+                                        <div className="jobCard">
+                                            <div>
+                                                <h3>{ele.name}</h3>
+                                                <p>{ele.place}</p>
+                                                <p>{ele.time}</p>
+                                                {/* <p>{ele.dept}</p> */}
+                                            </div>
+                                            <div>
+                                                <RiArrowRightSLine className="jobArrow" />
+                                            </div>
                                         </div>
-                                        <div>
-                                            <RiArrowRightSLine className="jobArrow" />
-                                        </div>
-                                    </div>
+                                    </Link>
                                 ) :
                                 
                                 // NO JOBS (JOB COUNT === 0)
