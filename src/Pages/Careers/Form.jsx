@@ -96,6 +96,12 @@ const FormContainer = styled.div`
                 :hover {
                     background-color: #101a77;
                 }
+
+                :disabled {
+                    background-color: #4d4d4d;
+                    cursor: not-allowed;
+                    color: white;
+                }
             }
 
             & input[type=file] {
@@ -161,15 +167,24 @@ const FormContainer = styled.div`
 `;
 
 const Form = () => {
+    // GETTING JOB NAME & DEPARTMENT FROM PARAMS
+    const {jobName,jobDepartment} = useParams();
 
-    const {jobId,jobName,jobDepartment} = useParams();
+    // RESUME STORE URL
+    const pdfUrl = process.env.REACT_APP_PDF_URL;
 
+    // JSON URL
+    const url = process.env.REACT_APP_JSON_URL_APPLICATION;
+
+    // FORM SUBMIT ACTIONS
     const [loading,setLoading] = React.useState(false);
     const [error,setError] = React.useState(false);
     const [errorMsg,setErrorMsg] = React.useState(false);
 
+    // INITIAL FORM DATA
     const initForm = {
         id: uuid(),
+        dept: jobDepartment,
         firstName: "",
         lastName: "",
         emailAddress: "",
@@ -177,103 +192,106 @@ const Form = () => {
         resume: {}
     }
 
+    // INPUTS GETS STORED INTO THIS
     const [form,setForm] = React.useState(initForm);
 
+    // RESUME UPLOADING ACTIONS
+    const [uploading,setUploading] = React.useState(false);
+    const [uploadMsg,setUploadMsg] = React.useState("");
+    const [uploadErr,setUploadErr] = React.useState(false);
+
+    // STATE OF FORM SUBMISSION
     const [success,setSuccess] = React.useState(false);
 
+    // FORMDATA TO TAKE INPUT FILE (RESUME)
     const data = new FormData();
 
-    // const [link,setLink] = React.useState(null);
-
-    const file = React.useRef();
-
+    // HANDLES CHANGE IN INPUTS
     const handleFormChange = (target) => {
+
+        // DESTRUCTURING NAME, VALUE, TYPE FROM e.target
         const {name,value,type} = target;
-        if (type === "file") {
-            // console.log(value);
 
-            // const blob = new Blob([file.current.files[0]] , {type: "application/pdf"});
-            // console.log(blob);
+        // IF INPUT TYPE IS FILE
+        if (type === "file" && target.files.length) {
 
-            // const reader = new FileReader();
-            // reader.readAsArrayBuffer(blob);
-            // console.log(reader);
+            // INITIAL UPLOAD ACTIONS
+            setUploading(true);
+            setUploadErr(false);
+            setUploadMsg("");
 
-            // console.log(target.files);
+            // APPENDING INPUT FILE(RESUME) INTO FORMDATA WITH KEY "File"
+            data.append("File",(target.files[0]));
 
-            data.append(name.toString(),JSON.stringify(file.current.files[0]));
+            // CONVERTING & SAVING RESUME
+            axios.post(pdfUrl,data)
 
-            // console.log(data.get(name.toString()));
+                .then(res => {
 
-            for(const pair of data.entries()) {
-                console.log(pair[0],pair[1]);
-            }
+                    // LINK OF THE STORED RESUME
+                    const link = res.data.Files.map(ele => ele.Url);
 
-            // console.log(data.get('file'));
-
-            // setLink(URL.createObjectURL(blob));
-
-            return setForm({
-                ...form,
-                [name]: JSON.stringify(file.current.files[0])
-            })
+                    // ADDING THE LINK TO FORM WITH NAME "resume"
+                    // RETURNS FROM THE FUNCTION
+                    return setForm({
+                        ...form,
+                        [name]: link
+                    })
+                })
+                // HANDLES ERRORS
+                .catch(err => {
+                    console.log(err);
+                    setUploadMsg(err.message);
+                    setUploadErr(true);
+                })
+                // SETS UPLAODING STATE TO FALSE
+                .finally(() => {
+                    setUploading(false);
+                })
         }
+
+        // ALL OTHER INPUT TYPES ARE ADDED TO FORM
         setForm({
             ...form,
             [name]: value.trim()
         });
-
-        data.append(name.toString(),value);
-
-        // console.log(data.get(name.toString()));
-
-        for(const pair of data.entries()) {
-            console.log(pair[0]+ ' - '+ pair[1]);
-        }
-
-        // console.log(data)
     }
 
-    const postData = (data) => {
-        data.append("id",form.id);
+    // SUBMITS FORM TO SERVER
+    const postData = () => {
 
-        var object = {};
-
-        for(const pair of data.entries()) {
-            object[pair] = [pair];
-        }
-        // form.forEach(function(value, key){
-        //     object[key] = value;
-        // });
-        console.log(object)
-        var json = JSON.stringify(object);
-
-        console.log(json);
-
+        // INITIAL ACTION STATE
         setLoading(true);
         setError(false);
         setErrorMsg("");
 
-        axios.post(`https://young-mountain-65223.herokuapp.com/applications/${jobId}`,form)
+        // POSTS DATA TO SERVER
+        axios.post(url,form)
             .then (res => {
-                console.log(res);
+
+                // SETS SUCCESS ACTION TO TRUE
                 setSuccess(true);
             })
+            // HANDLES ERROR
             .catch(err => {
                 setError(true);
                 setErrorMsg(err.message);
                 console.log(err.message);
             })
             .finally(() => {
+                // SETS LOADING STATE TO FALSE
                 setLoading(false);
             })
     }
 
+    // TRIGGERED WHEN SUBMIT BUTTON IS CLICKED
     const handleSubmit = (e) => {
+
+        // PREVENTS DEFAULT ACTION OF RELOADING THE PAGE
         e.preventDefault();
-        console.log(form);
-        console.log(data);
-        postData(data);
+
+        // POSTS THE DATA TO SERVER
+        postData();
     }
 
     return (
@@ -314,21 +332,24 @@ const Form = () => {
                     <div>
                         <label>mobile number<span className="requiredStar">*</span></label>
                         <br/>
-                        <input type='number' placeholder='9876543210' value={form.mobileNumber} name="mobileNumber" onChange={e => handleFormChange(e.target)} autoComplete="off" required/> 
+                        <input type='number' placeholder='9876543210' value={form.mobileNumber} min="1111111111" max="9999999999" name="mobileNumber" onChange={e => handleFormChange(e.target)} autoComplete="off" required/> 
                     </div>
                     <div>
                         <label>your resume (pdf)<span className="requiredStar">*</span></label>
                         <br/>
-                        <input className="fileInput" ref={file} type='file' accept=".pdf" name="resume" onChange={e => handleFormChange(e.target)} required/>
+                        <input className="fileInput" type='file' accept=".pdf" name="resume" onChange={e => handleFormChange(e.target)} required/>
                         {/* <button type='file'>choose</button> */}
-                        <br />
-                        {/* {
-                            link ? <a href="">{link}</a> : false
-                        } */}
+                        {
+                            uploading ? <div className="uploading"><LoadingSpinner/> Uploading resume...</div> : false
+                        }
+                        {
+                            uploadErr ? <div className="errorMsg">ERROR: {uploadMsg} ( TRY UPLOADING AGAIN )</div> : false
+                        }
+                        <br/>
                         <label>(file size should not be more than 5MB)</label>
                     </div>
                     <div>
-                        <input type='submit' value='finish' />
+                        <input disabled={uploading || uploadErr} type='submit' value='finish' />
                     </div>
                     {
                         loading ? <div className="uploading"><LoadingSpinner/> Uploading data....</div> : error ? <div className="errorMsg">ERROR: {errorMsg}</div> : false

@@ -218,6 +218,10 @@ const JobDetails = styled.div`
 `;
 
 const JobPost = () => {
+
+    // JSON URL
+    const url = process.env.REACT_APP_JSON_URL_JOB_DETAILS;
+
     // ID OF THE JOB
     const {jobId} = useParams();
 
@@ -235,7 +239,7 @@ const JobPost = () => {
         setError(false);
         setErrorMsg("");
 
-        axios.get(`https://young-mountain-65223.herokuapp.com/jobList/${jobId}`)
+        axios.get(url + jobId)
             .then (res => {
                 // console.log(res.data);
                 setData(res.data);

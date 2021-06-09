@@ -407,6 +407,8 @@ const JobsContainer = styled.div`
 `;
 
 const AllJobs = () => {
+    // JSON URL
+    const url = process.env.REACT_APP_JSON_URL_ALL_JOBS;
 
     // HANDLE DATA ON LOADING & ERROR STATE
     const [loading,setLoading] = React.useState(false);
@@ -585,7 +587,7 @@ const AllJobs = () => {
         setError(false);
         setError("");
 
-        axios.get(`https://young-mountain-65223.herokuapp.com/db`)
+        axios.get(url)
             .then (res => {
                 // console.log(res.data);
                 setTimeList(res.data.timeList);
@@ -614,6 +616,7 @@ const AllJobs = () => {
     // ONLOAD OF PAGE TRIGGERS getData FUNCTION
     React.useEffect(() => {
         getData();
+        // eslint-disable-next-line
     },[]);
 
     return (
