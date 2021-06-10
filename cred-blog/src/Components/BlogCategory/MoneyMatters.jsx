@@ -71,9 +71,9 @@ function MoneyMatters() {
                                     {
                                         data3.map((item) => {
                                             return <div>
-                                                <div className={styles.firstLetter}>
+                                                {/* <div className={styles.firstLetter}>
                                                     {item.mainHeaderQuestion[0]}
-                                                </div>
+                                                </div> */}
 
 
                                                 <div className={styles.blogHomeHeader}>

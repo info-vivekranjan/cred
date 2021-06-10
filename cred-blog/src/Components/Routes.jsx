@@ -13,6 +13,7 @@ import { BestCreditCards } from './BlogCategory/BestCreditCards';
 import { BestCreditCardsDataPage } from './BlogCategory/BestCreditCardsDataPage';
 import { SocialAnnouncement } from './BlogCategory/SocialAnnouncement';
 import { SocialDataPage } from './BlogCategory/SocialAnnouncementDataPage';
+import { NavTabs } from './PostBlogCategory/AddAllBlogs';
 
 function BlogRoutes() {
     return (
@@ -47,6 +48,9 @@ function BlogRoutes() {
                     <BookMarks />
                 </Route>
 
+                <Route path="/category/postblogs" exact>
+                    <NavTabs />
+                </Route>
 
 
                 <Route path="/category/credit-cards/:id" exact>

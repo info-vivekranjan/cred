@@ -77,6 +77,11 @@ function SideNavbar() {
 
 
 
+                                        <div className={style.sideNavLinkDiv}>
+                                            <Link className={style.sideNavLink} to="/category/postblogs">Post Blogs</Link>
+                                        </div>
+
+
 
                                     </div>
 

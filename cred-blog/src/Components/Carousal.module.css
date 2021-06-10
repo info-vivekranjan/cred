@@ -1,6 +1,12 @@
+.carousalContDiv{
+    position: relative;
+   overflow: hidden;
+}
+
+
 .nextBackButton  i{
     color: #262626; 
-    font-size: 200px;
+    font-size: 100px;
     font-weight: 700; 
 }
 .nextBackButton  i:hover{
@@ -9,10 +15,14 @@
 
 .readOnBtn{
     text-decoration: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-top: 210px;
 }
 
 .readOnBtn > button{
-    padding: 0 20px;
+    /* padding: 0 20px; */
     height: 40px;
     outline: none;
     background: white;
@@ -25,3 +35,38 @@
     font-weight: 600;
 }
 
+.firstLetter{
+    
+
+    width: 95%;
+    text-align: center;
+    margin: auto;
+    font-size: 40rem;
+    font-weight: 700;
+    color: rgba(0,0,0,0.2);
+    z-index: 0;
+    position: absolute;
+    left: 50px;
+    transform: translate(0,-27%);
+    -webkit-user-select: none;
+    user-select: none;
+    pointer-events: none;
+    
+}
+
+.carousalTitle{
+    color: white;
+     text-decoration: none; 
+     position: absolute; 
+     left: 0;
+      right: 0; 
+}
+
+.carousalTitle > h1{
+    font-size: 70px;
+     width: 80%; 
+     margin: auto;
+     font-weight: 800; 
+     letter-spacing: 0.1;
+     line-height: 70px;
+}

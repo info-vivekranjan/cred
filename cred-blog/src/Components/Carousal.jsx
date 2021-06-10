@@ -55,8 +55,8 @@ const useStyles = makeStyles((theme) => ({
 
     },
     img: {
-        height: "70vh",
-        display: 'block',
+        height: "75vh",
+        // display: 'block',
         width: "82%",
         overflow: 'hidden',
         margin: "auto"
@@ -108,10 +108,16 @@ function SwipeableTextMobileStepper() {
                 >
                     {tutorialSteps.map((step, index) => (
                         <div className={styles.carousalContDiv}>
+
+                            <div className={styles.firstLetter}>
+                                {step.firstLetter}
+                            </div>
+
                             <div className={classes.img} key={step.id}>
 
-                                <Link to={step.to} style={{ color: "white", textDecoration: "none" }}>
-                                    <h1 style={{ fontSize: "65px", width: "75%", margin: " auto", }}> {step.imgPath} </h1>
+
+                                <Link className={styles.carousalTitle} to={step.to} >
+                                    <h1> {step.imgPath} </h1>
                                 </Link>
                                 <Link className={styles.readOnBtn} to={step.to}>
                                     <button>READ ON</button>
@@ -119,9 +125,8 @@ function SwipeableTextMobileStepper() {
 
                             </div>
 
-                            <div className={styles.firstLetterDiv}>
-                                <h1>{step.firstLetter}</h1>
-                            </div>
+
+
 
                         </div>
 
