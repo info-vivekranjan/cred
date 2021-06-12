@@ -5,6 +5,9 @@ import { SideNavbar } from '../Sidenav';
 import { EachBlogCategoryNavbar } from './BlogCategoryEachPageNav/EachBlogCategoryNavbar';
 import styles from './AllCateDataPage.module.css'
 import cx from 'classnames';
+import { FooterBlog } from '../Footer/FooterBlog';
+
+
 
 function SocialDataPage() {
     const [data1, setData1] = useState("");
@@ -400,6 +403,8 @@ function SocialDataPage() {
 
 
                     }
+
+                    <FooterBlog />
 
                 </div>}
 

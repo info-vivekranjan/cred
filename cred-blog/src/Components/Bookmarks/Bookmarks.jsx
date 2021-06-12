@@ -4,7 +4,10 @@ import { Link } from 'react-router-dom';
 import { BlogCategoryNavbar } from '../BlogCategory/BlogCategoryNav/BlogCategoryNavbar';
 import { SideNavbar } from '../Sidenav';
 
-import styles from './Bookmarks.module.css'
+import styles from './Bookmarks.module.css';
+
+import { FooterBlog } from '../Footer/FooterBlog';
+
 
 function BookMarks() {
     const [data1, setData1] = useState([]);
@@ -701,6 +704,9 @@ function BookMarks() {
 
 
                 </div>
+
+                <FooterBlog />
+
             </div>
 
             <SideNavbar />

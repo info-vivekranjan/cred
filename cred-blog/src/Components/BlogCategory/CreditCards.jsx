@@ -4,6 +4,10 @@ import { Link } from 'react-router-dom';
 import { SideNavbar } from '../Sidenav';
 import { BlogCategoryNavbar } from './BlogCategoryNav/BlogCategoryNavbar';
 import styles from './CreditCards.module.css'
+import { FooterBlog } from '../Footer/FooterBlog';
+
+
+
 
 function CreditCards() {
     const [data1, setData1] = useState([]);
@@ -145,6 +149,9 @@ function CreditCards() {
 
 
                 </div>
+
+                <FooterBlog />
+
             </div>
 
             <SideNavbar />

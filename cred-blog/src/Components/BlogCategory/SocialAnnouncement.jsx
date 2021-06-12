@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { SideNavbar } from '../Sidenav';
 import { BlogCategoryNavbar } from './BlogCategoryNav/BlogCategoryNavbar';
 import styles from './CreditCards.module.css'
-
+import { FooterBlog } from '../Footer/FooterBlog'
 
 
 // Using styles of Credit Cards Component
@@ -150,6 +150,9 @@ function SocialAnnouncement() {
 
 
                 </div>
+
+                <FooterBlog />
+
             </div>
 
             <SideNavbar />

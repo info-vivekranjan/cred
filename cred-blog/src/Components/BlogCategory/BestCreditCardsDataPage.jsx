@@ -5,6 +5,9 @@ import { SideNavbar } from '../Sidenav';
 import { EachBlogCategoryNavbar } from './BlogCategoryEachPageNav/EachBlogCategoryNavbar';
 import styles from './AllCateDataPage.module.css'
 import cx from 'classnames';
+import { FooterBlog } from '../Footer/FooterBlog';
+
+
 
 function BestCreditCardsDataPage() {
     const [data1, setData1] = useState("");
@@ -380,6 +383,8 @@ function BestCreditCardsDataPage() {
 
 
                     }
+
+                    <FooterBlog />
 
                 </div>}
 
