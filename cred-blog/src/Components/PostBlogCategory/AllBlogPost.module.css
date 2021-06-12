@@ -1,5 +1,5 @@
 .AllBlogFormCont{
-    border: 1px solid #F8F8F8;
+    /* border: 1px solid #F8F8F8; */
     
     position: relative;
     /* background-color: #F8F8F8; */
@@ -13,7 +13,7 @@
     width: 55%;
     box-shadow: 0 30px 50px 0 rgb(1 1 1 / 15%);
     padding: 2rem 14% 11rem;
-    background-color: white;
+    background-color: rgba(240, 240, 240, 0.377);
     position: relative;
 
 }
@@ -25,9 +25,17 @@
     border: 2px solid #262626;
     border-radius: 4px;
     width: 49%;
-    outline-color: rgb(117, 117, 117);
+    outline-color: #E4265B;
 }
-
+.allInputsPostingHeader{
+    padding: 1px;
+    font-size: 18px;
+    color: #262626;
+    border: 2px solid #262626;
+    border-radius: 4px;
+    width: 60%;
+    outline-color: #420FAA;
+}
 
 
 .submitBtnBlogPost{
@@ -68,6 +76,14 @@
       font-weight: 600;
        font-size: 15px;
        color: #191C27; 
+}
+
+.labelStylesHeader{
+    text-align: left;
+    margin-left: 19.6%;
+     font-weight: 600;
+      font-size: 15px;
+      color: #191C27; 
 }
 
 .blogSubtitle{
