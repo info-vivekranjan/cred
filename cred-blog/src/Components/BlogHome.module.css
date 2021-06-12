@@ -97,3 +97,59 @@ p{
 .readOn:hover{
     box-shadow: 0 10px 30px 0 rgb(1 1 1 / 15%);
 }
+
+
+.blogBottomBtnCont{
+    display: flex;
+    width: 95%;
+    justify-content: space-between;
+    margin: auto;
+    /* margin-bottom: 150px;
+    margin-top: 40px; */
+ 
+}
+.blogBottomBtnCont div:nth-child(2) i{
+    font-size: 25px;
+    cursor: pointer;
+}
+
+
+
+/* Bookmark Tooltip */
+
+#bookmarkTooltip{
+    position: relative;
+    display: inline-block;
+    /* border-bottom: 1px dotted black; */
+}
+#bookmarkTooltip .bookmarkTooltipText{
+    visibility: hidden;
+    width: 120px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    top: -5px;
+    left: 110%;
+    font-size: 15px;
+}
+
+#bookmarkTooltip .bookmarkTooltipText::after{
+    content: "";
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent rgba(0, 0, 0, 0.5) transparent transparent;
+}
+
+#bookmarkTooltip:hover .bookmarkTooltipText{
+    visibility: visible;
+}
+
+ /* BookMark ToolTip end */

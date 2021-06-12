@@ -3,13 +3,17 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './BlogHome.module.css'
 import { BlogNavbar } from './BlogNavbar';
+import { FooterBlog } from './Footer/FooterBlog';
+
 
 function BlogHome() {
     const [data1, setData1] = useState([]);
-    const [data4, setData4] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [isError, setIsError] = useState(false);
 
 
     const getCreditCardData = () => {
+        setIsLoading(true);
         axios.get("https://json-server-mocker-sm2-196.herokuapp.com/blogCreditCards")
             .then((res) => {
                 console.log(res);
@@ -17,21 +21,10 @@ function BlogHome() {
             })
             .catch((err) => {
                 console.log(err);
+                setIsError(true);
             }).finally(() => {
 
-            })
-
-    }
-
-    const getCreditCardPayment = () => {
-        axios.get("https://json-server-mocker-sm2-196.herokuapp.com/blogCreditCardPayment")
-            .then((res) => {
-                console.log(res);
-                setData4(res.data)
-            })
-            .catch((err) => {
-                console.log(err);
-            }).finally(() => {
+                setIsLoading(false);
 
             })
 
@@ -44,9 +37,17 @@ function BlogHome() {
     }, [])
 
 
-    useEffect(() => {
-        getCreditCardPayment();
-    }, [])
+    const toggleBookmark = (id, bookmark) => {
+        axios.patch(`https://json-server-mocker-sm2-196.herokuapp.com/blogCreditCards/${id}`, {
+            bookmark: !bookmark
+        })
+            .then((res) => {
+                return getCreditCardData()
+            }).catch((err) => {
+                console.log(err);
+            })
+    }
+
 
     return (
         <>
@@ -59,87 +60,91 @@ function BlogHome() {
                     <h4>LATEST STORIES</h4>
 
                     {
-                        data1.map((item) => {
-                            return <div>
-                                <div className={styles.firstLetter}>
-                                    {item.mainHeaderQuestion[0]}
-                                </div>
+                        isLoading ? <h3>Loading...</h3> :
+                            isError ? <h3>Something went wrong...</h3> :
+                                <>
+
+                                    {
+                                        data1.map((item) => {
+                                            return <div key={item.id}>
+                                                <div className={styles.firstLetter}>
+                                                    {item.mainHeaderQuestion[0]}
+                                                </div>
 
 
-                                <div className={styles.blogHomeHeader}>
-                                    <h1>{item.mainHeaderQuestion}</h1>
-                                </div>
+                                                <div className={styles.blogHomeHeader}>
+                                                    <h1>{item.mainHeaderQuestion}</h1>
+                                                </div>
 
-                                <div className={styles.readTime}>
-                                    <p>{item.raedTime}</p>
-                                </div>
 
-                                {
-                                    item.mainImg !== "" &&
-                                    <div className={styles.blogHomeImg}>
-                                        <img src={item.mainImg} alt="BLOG-IMG" />
-                                    </div>
-                                }
+                                                <div className={styles.blogBottomBtnCont}>
+                                                    <div className={styles.readTime}>
+                                                        <p>{item.raedTime}</p>
+                                                    </div>
+                                                    <div>
+                                                        {
+                                                            !item.bookmark &&
+                                                            <i onClick={() => toggleBookmark(item.id, item.bookmark)} id={styles.bookmarkTooltip} className="ri-bookmark-line">
+                                                                <span className={styles.bookmarkTooltipText}>
+                                                                    Bookmark it
+                                                                </span>
+                                                            </i>
+                                                        }
 
-                                {
-                                    item.mainImg[0] === "" &&
-                                    <div className={styles.blogHomeImg}>
+                                                        {
+                                                            item.bookmark &&
+                                                            <i onClick={() => toggleBookmark(item.id, item.bookmark)} id={styles.bookmarkTooltip} className="ri-bookmark-fill">
+                                                                <span className={styles.bookmarkTooltipText}>
+                                                                    Remove from Bookmark
+                                                                </span>
+                                                            </i>
+                                                        }
+                                                    </div>
+                                                </div>
 
-                                    </div>
-                                }
 
-                                <div className={styles.blogHomePara}>
-                                    <p>{item.headerExplanation.para1}</p>
-                                </div>
-                                <div className={styles.readOnCont}>
-                                    <Link className={styles.readOn} to={`category/credit-cards/${item.id}`}>Read on</Link>
-                                </div>
-                            </div>
-                        })
+
+                                                {
+                                                    item.mainImg !== "" &&
+                                                    <div className={styles.blogHomeImg}>
+                                                        <img src={item.mainImg} alt="BLOG-IMG" />
+                                                    </div>
+                                                }
+
+                                                {
+                                                    item.mainImg[0] === "" &&
+                                                    <div className={styles.blogHomeImg}>
+
+                                                    </div>
+                                                }
+
+
+                                                <div className={styles.blogHomePara}>
+                                                    <p>{item.headerExplanation.para1}</p>
+                                                </div>
+
+                                                <div className={styles.readOnCont}>
+                                                    <Link className={styles.readOn} to={`credit-cards/${item.id}`}>Read on</Link>
+                                                </div>
+
+
+
+                                            </div>
+                                        })
+                                    }
+
+                                </>
+
+
+
                     }
 
-                    {
-                        data4.map((item) => {
-                            return <div>
-                                <div className={styles.firstLetter}>
-                                    {item.mainHeaderQuestion[0]}
-                                </div>
 
-                                <div className={styles.blogHomeHeader}>
-                                    <h1>{item.mainHeaderQuestion}</h1>
-                                </div>
-
-                                <div className={styles.readTime}>
-                                    <p>{item.raedTime}</p>
-                                </div>
-
-                                {
-                                    item.mainImg !== "" &&
-                                    <div className={styles.blogHomeImg}>
-                                        <img src={item.mainImg} alt="BLOG-IMG" />
-                                    </div>
-                                }
-
-                                {
-                                    item.mainImg[0] === "" &&
-                                    <div className={styles.blogHomeImg}>
-
-                                    </div>
-                                }
-
-
-                                <div className={styles.blogHomePara}>
-                                    <p>{item.headerExplanation.para1}</p>
-                                </div>
-                                <div className={styles.readOnCont}>
-                                    <Link className={styles.readOn} to={` credit-card-payment${item.mainHeaderQuestion}`}>Read on</Link>
-                                </div>
-                            </div>
-                        })
-                    }
                 </div>
-            </div>
 
+                <FooterBlog />
+
+            </div>
 
         </>
     );
