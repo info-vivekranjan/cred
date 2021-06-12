@@ -73,15 +73,15 @@ const FormContainer = styled.div`
 
             /* INPUT NUMBER TYPE ARROW HIDE */
             /* chrome */
-            & input::-webkit-outer-spin-button,
+            /* & input::-webkit-outer-spin-button,
               input::-webkit-inner-spin-button {
                 -webkit-appearance: none;
                 margin: 0;
             }
             /* Firefox */
-            & input[type=number] {
-                -moz-appearance: textfield;
-            }
+            /* & input[type=number] {
+                -moz-appearance: textfield; */
+            /* } */ 
 
             & input[type=submit] {
                 width: 30%;
@@ -147,6 +147,7 @@ const FormContainer = styled.div`
             & .successMsg {
                 margin: 3% auto;
                 color: green;
+                font-weight: 900;
                 
             }
         }
@@ -185,11 +186,12 @@ const Form = () => {
     const initForm = {
         id: uuid(),
         dept: jobDepartment,
+        role: jobName,
         firstName: "",
         lastName: "",
         emailAddress: "",
         mobileNumber: "",
-        resume: {}
+        resume: null
     }
 
     // INPUTS GETS STORED INTO THIS
@@ -206,6 +208,14 @@ const Form = () => {
     // FORMDATA TO TAKE INPUT FILE (RESUME)
     const data = new FormData();
 
+    // CHECKS INPUT ELEMENT TYPE AND RETURNS TRUE IF NUMBER, FALSE FOR OTHERS
+    const checkType = (typedInput) => {
+        if (typedInput >= 0 || typedInput <= 9) {
+            return true;
+        }
+        return false
+    }
+
     // HANDLES CHANGE IN INPUTS
     const handleFormChange = (target) => {
 
@@ -214,6 +224,11 @@ const Form = () => {
 
         // IF INPUT TYPE IS FILE
         if (type === "file" && target.files.length) {
+
+            // FILE SIZE CHECK (LIMIT: 5MB)
+            if (target.files[0].size > 5242880) {
+                return [setUploadMsg("FILE SIZE IS GREATER THAN EXPECTED"),setUploadErr(true)];
+            }
 
             // INITIAL UPLOAD ACTIONS
             setUploading(true);
@@ -224,24 +239,30 @@ const Form = () => {
             data.append("File",(target.files[0]));
 
             // CONVERTING & SAVING RESUME
+            // axios.post(`https://v2.convertapi.com/convert/pdf/to/png?Secret=0IJLNekHfQeGE1Ps`,data)
             axios.post(pdfUrl,data)
 
                 .then(res => {
 
                     // LINK OF THE STORED RESUME
                     const link = res.data.Files.map(ele => ele.Url);
+                    // const img = res.data.Files[0].FileData;
+                    // data.append("img",img);
+
+                    // console.log(img);
 
                     // ADDING THE LINK TO FORM WITH NAME "resume"
                     // RETURNS FROM THE FUNCTION
                     return setForm({
                         ...form,
                         [name]: link
+                        // [name]: data.get("img")
                     })
                 })
                 // HANDLES ERRORS
                 .catch(err => {
                     console.log(err);
-                    setUploadMsg(err.message);
+                    setUploadMsg(err.message + " ( TRY UPLOADING AGAIN )");
                     setUploadErr(true);
                 })
                 // SETS UPLAODING STATE TO FALSE
@@ -296,6 +317,8 @@ const Form = () => {
 
     return (
         <FormContainer>
+
+            {/* JOB NAME & DEPARTMENT */}
             <div className="jobDetails">
                 <div className="stickyTitle">
                     <p>you are applying for</p>
@@ -304,13 +327,19 @@ const Form = () => {
                     <h4>{jobDepartment}</h4>
                 </div>
             </div>
+
+            {/* FORM */}
             <div className="form">
+
+                {/* FORM DESCRIPTION */}
                 <h2>just one last thing</h2>
                 <p>
                     we require your basic details to proceed with the application. this information helps us evaluate your application.
                 </p>
                 <hr/>
                 <h2>personal details</h2>
+
+                {/* ACTUAL FORM */}
                 <form onSubmit={handleSubmit}>
                     <div className="nameContainer">
                         <div>
@@ -332,34 +361,48 @@ const Form = () => {
                     <div>
                         <label>mobile number<span className="requiredStar">*</span></label>
                         <br/>
-                        <input type='number' placeholder='9876543210' value={form.mobileNumber} min="1111111111" max="9999999999" name="mobileNumber" onChange={e => handleFormChange(e.target)} autoComplete="off" required/> 
+                        <input type='text' placeholder='9876543210' value={form.mobileNumber} minLength="10" maxLength="10" name="mobileNumber" onChange={e => checkType(e.target.value) ? handleFormChange(e.target) : false} autoComplete="off" required/> 
                     </div>
+
+                    {/* RESUME FILE */}
                     <div>
                         <label>your resume (pdf)<span className="requiredStar">*</span></label>
                         <br/>
-                        <input className="fileInput" type='file' accept=".pdf" name="resume" onChange={e => handleFormChange(e.target)} required/>
-                        {/* <button type='file'>choose</button> */}
+                        <input className="fileInput" type='file' name="resume" accept="application/pdf" onChange={e => handleFormChange(e.target)} required/>
+
+                        {/* UPLOADING THE FILE */}
                         {
                             uploading ? <div className="uploading"><LoadingSpinner/> Uploading resume...</div> : false
                         }
+
+                        {/* ERROR IN UPLOADING FILE */}
                         {
-                            uploadErr ? <div className="errorMsg">ERROR: {uploadMsg} ( TRY UPLOADING AGAIN )</div> : false
+                            uploadErr ? <div className="errorMsg">ERROR: {uploadMsg}</div> : false
                         }
                         <br/>
                         <label>(file size should not be more than 5MB)</label>
                     </div>
+
+                    {/* SUBMIT BUTTON */}
                     <div>
                         <input disabled={uploading || uploadErr} type='submit' value='finish' />
                     </div>
+
+                    {/* UPLOADING FORM */}
                     {
-                        loading ? <div className="uploading"><LoadingSpinner/> Uploading data....</div> : error ? <div className="errorMsg">ERROR: {errorMsg}</div> : false
+                        loading ? <div className="uploading"><LoadingSpinner/> SENDING APPLICATION....</div> : error ? <div className="errorMsg">ERROR: {errorMsg}</div> : false
                     }
+
+                    {/* SUCCESS MESSAGE WHEN FORM IS SUCCESSFULLY SENT */}
                     {
-                        success ? <div className="successMsg">UPLOAD SUCCESS</div> : false
+                        success ? <div className="successMsg">APPLICATION SUCEESFULLY SENT</div> : false
                     }
                 </form>
+
+                
+                {/* FORM PRIVACY */}
                 <p>
-                    we take privacy very seriously at CRED, and the information that you have shared with us will only be used to process your application and further possible candidature.
+                    we take piracy very seriously at CRED, and the information that you have shared with us will only be used to process your application and further possible candidature.
                 </p>
             </div>
         </FormContainer>
