@@ -27,6 +27,16 @@ const ApplicationsContainer = styled.div`
         display: flex;
         justify-content: space-evenly;
         align-items: center;
+
+        @media (max-width: 850px) {
+            flex-direction: column;
+        }
+        @media (max-width: 500px) {
+            padding: 1%;
+        }
+        @media (max-width: 350px) {
+            font-size: 0.8em;
+        }
     }
 
     & .totalAppl {
@@ -36,18 +46,37 @@ const ApplicationsContainer = styled.div`
         color: white;
         background-color: #161616;
         border-radius: 10px;
+
+        @media (max-width: 850px) {
+            width: 80%;
+        }
+        @media (max-width: 350px) {
+            font-size: 1em;
+        }
     }
 
+    /* department filter */
     & .select {
+        width: 40%;
         font-size: 1.3em;
         padding: 1%;
+        /* border: 1px solid red; */
 
         & * {
             margin: 1%;
             font-size: 1em;
             padding: 2%;
-            width: 20vw;
+            width: 80%;
             border-radius: 3px;
+
+            @media (max-width: 850px) {
+                width: 80%;
+            }
+        }
+
+        @media (max-width: 850px) {
+            width: 100%;
+            margin: 5% 0;
         }
     }
 
@@ -75,6 +104,23 @@ const ApplicationsContainer = styled.div`
             :hover {
                 color: black;
             }
+
+            @media (max-width: 295px) {
+                width: 60%;
+                padding: 3%;
+            }
+        }
+
+        @media (max-width: 360px) {
+            font-size: 0.8em;
+        }
+
+        @media (max-width: 295px) {
+            /* font-size: 1em; */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
     }
@@ -85,9 +131,24 @@ const ApplicationsContainer = styled.div`
         box-shadow: 1px 1px 10px gray;
         margin: 5% 3%;
         padding: 5%;
+
+        & .noData {
+            text-align: center;
+            font-size: 1.3em;
+        }
+
+        @media (max-width: 900px) {
+            margin: 1%;
+            padding: 2%;
+            box-shadow: none;
+        }
     }
 
     & .heading {
+        display: grid;
+        padding: 1% ;
+        grid-template-columns: 17.5% 20% 20% 15% 15% 15.5%;
+        align-items: center;
         background-color: white;
         font-weight: bolder;
         position: sticky;
@@ -99,11 +160,15 @@ const ApplicationsContainer = styled.div`
         :hover {
             background-color: white !important;
         }
+
+        @media (max-width: 900px) {
+            display: none;
+        }
     }
 
     & .appCard {
         display: grid;
-        padding: 1% ;
+        padding: 1%;
         grid-template-columns: 17.5% 20% 20% 15% 15% 15.5%;
         align-items: center;
         word-wrap: break-word;
@@ -111,8 +176,20 @@ const ApplicationsContainer = styled.div`
         
         & * {
             padding: 1% 3%;
+
+            @media (max-width: 600px) {
+                font-size: 1em;
+                padding: 1%;
+                margin: 1%;
+            }
         }
 
+        label {
+            color: #263086;
+            padding: 0%;
+        }
+
+        /* VIEW RESUME BUTTON */
         & .view {
             width: 80%;
             font-weight: 700;
@@ -127,6 +204,16 @@ const ApplicationsContainer = styled.div`
 
             :hover {
                 background-color: #263086;
+            }
+
+            @media (max-width: 900px) {
+                width: 60%;
+                padding: 5%;
+            }
+
+            @media (max-width: 600px) {
+                width: 90%;
+                padding: 5%;
             }
         }
 
@@ -147,7 +234,23 @@ const ApplicationsContainer = styled.div`
                 border-radius: 10px;
                 font-weight: bolder;
                 cursor: pointer;
+
+                @media (max-width: 900px) {
+                    font-size: 1em;
+                    padding: 5%;
+                    width: 40%;
+                }
+
+                @media (max-width: 600px) {
+                    padding: 3%;
+                }
             }
+
+            @media (max-width: 900px) {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+            
 
             & .select {
                 border-color: gray;
@@ -172,6 +275,19 @@ const ApplicationsContainer = styled.div`
         :hover {
             background-color: #f5f5f5;
         }
+
+        @media (max-width: 900px) {
+            grid-template-columns: 50% 50%;
+            border: none;
+            box-shadow: 1px 1px 10px gray;
+            border-radius: 10px;
+            padding: 5%;
+            margin: 5% 0;
+        }
+
+        @media (max-width: 600px) {
+            grid-template-columns: 100%;
+        }
     }
 `;
 
@@ -179,6 +295,9 @@ const Applications = () => {
 
     // DOCUMENT TITLE
     document.title = `APPLICATION LIST`;
+
+    // DISPLAY WIDTH
+    const [width,setWidth] = React.useState("");
 
     // JSON APPLICATION LINK
     const applUrl = process.env.REACT_APP_JSON_URL_APPLICATION;
@@ -259,6 +378,14 @@ const Applications = () => {
             })
     }
 
+    // CHECKS SCREEN SIZE ON SCREEN RESIZE
+    const checkDimensions = () => {
+        setWidth(window.innerWidth);
+    }
+
+    // EVENT LISTENER FOR WINDOW RESIZE
+    window.addEventListener('resize',checkDimensions);
+
     React.useEffect(() => {
         loadList();
         // eslint-disable-next-line
@@ -282,10 +409,11 @@ const Applications = () => {
                         {/* SELECT DEPARTMENT */}
                         <div className="select">
                             <label>by department</label>
+                            <br/>
                             <select value={selectDept} onChange={e => handleChange(e.target.value)}>
                                 <option>all</option>
                                 {
-                                    data.length ? data.filter(ele => ele.selected === list).map(ele => <option key={ele.id * 2}>{ele.dept}</option>) : false
+                                    data.length ? data.filter(ele => ele.selected === list).map(ele => <option key={ele.id}>{ele.dept}</option>) : false
                                 }
                             </select>
                         </div>
@@ -321,23 +449,29 @@ const Applications = () => {
                         <div className="listContainer">
 
                             {/* LIST HEADING */}
-                            <div className="appCard heading">
-                                <h2>name</h2>
-                                <h2>mobile number</h2>
-                                <h2>email id</h2>
-                                <h2>role</h2>
-                                <h2>view</h2>
-                                <h2>status</h2>
-                            </div>
+                            {
+                                data.filter(ele => ele.selected === list).length === 0 ? 
+                                <div className="noData">
+                                    <h2>list contains no {list === "pending" ? "pending" : list ? "selected" : "rejected"} applications !</h2>
+                                </div> :
+                                <div className="heading">
+                                    <h2>name</h2>
+                                    <h2>mobile number</h2>
+                                    <h2>email id</h2>
+                                    <h2>role</h2>
+                                    <h2>view</h2>
+                                    <h2>status</h2>
+                                </div>
+                            }
                             
                             {/* LIST DATA */}
                             {
                                 data.filter(ele => selectDept === "all" ? ele : ele.dept === selectDept).filter(ele => ele.selected === list).map(ele => 
                                     <div className="appCard" key={ele.id}>
-                                        <h3>{ele.firstName + " " + ele.lastName}</h3>
-                                        <h3>{ele.mobileNumber}</h3>
-                                        <h3>{ele.emailAddress}</h3>
-                                        <h3>{ele.role}</h3>
+                                        <h3>{width <= 900 ? <label>name: </label> : false} {ele.firstName + " " + ele.lastName}</h3>
+                                        <h3>{width <= 900 ? <label>mobile: </label> : false} {ele.mobileNumber}</h3>
+                                        <h3>{width <= 900 ? <label>email: </label> : false} {ele.emailAddress}</h3>
+                                        <h3>{width <= 900 ? <label>role: </label> : false} {ele.role}</h3>
 
                                         {/* LINK TO VIEW RESUME IN ANOTHER TAB */}
                                         <Link className="view" target="_blank" to={`/applications/resume/${ele.firstName}/${ele.id}`}>view resume</Link>

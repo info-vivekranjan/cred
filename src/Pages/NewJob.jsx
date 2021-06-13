@@ -7,12 +7,15 @@ const NewJobContainer = styled.div`
     text-align: center;
     font-size: 1.3em;
     box-shadow: 1px 1px 10px gray;
+    border-radius: 3px;
     padding: 0 3% 3%;
     margin: 3% 10%;
 
     & h2 {
         font-size: 2em;
         padding: 3%;
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
         margin: 1% -4% 5%;
         color: white;
         background-color: #3a44a1;
@@ -136,6 +139,12 @@ const NewJobContainer = styled.div`
 
 const NewJob = () => {
 
+    // DEPARTMENT LIST URL
+    const deptListUrl = process.env.REACT_APP_JSON_URL_DEPT_LIST;
+
+    // JOB LIST URL
+    const jobList = process.env.REACT_APP_JSON_URL_JOB_DETAILS;
+
     // DOCUMENT TITLE
     document.title = `JOB POST`;
 
@@ -162,7 +171,7 @@ const NewJob = () => {
     // DEPARTMENT LIST
     const [deptList,setDeptList] = React.useState([]);
 
-
+    // INPUT CHANGE
     const handleFormChange = (target) => {
         const {name,value} = target;
         if (name === "work" || name === "expected") {
@@ -175,53 +184,69 @@ const NewJob = () => {
         else {
             return setForm({
                 ...form,
-                [name]: value
+                [name]: value.trim()
             })
         }
     }
 
+    // FORM SUBMIT
     const handleSubmit = (e) => {
         e.preventDefault();
 
         setUploading(true);
 
-        axios.post(`https://young-mountain-65223.herokuapp.com/jobList`,form)
+        axios.post(jobList,form)
+
+            // SUCCESSFUL SUBMISSION
             .then(res => {
                 console.log(res);
                 setUploadMsg("SUCCESSFULLY ADDED");
             })
+
+            // ERROR IN SUBMISSION
             .catch(err => {
                 console.log(err);
                 setUploadErr(true);
                 setUploadMsg(`ERROR: ${err.message}`);
             })
+
             .finally(() => {
                 setUploading(false);
             })
     }
 
+    // ONLOAD PAGE
     React.useEffect(() => {
-        axios.get(`https://young-mountain-65223.herokuapp.com/deptList`)
+        axios.get(deptListUrl)
             .then (res => {
-                console.log(res.data)
+                // console.log(res.data)
                 setDeptList(res.data);
             })
             .catch(err => {
                 console.log(err.message);
             })
+
+        // eslint-disable-next-line
     },[])
 
     return (
         <NewJobContainer>
+
+            {/* HEADING OF THE PAGE */}
             <h2>add new job details</h2>
 
+            {/* FORM */}
             <form onSubmit={handleSubmit}>
+
+                {/* CONTAINER WITH GRID */}
                 <div className="container">
+
                     <div className="input">
                         <label>job title<span className="requiredStar">*</span></label>
                         <br/>
                         <input type='text' placeholder='data analysis' value={form.name} name="name" onChange={e => handleFormChange(e.target)} autoComplete="off" required autoFocus /> 
                     </div>
+
                     <div className="input">
                         <label>place<span className="requiredStar">*</span></label>
                         <br/>
@@ -247,23 +272,24 @@ const NewJob = () => {
                         </select>
                     </div>
                 </div>
+
+                {/* TEXTAREA CONTAINER */}
                 <div className="input">
-                    <label>work details<span className="requiredStar">*</span></label>
+                    <label>duties & reponsibilities<span className="requiredStar">*</span></label>
                     <div className="inputRules">(write in points & every point should be in a new line)</div>
                     <textarea rows="7" placeholder=" point 1
                     point 2
                     point 3" name="work" onChange={e => handleFormChange(e.target)}>
-
                     </textarea>
                 </div>
                 
+                {/* TEXTAREA CONTAINER */}
                 <div className="input">
                     <label>expected skills & experiences<span className="requiredStar">*</span></label>
                     <div className="inputRules">(write in points & every point should be in a new line)</div>
                     <textarea rows="7" placeholder=" point 1
                     point 2
                     point 3" name="expected" onChange={e => handleFormChange(e.target)}>
-
                     </textarea>
                 </div>
 
@@ -272,9 +298,11 @@ const NewJob = () => {
                     <input type='submit' value='finish' />
                 </div>
                 
+                {/* FORM SUBMIT STATUS */}
                 {
                     uploading ? <div className="submitMsg">SUBMITTING....</div> : setUploadMsg.length ? <div className={uploadErr ? "errorMsg" : "successMsg"}>{uploadMsg}</div> : false
                 }
+
             </form>
         </NewJobContainer>
     )
