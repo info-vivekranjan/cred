@@ -1,10 +1,13 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
+import Applications from '../Pages/Applications';
 import AllJobs from '../Pages/Careers/AllJobs';
 import Careers from '../Pages/Careers/Careers';
 import ErrorPage from '../Pages/Careers/ErrorPage';
-import Form from '../Pages/Careers/Form';
+import JobApplication from '../Pages/Careers/JobApplication';
 import JobPost from '../Pages/Careers/JobPost';
+import NewJob from '../Pages/NewJob';
+import Resume from '../Pages/Resume';
 
 const Routes = () => {
     return (
@@ -29,8 +32,25 @@ const Routes = () => {
 
             {/* FORM FOR JOB APPLICANTS */}
             <Route path={`/careers/form/:jobDepartment/:jobId/:jobName`}>
-                <Form />
+                <JobApplication />
             </Route>
+
+            {/* ========================ADMIN====================== */}
+                {/* NEW JOB POST FORM */}
+                <Route path="/newJobPost">
+                    <NewJob />
+                </Route>
+                
+                {/* LIST OF JOB APPLICANTIONS */}
+                <Route exact path={`/applications`}>
+                    <Applications/>
+                </Route>
+
+                {/* RESUME */}
+                <Route path={`/applications/resume/:name/:id`}>
+                    <Resume/>
+                </Route>
+            {/* =================================================== */}
 
             <Route>
                 <ErrorPage />

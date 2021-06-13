@@ -221,6 +221,8 @@ const Applications = () => {
 
     // HANDLES APPLICATION SELECTED / REJECTED
     const handleSelect = (ele,bool) => {
+        setLoading(true);
+
         const payload = {
             ...ele,
             selected: bool
@@ -287,6 +289,17 @@ const Applications = () => {
                                 }
                             </select>
                         </div>
+
+                        {/* SELECT DEPARTMENT */}
+                        {/* <div className="select">
+                            <label>by department</label>
+                            <select value={selectDept} onChange={e => handleChange(e.target.value)}>
+                                <option>all</option>
+                                {
+                                    data.length ? data.filter(ele => ele.selected === list).map(ele => <option key={ele.id * 2}>{ele.dept}</option>) : false
+                                }
+                            </select>
+                        </div> */}
                     </div>
 
                     {/* SELECT LIST TYPE (PENDING, SELECTED, REJECTED) */}
