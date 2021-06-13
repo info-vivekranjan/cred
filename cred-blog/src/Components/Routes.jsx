@@ -17,6 +17,7 @@ import { NavTabs } from './PostBlogCategory/AddAllBlogs';
 
 import { Chat } from "./Chat/Chat";
 import { Join } from "./Join/Join";
+import { RegisterForChat } from './RegisterForChat/RegisterForChat';
 
 function BlogRoutes() {
     return (
@@ -56,6 +57,10 @@ function BlogRoutes() {
                 </Route>
 
 
+
+                <Route path="/register-for-meeting" exact>
+                    <RegisterForChat />
+                </Route>
                 <Route path="/joinmeeting" exact>
                     <Join />
                 </Route>

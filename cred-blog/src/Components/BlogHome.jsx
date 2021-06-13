@@ -57,6 +57,12 @@ function BlogHome() {
 
 
                 <div className={styles.blogHomeCont}>
+                    <div>
+
+                        <Link to="/register-for-meeting" target="no_blank" style={{ color: "white", fontSize: "18px", background: "#D91B4F", padding: "5px 30px" }}>Register Here to chat with CRED team {">>"}</Link>
+
+                    </div>
+
                     <h4>LATEST STORIES</h4>
 
                     {
