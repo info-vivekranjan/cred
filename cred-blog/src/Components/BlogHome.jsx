@@ -124,7 +124,7 @@ function BlogHome() {
                                                 </div>
 
                                                 <div className={styles.readOnCont}>
-                                                    <Link className={styles.readOn} to={`credit-cards/${item.id}`}>Read on</Link>
+                                                    <Link className={styles.readOn} to={`category/credit-cards/${item.id}`}>Read on</Link>
                                                 </div>
 
 

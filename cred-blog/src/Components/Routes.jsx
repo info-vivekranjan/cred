@@ -15,6 +15,9 @@ import { SocialAnnouncement } from './BlogCategory/SocialAnnouncement';
 import { SocialDataPage } from './BlogCategory/SocialAnnouncementDataPage';
 import { NavTabs } from './PostBlogCategory/AddAllBlogs';
 
+import { Chat } from "./Chat/Chat";
+import { Join } from "./Join/Join";
+
 function BlogRoutes() {
     return (
         <div>
@@ -50,6 +53,14 @@ function BlogRoutes() {
 
                 <Route path="/category/postblogs" exact>
                     <NavTabs />
+                </Route>
+
+
+                <Route path="/joinmeeting" exact>
+                    <Join />
+                </Route>
+                <Route path="/chat">
+                    <Chat />
                 </Route>
 
 
