@@ -9,6 +9,16 @@ const NavbarContainer = styled.div`
 
     & .link {
         text-decoration: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        & .admin {
+            color: #3a44a1;
+            font-weight: bolder;
+            font-size: 2em;
+            padding: 0 1%;
+        }
     }
 `;
 
@@ -19,6 +29,11 @@ const Navbar = () => {
                 <Link to='/careers' className="link">
                     <img src="/Careers/Navbar/CRED_Navbar_logo.png" alt="Cred_logo" />
                 </Link>
+
+                {/* ADMIN */}
+                {/* <Link to='/login' className="link">
+                    <span className="admin">ADMIN</span><img src="/Careers/Navbar/CRED_Navbar_logo.png" alt="Cred_logo" />
+                </Link> */}
             </NavbarContainer>
         </>
     )

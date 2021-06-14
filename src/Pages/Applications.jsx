@@ -60,6 +60,7 @@ const ApplicationsContainer = styled.div`
         width: 40%;
         font-size: 1.3em;
         padding: 1%;
+        outline: none;
         /* border: 1px solid red; */
 
         & * {
@@ -255,7 +256,7 @@ const ApplicationsContainer = styled.div`
             & .select {
                 border-color: gray;
                 background-color: #eeeeee;
-
+                
                 :hover {
                     background-color: white;
                 }
@@ -294,7 +295,7 @@ const ApplicationsContainer = styled.div`
 const Applications = () => {
 
     // DOCUMENT TITLE
-    document.title = `APPLICATION LIST`;
+    document.title = `application list`;
 
     // DISPLAY WIDTH
     const [width,setWidth] = React.useState("");
@@ -388,6 +389,7 @@ const Applications = () => {
 
     React.useEffect(() => {
         loadList();
+        checkDimensions();
         // eslint-disable-next-line
     },[]);
 

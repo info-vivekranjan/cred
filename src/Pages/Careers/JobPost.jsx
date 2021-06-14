@@ -7,6 +7,7 @@ import LoadingSpinner from '../../Components/Careers/LoadingSpinner';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import { FaLinkedinIn, FaTwitter, FaFacebookF } from 'react-icons/fa';
 import { FiMail } from 'react-icons/fi';
+import { Redirect } from 'react-router-dom';
 
 const JobDetails = styled.div`
 
@@ -259,6 +260,12 @@ const JobPost = () => {
         getData();
         // eslint-disable-next-line
     },[]);
+
+    // WRONG ID or IF DATA IS NOT FOUND IN SERVER
+    if (error) {
+        // console.log('redirect')
+        return <Redirect to='/error' />
+    }
     
     return  (
         <JobDetails>

@@ -74,6 +74,7 @@ const NewJobContainer = styled.div`
 
             & select {
                 width: 90%;
+                outline: none;
                 padding: 2%;
                 margin: 1% 0;
                 border-radius: 5px;
@@ -146,7 +147,7 @@ const NewJob = () => {
     const jobList = process.env.REACT_APP_JSON_URL_JOB_DETAILS;
 
     // DOCUMENT TITLE
-    document.title = `JOB POST`;
+    document.title = `new job post`;
 
     // INITIAL FORM DATA
     const initForm = {
@@ -233,7 +234,7 @@ const NewJob = () => {
         <NewJobContainer>
 
             {/* HEADING OF THE PAGE */}
-            <h2>add new job details</h2>
+            <h2>new job details</h2>
 
             {/* FORM */}
             <form onSubmit={handleSubmit}>
