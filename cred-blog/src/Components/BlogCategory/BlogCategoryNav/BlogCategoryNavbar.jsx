@@ -41,7 +41,7 @@ function BlogCategoryNavbar() {
         },
         {
 
-            title: <div onClick={() => setShowNav(!showNav)}>
+            burgurBtn: <div onClick={() => setShowNav(!showNav)}>
                 <i className="ri-menu-line"></i>
             </div>
         }
@@ -87,6 +87,25 @@ function BlogCategoryNavbar() {
                                 </div>
                             })
                         }
+
+
+                        {
+                            links.map((item) => {
+                                return <div className={styles.navbarLinksCont}>
+                                    <div className={styles.navbarBurgurLinks}>
+
+                                        <div className={styles.blogBurgurCont}>
+                                            <Link className={styles.blogBurgur} to={item.to}>
+                                                {item.burgurBtn}
+                                            </Link>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            })
+                        }
+
+
 
                     </div>
 
