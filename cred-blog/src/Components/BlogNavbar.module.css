@@ -56,9 +56,37 @@
 
 }
 
+
+.navbarBurgurLinks{
+        /* border: 1px solid red; */
+        width:fit-content;
+        padding: 10px 0px;
+        position: relative;
+}
+
+.navbarBurgurLinks:hover{
+    background: rgba(236, 236, 236, 0.116);
+
+}
+
+.blogBurgurCont>.blogBurgur{
+    color: white;
+    text-decoration: none;
+    font-weight: 700;    
+}
+
+
 .blogLinksCont > .blogLink{
     color: white;
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 700;
 }
 
+@media only screen and (max-width: 992px) {
+    .navbarLinks {
+        /* border: 1px solid red; */
+    display: none;
+    }
+    
+     
+} 
