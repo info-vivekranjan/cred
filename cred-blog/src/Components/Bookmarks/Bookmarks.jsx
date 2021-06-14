@@ -15,6 +15,7 @@ function BookMarks() {
 
     const [data3, setData3] = useState([]);
     const [data4, setData4] = useState([]);
+    const [data5, setData5] = useState([]);
 
     const [data6, setData6] = useState([]);
 
@@ -103,6 +104,26 @@ function BookMarks() {
     }
 
 
+    const getTechData = () => {
+
+        setIsLoading(true)
+
+        axios.get("https://json-server-mocker-sm2-196.herokuapp.com/blogTech")
+            .then((res) => {
+                // console.log(res);
+                setData5(res.data)
+            })
+            .catch((err) => {
+                console.log(err);
+                setIsError(true)
+            }).finally(() => {
+                setIsLoading(false)
+            })
+
+    }
+
+
+
 
 
     const getSocialData = () => {
@@ -177,6 +198,17 @@ function BookMarks() {
             })
     }
 
+    const toggleBookmark5 = (id, bookmark) => {
+        axios.patch(`https://json-server-mocker-sm2-196.herokuapp.com/blogTech/${id}`, {
+            bookmark: !bookmark
+        })
+            .then((res) => {
+                return getTechData();
+            }).catch((err) => {
+                console.log(err);
+            })
+    }
+
 
 
     const toggleBookmark6 = (id, bookmark) => {
@@ -220,6 +252,11 @@ function BookMarks() {
 
     }, [])
 
+
+    useEffect(() => {
+        getTechData();
+
+    }, [])
 
 
     useEffect(() => {
@@ -606,6 +643,97 @@ function BookMarks() {
                     }
 
 
+
+
+
+
+                    {
+                        // isLoading ? <h3></h3> :
+                        //     isError ? <h3>Something went wrong...</h3> :
+
+
+
+                        <>
+
+                            {
+
+                                data5.map((item) => {
+                                    return <div key={item.id}>
+
+                                        {
+                                            item.bookmark &&
+
+
+                                            <>
+                                                <div className={styles.firstLetter}>
+                                                    {item.mainHeaderQuestion[0]}
+                                                </div>
+
+
+                                                <div className={styles.blogHomeHeader}>
+                                                    <h1>{item.mainHeaderQuestion}</h1>
+                                                </div>
+
+
+                                                <div className={styles.blogBottomBtnCont}>
+                                                    <div className={styles.readTime}>
+                                                        <p>{item.raedTime}</p>
+                                                    </div>
+                                                    <div>
+                                                        {
+                                                            !item.bookmark &&
+                                                            <i onClick={() => toggleBookmark6(item.id, item.bookmark)} className="ri-bookmark-line"></i>
+                                                        }
+
+                                                        {
+                                                            item.bookmark &&
+                                                            <i onClick={() => toggleBookmark6(item.id, item.bookmark)} className="ri-bookmark-fill"></i>
+                                                        }
+                                                    </div>
+                                                </div>
+
+
+
+                                                {
+                                                    item.mainImg !== "" &&
+                                                    <div className={styles.blogHomeImg}>
+                                                        <img src={item.mainImg} alt="BLOG-IMG" />
+                                                    </div>
+                                                }
+
+                                                {
+                                                    item.mainImg[0] === "" &&
+                                                    <div className={styles.blogHomeImg}>
+
+                                                    </div>
+                                                }
+
+
+                                                <div className={styles.blogHomePara}>
+                                                    <p>{item.headerExplanation.para1}</p>
+                                                </div>
+
+                                                <div className={styles.readOnCont}>
+                                                    <Link className={styles.readOn} to={`tech/${item.id}`}>Read on</Link>
+                                                </div>
+
+
+                                            </>
+
+
+                                        }
+
+
+                                    </div>
+                                })
+
+                            }
+
+                        </>
+
+
+
+                    }
 
 
 

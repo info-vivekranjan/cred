@@ -20,6 +20,10 @@ import { Join } from "./Join/Join";
 import { RegisterForChat } from './RegisterForChat/RegisterForChat';
 import { ChatRequestAdminPage } from './ChatRequestAdmin/ChatRequestAdminPage';
 
+import { Tech } from './BlogCategory/Tech';
+import { TechDataPage } from './BlogCategory/TechDataPage';
+
+
 function BlogRoutes() {
     return (
         <div>
@@ -46,6 +50,10 @@ function BlogRoutes() {
 
                 <Route path="/category/social-announcement" exact>
                     <SocialAnnouncement />
+                </Route>
+
+                <Route path="/category/tech" exact>
+                    <Tech />
                 </Route>
 
 
@@ -93,6 +101,10 @@ function BlogRoutes() {
 
                 <Route path="/category/social-announcement/:id" exact>
                     <SocialDataPage />
+                </Route>
+
+                <Route path="/category/tech/:id" exact>
+                    <TechDataPage />
                 </Route>
 
 
