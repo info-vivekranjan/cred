@@ -81,6 +81,9 @@ function SideNavbar() {
                                             <Link className={style.sideNavLink} to="/category/postblogs">Post Blogs</Link>
                                         </div>
 
+                                        <div className={style.sideNavLinkDiv}>
+                                            <Link className={style.sideNavLink} to="/admin/chatrequests">Chat Requests</Link>
+                                        </div>
 
 
                                     </div>
@@ -91,13 +94,13 @@ function SideNavbar() {
                                     <div className={style.sideNavBottomSide}>
                                         <div>
                                             about CRED
-                        </div>
+                                        </div>
                                         <div>
                                             CRED is a members-only platform that
                                             rewards the creditworthy individuals
                                             of India with exclusive experiences,
                                             rewards and upgrades.
-                        </div>
+                                        </div>
                                     </div>
 
 
@@ -107,7 +110,7 @@ function SideNavbar() {
 
                                         <div>
                                             follow us on
-                        </div>
+                                        </div>
 
                                         <div>
                                             <div onClick={() => alert("Welcome to facebook")}>

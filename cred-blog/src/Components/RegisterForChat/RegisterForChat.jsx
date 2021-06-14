@@ -13,7 +13,8 @@ function RegisterForChat() {
         name: "",
         email: "",
         mobile: "",
-        reason: ""
+        reason: "",
+        status: false
     }
 
     const [query, setQuery] = useState(initVal);

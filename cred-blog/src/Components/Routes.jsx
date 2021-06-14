@@ -18,6 +18,7 @@ import { NavTabs } from './PostBlogCategory/AddAllBlogs';
 import { Chat } from "./Chat/Chat";
 import { Join } from "./Join/Join";
 import { RegisterForChat } from './RegisterForChat/RegisterForChat';
+import { ChatRequestAdminPage } from './ChatRequestAdmin/ChatRequestAdminPage';
 
 function BlogRoutes() {
     return (
@@ -68,6 +69,9 @@ function BlogRoutes() {
                     <Chat />
                 </Route>
 
+                <Route path="/admin/chatrequests">
+                    <ChatRequestAdminPage />
+                </Route>
 
                 <Route path="/category/credit-cards/:id" exact>
                     <CreditCardsDataPage />

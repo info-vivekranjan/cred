@@ -1,0 +1,69 @@
+
+.ChatRequestAdminPageCont{
+    font-family: 'Domine', serif;
+    border: 1px solid #F8F8F8;
+    margin:  auto;
+    margin-bottom: 0px;
+    position: relative;
+    background-color: #F8F8F8;
+
+}
+
+.ChatRequestAdminPage{
+    /* border: 1px solid red; */
+    margin: auto;
+    margin-top: 50px;
+    width: 90%;
+    box-shadow: 0 30px 50px 0 rgb(1 1 1 / 15%);
+    padding: 5rem 5% 11rem;
+    background-color: white;
+    position: relative;
+}
+
+.ChatRequestTableCont{
+    border: 1px solid gray;
+    width: 100%;
+  
+}
+
+
+.ChatRequestHeader{
+    /* border: 1px solid gray; */
+    display: flex;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 18px;
+    background-color: rgb(230, 230, 230);
+    
+}
+
+
+.ChatRequestBody{
+    /* border: 1px solid gray; */
+    display: flex;
+    justify-content: center;
+    
+}
+
+
+
+.ChatRequestHeaderBlock{
+    border: 1px solid gray;
+    width: 120px;
+    padding: 5px;
+}
+.ChatRequestHeaderBlockEmail{
+    border: 1px solid gray;
+    padding: 5px;
+    width: 300px;
+
+}
+.ChatRequestHeaderBlockReason{
+    width: 300px;
+}
+
+.ChatRequestHeaderBlockSrNo{
+    border: 1px solid gray;
+    width: 60px;
+    padding: 5px;
+}
