@@ -41,7 +41,13 @@
     
 }
 
-
+.carousalPara{
+    color: white;
+    position: absolute; 
+    left: 0;
+    right: 0; 
+    margin-top: 32vh;
+}
 
 .nextBackButton  i{
     color: #262626; 

@@ -17,6 +17,7 @@ const tutorialSteps = [
     {
         id: 1,
         imgPath: 'Update on Oxygen mission: 100 Million O2 Litres Deployed',
+        para: "In Social announcement / 2 Min read",
         to: "category/social-announcement/1",
         firstLetter: "U"
 
@@ -24,24 +25,28 @@ const tutorialSteps = [
     {
         id: 2,
         imgPath: 'Update on Oxygen mission: 450 oxygen concentrators received.',
+        para: "In Social announcement / 2 Min read",
         to: "category/social-announcement/2",
         firstLetter: "U"
     },
     {
         id: 3,
         imgPath: 'How we at CRED are responding to the COVID crisis',
+        para: "In Social announcement / 3 Min read",
         to: "category/social-announcement/3",
         firstLetter: "H"
     },
     {
         id: 4,
         imgPath: 'The Cosmos of CRED Application Security',
+        para: "In Tech / 9 Min read",
         to: "#",
         firstLetter: "T"
     },
     {
         id: 5,
         imgPath: 'How To Convert Credit Card Payment To EMI?',
+        para: "In Credit card payment / 5 Min read",
         to: "category/credit-card-payment/1",
         firstLetter: "H"
     },
@@ -119,6 +124,8 @@ function SwipeableTextMobileStepper() {
                                 <Link className={styles.carousalTitle} to={step.to} >
                                     <h1> {step.imgPath} </h1>
                                 </Link>
+                                <p className={styles.carousalPara}>{step.para}</p>
+
                                 <Link className={styles.readOnBtn} to={step.to}>
                                     <button>READ ON</button>
                                 </Link>
