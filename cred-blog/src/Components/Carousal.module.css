@@ -4,6 +4,45 @@
 }
 
 
+.firstLetter{
+    
+
+    width: 95%;
+    text-align: center;
+    margin: auto;
+    font-size: 45rem;
+    font-weight: 600;
+    color: rgba(0,0,0,0.2);
+    z-index: 0;
+    position: absolute;
+    left: 50px;
+    transform: translate(0,-27%);
+    -webkit-user-select: none;
+    user-select: none;
+    pointer-events: none;
+    
+}
+
+.carousalTitle{
+    color: white;
+     text-decoration: none; 
+     position: absolute; 
+     left: 0;
+      right: 0; 
+}
+
+.carousalTitle > h1{
+    font-size: 3.5rem;
+     width: 75%; 
+     margin: auto;
+     font-weight: 800; 
+     letter-spacing: 0.1;
+     line-height: 5rem;
+    
+}
+
+
+
 .nextBackButton  i{
     color: #262626; 
     font-size: 100px;
@@ -35,38 +74,31 @@
     font-weight: 600;
 }
 
-.firstLetter{
+ 
+@media only screen and (max-width: 992px) {
     
+    .carousalTitle > h1{
+        font-size: 3rem;
+         width: 75%; 
+         margin: auto;
+         font-weight: 800; 
+         letter-spacing: 0.1;
+         line-height: 4rem;
+        
+    }
+       
+} 
 
-    width: 95%;
-    text-align: center;
-    margin: auto;
-    font-size: 40rem;
-    font-weight: 700;
-    color: rgba(0,0,0,0.2);
-    z-index: 0;
-    position: absolute;
-    left: 50px;
-    transform: translate(0,-27%);
-    -webkit-user-select: none;
-    user-select: none;
-    pointer-events: none;
+@media only screen and (max-width: 600px) {
     
-}
-
-.carousalTitle{
-    color: white;
-     text-decoration: none; 
-     position: absolute; 
-     left: 0;
-      right: 0; 
-}
-
-.carousalTitle > h1{
-    font-size: 70px;
-     width: 80%; 
-     margin: auto;
-     font-weight: 800; 
-     letter-spacing: 0.1;
-     line-height: 70px;
-}
+    .carousalTitle > h1{
+        font-size: 2.7rem;
+         width: 75%; 
+         margin: auto;
+         font-weight: 800; 
+         letter-spacing: 0.1;
+         line-height: 3rem;
+        
+    }
+       
+} 
