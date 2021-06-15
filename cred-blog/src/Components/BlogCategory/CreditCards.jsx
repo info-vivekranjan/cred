@@ -6,6 +6,10 @@ import { BlogCategoryNavbar } from './BlogCategoryNav/BlogCategoryNavbar';
 import styles from './CreditCards.module.css'
 import { FooterBlog } from '../Footer/FooterBlog';
 
+import { BlogNavSticky } from '../BlogNavSticky/BlogNavSticky';
+
+import { useWindowScroll } from 'react-use';
+
 
 
 
@@ -13,6 +17,21 @@ function CreditCards() {
     const [data1, setData1] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
+
+
+    const { y: pageYOffset } = useWindowScroll();
+    const [isVisible, setIsVisible] = useState(false);
+
+
+
+    useEffect(() => {
+        if (pageYOffset > 1300) {
+            setIsVisible(true)
+        } else {
+            setIsVisible(false)
+        }
+    }, [pageYOffset])
+
 
 
     const getCreditCardData = () => {
@@ -60,6 +79,17 @@ function CreditCards() {
 
 
             <BlogCategoryNavbar />
+
+            {
+
+
+                isVisible &&
+                <BlogNavSticky />
+
+            }
+
+
+
 
             <div className={styles.blogHomeMainCont}>
 
