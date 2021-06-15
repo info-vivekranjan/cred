@@ -21,6 +21,8 @@ function RegisterForChat() {
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
 
+    const [showSuccessful, setShowSuccessful] = useState(false);
+
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -57,6 +59,7 @@ function RegisterForChat() {
         e.preventDefault();
         // console.log(query);
         postChatRequest(query);
+        setShowSuccessful(true);
     }
 
 
@@ -72,16 +75,29 @@ function RegisterForChat() {
 
                 <div className={styles.blogHomeCont}>
 
-                    <h3>Register for one on one chat</h3>
+                    <h2>Register for one on one chat</h2>
                     <br />
                     <hr />
                     <br />
+
+
                     <>
                         {
                             isLoading ? <h3>Loading...</h3> :
                                 isError ? <h3>Something Went Wrong...</h3> :
 
                                     <>
+
+                                        <>
+                                            {
+                                                showSuccessful ?
+                                                    <>
+                                                        <h2 style={{ color: 'green' }}>You have registered Successfully...</h2>
+                                                        <h5 style={{ color: 'green' }}>We will connect with you in 24 hours....</h5>
+                                                    </> : null
+                                            }
+                                        </>
+
 
                                         <form onSubmit={handleSubmit}>
                                             <div className={styles.registerChatInputCont} >
