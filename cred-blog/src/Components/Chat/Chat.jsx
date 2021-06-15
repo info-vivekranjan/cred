@@ -8,6 +8,7 @@ import { Input } from '../Input/Input';
 import { Messages } from '../Messages/Messages';
 
 import styles from './Chat.module.css';
+import { PeopleInOneRoom } from '../PeopleInOneRoom/PeopleInOneRoom';
 
 
 let socket;
@@ -18,6 +19,7 @@ function Chat({ loaction }) {
 
     const [messages, setMessages] = useState([]);
     const [message, setMessage] = useState('')
+    const [users, setUsers] = useState('');
 
     const ENDPOINT = 'localhost:5000'
 
@@ -52,6 +54,11 @@ function Chat({ loaction }) {
             setMessages([...messages, message]);
 
         })
+
+        socket.on('roomData', ({ users }) => {
+            setUsers(users);
+        })
+
     }, [messages])
 
 
@@ -77,6 +84,8 @@ function Chat({ loaction }) {
                 <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
 
             </div>
+            <PeopleInOneRoom users={users} room={room} />
+
         </div>
     )
 }
