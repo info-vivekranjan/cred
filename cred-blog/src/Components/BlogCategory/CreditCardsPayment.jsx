@@ -94,7 +94,7 @@ function CreditCardsPayment() {
 
 
                 <div className={styles.blogHomeCont}>
-                    <h4>LATEST STORIES</h4>
+                    <h4>CATEGORY - CREDIT CARD PAYMENT</h4>
 
 
                     {

@@ -94,7 +94,7 @@ function BestCreditCards() {
 
 
                 <div className={styles.blogHomeCont}>
-                    <h4>LATEST STORIES</h4>
+                    <h4>CATEGORY - BEST CREDIT CARDS</h4>
 
                     {
                         isLoading ? <h3>Loading...</h3> :

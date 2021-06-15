@@ -94,7 +94,7 @@ function CreditCardsPaymentDataPage() {
                     {
 
                         <div className={styles.blogHomeCont}>
-                            <h4>LATEST STORIES</h4>
+
 
                             {
                                 isLoading ? <h3>Loading...</h3> :

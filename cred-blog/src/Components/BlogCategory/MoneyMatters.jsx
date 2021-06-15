@@ -94,7 +94,7 @@ function MoneyMatters() {
 
 
                 <div className={styles.blogHomeCont}>
-                    <h4>LATEST STORIES</h4>
+                    <h4>CATEGORY - MONEY MATTERS</h4>
 
 
                     {
