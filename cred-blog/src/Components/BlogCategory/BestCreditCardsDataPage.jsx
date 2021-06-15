@@ -9,8 +9,29 @@ import { FooterBlog } from '../Footer/FooterBlog';
 
 
 
+import { BlogNavSticky } from '../BlogNavSticky/BlogNavSticky';
+
+import { useWindowScroll } from 'react-use';
+
+
+
 function BestCreditCardsDataPage() {
     const [data1, setData1] = useState("");
+
+    const { y: pageYOffset } = useWindowScroll();
+    const [isVisible, setIsVisible] = useState(false);
+
+
+
+    useEffect(() => {
+        if (pageYOffset > 1300) {
+            setIsVisible(true)
+        } else {
+            setIsVisible(false)
+        }
+    }, [pageYOffset])
+
+
 
 
     console.log(data1?.answer1?.para1)
@@ -52,6 +73,16 @@ function BestCreditCardsDataPage() {
 
 
             <EachBlogCategoryNavbar data={data1} />
+
+            {
+
+
+                isVisible &&
+                <BlogNavSticky />
+
+            }
+
+
 
 
 
