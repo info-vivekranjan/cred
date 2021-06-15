@@ -381,6 +381,9 @@ const WorkLife = styled.div`
 
 const Careers = () => {
 
+    // DOCUMENT TITLE
+    document.title = `CRED Careers`;
+
     // IMAGES
     const images = [
         {source: "/Careers/LandingPage/Images/landingPage_1.jpg", altText: "landingPage_1"},

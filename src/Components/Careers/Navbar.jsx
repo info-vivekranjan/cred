@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import AuthContext from '../../Context/AuthContext';
 
 const NavbarContainer = styled.div`
     padding: 2%;
@@ -9,6 +10,9 @@ const NavbarContainer = styled.div`
 
     & .link {
         text-decoration: none;
+    }
+
+    & .adminLink {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -23,17 +27,29 @@ const NavbarContainer = styled.div`
 `;
 
 const Navbar = () => {
+
+    // AUTH STATUS FROM AUTH CONTEXT
+    const {auth} = React.useContext(AuthContext);
+
     return (
         <>
             <NavbarContainer>
-                <Link to='/careers' className="link">
-                    <img src="/Careers/Navbar/CRED_Navbar_logo.png" alt="Cred_logo" />
-                </Link>
+                {
+                    auth ?
 
-                {/* ADMIN */}
-                {/* <Link to='/login' className="link">
-                    <span className="admin">ADMIN</span><img src="/Careers/Navbar/CRED_Navbar_logo.png" alt="Cred_logo" />
-                </Link> */}
+                    // ADMIN
+                    <Link to='/login' className="adminLink link">
+                        <span className="admin">ADMIN</span>
+                        <img src="/Careers/Navbar/CRED_Navbar_logo.png" alt="Cred_logo" />
+                    </Link> :
+
+                    // USER
+                    <Link to='/careers' className="link">
+                        <img src="/Careers/Navbar/CRED_Navbar_logo.png" alt="Cred_logo" />
+                    </Link> 
+
+                    
+                }
             </NavbarContainer>
         </>
     )

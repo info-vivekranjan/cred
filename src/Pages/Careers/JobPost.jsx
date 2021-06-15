@@ -294,9 +294,9 @@ const JobPost = () => {
 
             {/* ALL JOB RELATED DETAILS */}
             <div className="details">
-                <div>
 
-                    {/* BACK TO ALLJOBS PAGE LINK */}
+                {/* BACK TO ALLJOBS PAGE LINK */}
+                <div>
                     <Link to='/careers/allJob' className="link"><AiOutlineArrowLeft/> <span>back to jobs</span></Link>
                 </div>
 
