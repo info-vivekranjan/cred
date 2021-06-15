@@ -7,6 +7,13 @@ import styles from './CreditCards.module.css'
 import { FooterBlog } from '../Footer/FooterBlog'
 
 
+
+import { BlogNavSticky } from '../BlogNavSticky/BlogNavSticky';
+
+import { useWindowScroll } from 'react-use';
+
+
+
 // Using styles of Credit Cards Component
 
 
@@ -14,6 +21,21 @@ function SocialAnnouncement() {
     const [data6, setData6] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
+
+
+
+    const { y: pageYOffset } = useWindowScroll();
+    const [isVisible, setIsVisible] = useState(false);
+
+
+    useEffect(() => {
+        if (pageYOffset > 1300) {
+            setIsVisible(true)
+        } else {
+            setIsVisible(false)
+        }
+    }, [pageYOffset])
+
 
 
     const getSocialData = () => {
@@ -61,6 +83,17 @@ function SocialAnnouncement() {
 
 
             <BlogCategoryNavbar />
+
+
+            {
+
+
+                isVisible &&
+                <BlogNavSticky />
+
+            }
+
+
 
             <div className={styles.blogHomeMainCont}>
 

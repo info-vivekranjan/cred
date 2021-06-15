@@ -6,12 +6,32 @@ import { BlogCategoryNavbar } from './BlogCategoryNav/BlogCategoryNavbar';
 import styles from './CreditCards.module.css'
 import { FooterBlog } from '../Footer/FooterBlog';
 
+import { BlogNavSticky } from '../BlogNavSticky/BlogNavSticky';
+
+import { useWindowScroll } from 'react-use';
+
 
 
 function MoneyMatters() {
     const [data3, setData3] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
+
+
+
+    const { y: pageYOffset } = useWindowScroll();
+    const [isVisible, setIsVisible] = useState(false);
+
+
+    useEffect(() => {
+        if (pageYOffset > 1300) {
+            setIsVisible(true)
+        } else {
+            setIsVisible(false)
+        }
+    }, [pageYOffset])
+
+
 
 
     const getMoneyMattersData = () => {
@@ -58,6 +78,17 @@ function MoneyMatters() {
 
 
             <BlogCategoryNavbar />
+
+
+
+            {
+
+
+                isVisible &&
+                <BlogNavSticky />
+
+            }
+
 
             <div className={styles.blogHomeMainCont}>
 
