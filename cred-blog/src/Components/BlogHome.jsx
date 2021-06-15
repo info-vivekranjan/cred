@@ -4,12 +4,28 @@ import { Link } from 'react-router-dom';
 import styles from './BlogHome.module.css'
 import { BlogNavbar } from './BlogNavbar';
 import { FooterBlog } from './Footer/FooterBlog';
+import { BlogNavSticky } from './BlogNavSticky/BlogNavSticky';
 
+
+import { useWindowScroll } from 'react-use';
 
 function BlogHome() {
     const [data1, setData1] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
+
+    const { y: pageYOffset } = useWindowScroll();
+    const [isVisible, setIsVisible] = useState(false);
+
+
+
+    useEffect(() => {
+        if (pageYOffset > 1300) {
+            setIsVisible(true)
+        } else {
+            setIsVisible(false)
+        }
+    }, [pageYOffset])
 
 
     const getCreditCardData = () => {
@@ -52,6 +68,16 @@ function BlogHome() {
     return (
         <>
             <BlogNavbar />
+
+            {
+
+
+                isVisible &&
+                <BlogNavSticky />
+
+            }
+
+
 
             <div className={styles.blogHomeMainCont}>
 
