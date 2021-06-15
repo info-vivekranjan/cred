@@ -11,6 +11,7 @@ import { PostBestCreditCards } from './PostBestCreditCards';
 import { PostMoneyMatters } from './PostMoneyMatters';
 import { PostCreditCardsPayment } from './PostCreditCardsPayment';
 import { PostSocialAnnouncement } from './PostSocialAnnouncement';
+import { PostTech } from './PostTech';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -86,6 +87,7 @@ function NavTabs() {
                     <LinkTab label="Money Matters"  {...a11yProps(2)} />
                     <LinkTab label="Credit Cards Payment"  {...a11yProps(3)} />
                     <LinkTab label="Social Announcement"  {...a11yProps(4)} />
+                    <LinkTab label="Tech"  {...a11yProps(5)} />
 
                 </Tabs>
             </AppBar>
@@ -103,6 +105,10 @@ function NavTabs() {
             </TabPanel>
             <TabPanel value={value} index={4}>
                 <PostSocialAnnouncement />
+            </TabPanel>
+
+            <TabPanel value={value} index={5}>
+                <PostTech />
             </TabPanel>
         </div>
     );
