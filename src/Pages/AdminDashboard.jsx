@@ -3,6 +3,11 @@ import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import styled from 'styled-components';
 import axios from 'axios';
 import LoadingSpinner from '../Components/Careers/LoadingSpinner';
+import { BsFileText, BsFillChatSquareDotsFill } from 'react-icons/bs';
+import { FaBloggerB } from 'react-icons/fa';
+import { BiNotepad } from "react-icons/bi";
+import { AiOutlineLogout } from 'react-icons/ai';
+
 
 const Dashboard = styled.div`
     & .loading {
@@ -35,19 +40,27 @@ const Navbar = styled.div`
             background-color: black;
             color: white;
             font-size: 0.6em;
-            padding: 3% 5%;
+            padding: 3%;
             border-radius: 50%;
             position: relative;
             bottom: 1em;
+            
+            @media (max-width: 800px) {
+                padding: 5%;
+            }
         }
     }
 
     & .navLinks {
-        padding: 0 3%;
+        padding: 0;
         display: grid;
-        grid-template-columns: 15% 15% 15% 15% 15% 25%;
+        grid-template-columns: 25% 20% 20% 15% 20%;
         text-align: center;
         align-items: center;
+
+        @media (max-width: 950px) {
+            grid-template-columns: 20% 20% 20% 20% 20% ;
+        }
     }
 
     & .logout {
@@ -62,6 +75,12 @@ const Navbar = styled.div`
             :hover {
                 color: red;
             }
+
+            @media (max-width: 600px) {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
         }
     }
 `;
@@ -69,17 +88,26 @@ const Navbar = styled.div`
 const Overview = styled.div`
     text-align: center;
 
-    & .totalAppl {
+    & .totalAppl,
+      .totalChats {
         text-align: center;
         margin: 2%;
         padding: 2%;
         box-shadow: 1px 1px 10px lightgray;
         border-radius: 10px;
+
+        :hover {
+            box-shadow: 1px 1px 10px gray;
+        }
     
         & > h3 {
             font-size: 2em;
             margin: 0;
             padding: 2%;
+
+            @media (max-width: 370px) {
+                font-size: 1.3em;
+            }
         }
 
         & .stats {
@@ -100,10 +128,16 @@ const Overview = styled.div`
                     margin: 5%;
                 }
             }
+
+            @media (max-width: 340px) {
+                grid-template-columns: 100%;
+            }
         }
 
         @media (max-width: 450px) {
             font-size: 1em;
+            padding: 10% 3%;
+            margin: 3%;
         }
     }
 `;
@@ -171,22 +205,45 @@ const AdminDashboard = () => {
             <Navbar>
                 <div className="navLinks">
                     <div>
-                        <Link to='/applications' className="link">applications{ pending ? <span className="pending">{pending}</span> : false }</Link>
+                        <Link to='/applications' className="link">
+                            <span className="icon"><BsFileText /> </span>
+                            {
+                                width >= 950 ? <span>applications</span> : false
+                            }
+                            { pending ? <span className="pending">{pending}</span> : false }
+                        </Link>
                     </div>
                     <div>
-                        <Link to='' className="link">blog post</Link>
+                        <Link to='' className="link">
+                            <span className="icon"><FaBloggerB /> </span>
+                            {
+                                width >= 950 ? <span>blog post</span> : false
+                            }
+                        </Link>
                     </div>
                     <div>
-                        <Link to='' className="link">chat</Link>
+                        <Link to='' className="link">
+                            <span className="icon"><BsFillChatSquareDotsFill /> </span>
+                            {
+                                width >= 950 ? <span>chat</span> : false
+                            }
+                            { pending ? <span className="pending">{1}</span> : false }
+                        </Link>
                     </div>
                     <div>
-                        <Link to='/newJobPost' className="link">job post</Link>
-                    </div>
-                    <div>
-                        <Link to='' className="link">something</Link>
+                        <Link to='/newJobPost' className="link">
+                            <span className="icon"><BiNotepad /> </span>
+                            {
+                                width >= 950 ? <span>job post</span> : false
+                            }
+                        </Link>
                     </div>
                     <div className="logout">
-                        <Link to='/login' className="link">logout</Link>
+                        <Link to='/login' className="link">
+                            {
+                                width >= 600 ? <span>logout</span> : <span className="icon"><AiOutlineLogout /> </span>
+                            }
+                        </Link>
                     </div>
                 </div>
             </Navbar>
@@ -211,10 +268,28 @@ const AdminDashboard = () => {
                             </div>
                         </div>
                     </div>
+
+                    <div className="totalChats">
+                        <h3>total chatrooms - 0</h3>
+                        <div className="stats">
+                            <div>
+                                <h3>active</h3>
+                                <h2>0</h2>
+                            </div>
+                            <div>
+                                <h3>closed</h3>
+                                <h2>0</h2>
+                            </div>
+                            <div>
+                                <h3>requests</h3>
+                                <h2>0</h2>
+                            </div>
+                        </div>
+                    </div>
                 </Overview>
             }
         </Dashboard>
     )
 }
 
-export default AdminDashboard
+export default AdminDashboard;

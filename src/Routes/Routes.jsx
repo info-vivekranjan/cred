@@ -5,7 +5,7 @@ import AdminLogin from '../Pages/AdminLogin';
 import Applications from '../Pages/Applications';
 import AllJobs from '../Pages/Careers/AllJobs';
 import Careers from '../Pages/Careers/Careers';
-import ErrorPage from '../Pages/Careers/ErrorPage';
+import ErrorPage from '../Pages/ErrorPage';
 import JobApplication from '../Pages/Careers/JobApplication';
 import JobPost from '../Pages/Careers/JobPost';
 import NewJob from '../Pages/NewJob';
