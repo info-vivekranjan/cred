@@ -5,8 +5,8 @@
     align-items: center;
     background-color: #262626;
     justify-content: center;
-    position: sticky;
-    will-change: scroll-position;
+    position: fixed;
+    /* will-change: scroll-position; */
     top: 0;
     height: 70px;
     z-index: 9999;
@@ -20,8 +20,8 @@
     align-items: center;
     background-color: #262626;
     justify-content: center;
-    position: sticky;
-    will-change: scroll-position;
+    position: fixed;
+    /* will-change: scroll-position; */
     top: 0;
     z-index: 9999;
 }
