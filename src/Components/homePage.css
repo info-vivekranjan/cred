@@ -1,0 +1,735 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
+
+* {
+  padding: 0;
+  margin: 0;
+  font-family: sans-serif;
+}
+
+/*----------------------Navbar.jsx------------------------*/
+
+nav {
+  background-color: rgb(15, 15, 15);
+  display: flex;
+  justify-content: space-around;
+  height: 160px;
+  align-items: center;
+}
+
+.logo {
+  width: 30%;
+  text-align: center;
+}
+
+.logo img {
+  height: 70px;
+}
+
+.NavLinks {
+  width: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.NavLinks li {
+  list-style: none;
+  margin-right: 40px;
+}
+
+.NavLinks li a {
+  text-decoration: none;
+  color: rgb(248, 248, 248);
+  font-size: 20px;
+}
+
+.download-btn-nav {
+  width: 30%;
+}
+
+.download-btn-nav button {
+  width: 200px;
+  padding: 10px;
+  border-radius: 50px;
+  color: rgb(248, 248, 248);
+  background: transparent;
+  font-size: 20px;
+  border: 1px solid white;
+}
+
+@media screen and (max-width: 600px) {
+  nav{
+    width: 100%;
+  }
+  .NavLinks {
+    display: none;
+  }
+  .logo {
+    width: 15%;
+    text-align: center;
+  }
+  .logo img{
+    height: 50px;
+  }
+  .download-btn-nav button {
+    width: 150px;
+    padding: 10px;
+    border-radius: 50px;
+    color: rgb(248, 248, 248);
+    background: transparent;
+    font-size: 16px;
+    border: 1px solid white;
+  }
+}
+
+/*----------------------HeadingBanner.jsx------------------------*/
+
+.heading-banner-container {
+  background-color: black;
+}
+.top-Heading {
+  text-align: center;
+  background-image: url("https://web-assets.cred.club/_next/assets/images/home-page/hero-bg.png");
+  background-size: cover;
+  height: 100vh;
+}
+
+.top-Heading .title {
+  font-size: 136px;
+  font-family: gilroy-bold;
+  letter-spacing: -3px;
+  color: rgb(248, 248, 248);
+}
+
+.top-Heading p {
+  font-size: 30px;
+  font-family: gilroy-bold;
+  color: rgb(248, 248, 248);
+  padding: 30px 0 30px 0;
+}
+
+.top-Heading button {
+  width: 300px;
+  padding: 10px;
+  border-radius: 50px;
+  color: rgb(34, 33, 33);
+  font-size: 30px;
+  border: none;
+  background-color: rgb(248, 248, 248);
+  margin: 30px 0 30px 0;
+}
+
+.phone-animation-container {
+  /* display: flex;
+    justify-content: center; */
+  height: 120vh;
+  background-image: url("https://web-assets.cred.club/_next/assets/images/home-page/video-bg.png");
+  background-size: cover;
+  position: relative;
+  overflow: hidden;
+}
+
+/* .toggleAnimation{
+  animation: mymove 1s;
+} */
+
+.phone-animation-container img:nth-child(1) {
+  opacity: 1;
+  transform: translate(-160%, 25%);
+  z-index: 98;
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  top: 50px;
+}
+
+.phone-animation-container img:nth-child(2) {
+  opacity: 1;
+  transform: translate(-105%, 15%);
+  z-index: 99;
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  top: 50px;
+}
+.phone-animation-container img:nth-child(3) {
+  opacity: 1;
+  transform: translate(-50%, 5%);
+  z-index: 100;
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  top: 50px;
+}
+.phone-animation-container img:nth-child(4) {
+  opacity: 1;
+  transform: translate(5%, 15%);
+  z-index: 99;
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  top: 50px;
+}
+.phone-animation-container img:nth-child(5) {
+  opacity: 1;
+  transform: translate(60%, 25%);
+  z-index: 98;
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  top: 50px;
+}
+
+/* @keyframes mymove {
+    
+  from {
+    top: 400px;
+    }
+  to {
+    top: 0px;
+    }
+} */
+
+@media screen and (max-width: 600px) {
+  .top-Heading{
+    padding: 40px;
+    height: 100%;
+    text-align: left;
+  }
+  .top-Heading .title {
+    line-height: 1;
+    font-size: 56px;
+  }
+  .top-Heading p {
+    font-size: 26px;
+  }
+
+  .phone-animation-container {
+    /* display: flex;
+      justify-content: center; */
+    height: 55vh;
+
+  }
+
+  .top-Heading button {
+    width: 200px;
+    padding: 10px;
+    border-radius: 50px;
+    color: rgb(34, 33, 33);
+    font-size: 20px;
+    border: none;
+    background-color: rgb(248, 248, 248);
+    margin: 30px 0 30px 0;
+    font-weight: bolder;
+  }
+
+  .phone-animation-container img{
+       height: 350px;
+  }
+
+}
+
+/*------------------- RewardContainer.jsx -----------------------*/
+
+.rewards-container {
+  background-image: url(https://web-assets.cred.club/_next/assets/images/home-page/deserve-more-bg.jpg);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  background-color: rgb(238, 47, 76);
+  color: rgb(248, 248, 248);
+  min-height: 100vh;
+  padding: 180px 0px 0px 180px;
+}
+
+.rewards-container .heading {
+  font-size: 86px;
+  font-family: gilroy-bold;
+}
+
+.rewards-container .sub-title {
+  font-size: 36px;
+}
+
+.rewards-container .para {
+  line-height: 1.5;
+  font-size: 22px;
+  font-family: sans-serif;
+}
+
+.rewards-container button {
+  width: 250px;
+  padding: 10px;
+  border-radius: 50px;
+  color: rgb(34, 33, 33);
+  font-size: 24px;
+  border: none;
+  background-color: rgb(248, 248, 248);
+  margin: 30px 0 30px 0;
+}
+
+
+@media screen and (max-width: 600px) {
+  .rewards-container {
+    text-align: left;
+    padding: 0;
+    height: 135vh;
+    padding: 40px;
+  }
+  .rewards-container .heading {
+    font-size: 56px;
+    margin-top: 150px;
+    font-family: gilroy-bold;
+  }
+
+  .rewards-container .sub-title {
+    font-size: 26px;
+  }
+  
+  .rewards-container .para {
+    line-height: 1.5;
+    font-size: 16px;
+    font-family: sans-serif;
+    margin-top: 250px;
+  }
+  
+  .rewards-container button {
+    width: 170px;
+    padding: 10px;
+    border-radius: 50px;
+    color: rgb(34, 33, 33);
+    font-size: 18px;
+    border: none;
+    background-color: rgb(248, 248, 248);
+    margin: 30px 0 30px 0;
+  }
+  
+}
+
+/*-------------------------Brands--------------------*/
+
+.brands {
+  text-align: center;
+  line-height: 2;
+  padding: 20px 0 40px 0;
+}
+
+.brands p {
+  font-size: 22px;
+  font-family: sans-serif;
+  text-align: left;
+  padding-left: 190px;
+  margin-top: 40px;
+}
+
+.brands img {
+  margin-top: 40px;
+  height: 35px;
+}
+
+
+@media screen and (max-width: 600px) {
+  .brands img {
+    width: 30px;
+  }
+}
+
+/*--------------------------Box Model ------------------*/
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  font-family: sans-serif;
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 40px;
+  border: 1px solid #888;
+  width: 60%;
+  height: fit-content;
+  border-radius: 50px;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  font-size: 30px;
+  font-weight: bold;
+  position: absolute;
+  left: 70%;
+  margin-top:-65px;
+  background-color: black;
+  height: 30px;
+  width: 30px;
+  padding: 5px;
+  border-radius: 50%;
+  text-align: center;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/*---------------------- UpGrade.jsx -------------------*/
+
+.upgrade-container {
+  height: 100vh;
+  background-image: url(https://web-assets.cred.club/_next/assets/images/home-page/money-matters-bg.jpg);
+  background-size: cover;
+  background-position: center;
+  color: rgb(248, 248, 248);
+  padding: 150px 0px 10px 250px;
+}
+
+.upgrade-container .heading {
+  font-size: 86px;
+  font-family: gilroy-bold;
+}
+
+.upgrade-container .sub-title {
+  font-size: 36px;
+}
+
+.upgrade-container .para {
+  line-height: 1.5;
+  font-size: 18px;
+  font-family: sans-serif;
+  margin-top: 10px;
+}
+
+.upgrade-container button {
+  width: 350px;
+  padding: 15px;
+  border-radius: 50px;
+  color: rgb(34, 33, 33);
+  font-size: 24px;
+  border: none;
+  background-color: rgb(248, 248, 248);
+  margin: 30px 0 30px 0;
+}
+
+@media screen and (max-width: 600px) {
+  .upgrade-container {
+    text-align: left;
+    padding: 40px;
+  }
+  
+  .upgrade-container .heading {
+    font-size: 56px;
+  }
+
+  .upgrade-container .sub-title {
+    font-size: 26px;
+  }
+  
+  .upgrade-container .para {
+    line-height: 1.5;
+    font-size: 16px;
+    font-family: sans-serif;
+    margin-top: 10px;
+    margin-top: 100px;
+  }
+  
+  .upgrade-container button {
+    width: 250px;
+    padding: 15px;
+    border-radius: 50px;
+    color: rgb(34, 33, 33);
+    font-size: 16px;
+    border: none;
+    background-color: rgb(248, 248, 248);
+    margin: 30px 0 30px 0;
+  }
+
+}
+
+
+/*------------------- Parallax.jsx -----------------------------*/
+
+.parallax-container {
+  background-image: url(https://web-assets.cred.club/_next/assets/images/home-page/image-mock.jpg);
+  min-height: 500px;
+  background-attachment: fixed;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/*-----------------------BecomeMember.jsx ----------------------*/
+
+.become-member-container {
+  background-image: url(https://web-assets.cred.club/_next/assets/images/home-page/security-bg.jpg);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  background-color: rgb(90, 30, 203);
+  color: rgb(248, 248, 248);
+  min-height: 100vh;
+  padding: 180px 0px 0px 180px;
+}
+
+.become-member-container .heading {
+  font-size: 86px;
+  font-family: gilroy-bold;
+}
+
+.become-member-container .sub-title {
+  font-size: 36px;
+}
+
+.become-member-container .para {
+  line-height: 1.5;
+  font-size: 22px;
+  font-family: sans-serif;
+}
+
+.become-member-container button {
+  width: 250px;
+  padding: 10px;
+  border-radius: 50px;
+  color: rgb(34, 33, 33);
+  font-size: 24px;
+  border: none;
+  background-color: rgb(248, 248, 248);
+  margin: 30px 0 30px 0;
+}
+
+@media screen and (max-width: 600px) {
+  .become-member-container  {
+    text-align: left;
+    padding: 40px;
+  }
+  .become-member-container .heading {
+    font-size: 56px;
+    margin-top: 100px;
+  }
+  
+  .become-member-container .sub-title {
+    font-size: 22px;
+    margin-top: 10px;
+  }
+  
+  .become-member-container .para {
+    font-size: 18px;
+    margin-top: 300px;
+  }
+  
+  .become-member-container button {
+    width: 250px;
+    padding: 10px;
+    border-radius: 50px;
+    color: rgb(34, 33, 33);
+    font-size: 24px;
+    border: none;
+    background-color: rgb(248, 248, 248);
+    margin: 30px 0 30px 0;
+  }
+}
+
+
+/*----------------------TrustUsSection.jsx ------------------------*/
+
+.trust-us-section-container {
+  display: flex;
+  height: 90vh;
+  padding: 50px 0 150px 0;
+  background-color: rgb(2, 119, 87);
+  color: rgb(248, 248, 248);
+}
+.trust-us-section-container .left-container {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+.trust-us-section-container .left-container p {
+  font-size: 56px;
+}
+.trust-us-section-container .right-container {
+  width: 50%;
+  padding: 200px 100px 0px 100px;
+}
+.trust-us-section-container .right-container p {
+  font-size: 22px;
+}
+
+@media screen and (max-width: 600px) {
+  .trust-us-section-container  {
+    text-align: left;
+    flex-direction: column;
+    padding: 40px;
+    height: 140vh;
+  }
+  .trust-us-section-container .left-container {
+    width: 100%;
+    justify-content: left;
+  }
+  .trust-us-section-container .right-container {
+    width: 100%;
+    padding: 0px;
+  }
+  .trust-us-section-container .right-container p {
+    margin-top: 150px;
+  }
+}
+
+/*------------------Rating------------------*/
+
+.rating-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+.box-container {
+  display: flex;
+  background-color: rgb(15, 15, 15);
+  color: rgb(248, 248, 248);
+  width: 100%;
+  align-items: center;
+}
+
+.app-store-rating {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  margin-right: 50px;
+  align-items: center;
+}
+
+.app-store-rating .ratings p {
+  font-size: 156px;
+}
+.app-store-rating .ratings img {
+  width: 200px;
+}
+
+.play-store-rating {
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  margin-left: 50px;
+  align-items: center;
+}
+.play-store-rating .ratings p {
+  font-size: 156px;
+}
+.play-store-rating .ratings img {
+  width: 200px;
+}
+
+@media screen and (max-width: 600px) {
+
+  .rating-container {
+    display: none;
+  }
+  /* .rating-container {
+    flex-direction: column;
+  }
+  .play-store-rating .ratings img {
+    width: 120px;
+  }
+  .play-store-rating .ratings p {
+    font-size: 56px;
+  }
+
+  .app-store-rating .ratings img {
+    width: 120px;
+  }
+
+  .app-store-rating .ratings p {
+    font-size: 56px;
+  } */
+}
+
+
+/*-----------------------Footer---------------------*/
+
+footer {
+  padding: 50px;
+  background-color: #161517;
+  color: #fff;
+  font-family: sans-serif;
+  font-weight: lighter;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-around;
+}
+
+.footer-col-1 {
+  width: 40%;
+}
+.footer-col-2 {
+  width: 40%;
+  line-height: 1.5;
+}
+
+.footer-col-1 ul li {
+  list-style: none;
+  margin: 10px 0 10px 0;
+  font-size: 18px;
+}
+
+.footer-security {
+  margin-top: 60px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.footer-security img {
+  width: 80%;
+}
+
+
+.footer-col-2 ul li {
+  float: left;
+  margin: 5px;
+  list-style: none;
+  border-right: 1px solid rgb(248, 248, 248);
+  padding-right: 15px;
+}
+
+.footer-col-2 ul li a{
+  color:rgb(248, 248, 248);
+  text-decoration: none;
+}
+.clear {
+  clear: left;
+}
+
+.footer-col-2 h4{
+  margin: 20px 0 20px 0;
+}
+
+@media screen and (max-width: 600px) {
+  .footer-content {
+    flex-direction: column;
+  }
+  .footer-col-1 {
+    width: 80%;
+  }
+  .footer-col-2 {
+    width: 80%;
+  }
+}
