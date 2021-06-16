@@ -30,7 +30,7 @@ const Navbar = () => {
             </div>
             <ul className="NavLinks">
                <li><a href="#">blog</a></li> 
-               <li><a href="#">we're hiring</a></li> 
+               <li><a href="/careers">we're hiring</a></li> 
             </ul>
             <div className="download-btn-nav">
                 <button onClick={openModal}>Download CRED</button> 
