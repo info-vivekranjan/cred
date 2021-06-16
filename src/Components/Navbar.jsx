@@ -1,36 +1,38 @@
 import { useState } from "react";
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
 
-            // Get the button that opens the modal
-            const [modalState, setModalState] = useState(false);
-            const [modalContentState, setModalContentState] = useState(true)
+    // Get the button that opens the modal
+    const [modalState, setModalState] = useState(false);
+    const [modalContentState, setModalContentState] = useState(true)
 
-            function openModal() {
-                setModalState(true);
-            }
-              
-            function closeModal() {
-                setModalState(false);
-            }
+    function openModal() {
+        setModalState(true);
+    }
+        
+    function closeModal() {
+        setModalState(false);
+    }
 
-            function getByPhoneLink(){
-                setModalContentState(false);
-            }
+    function getByPhoneLink(){
+        setModalContentState(false);
+    }
 
-            function getByQrCode(){
-                setModalContentState(true);
-            }
+    function getByQrCode(){
+        setModalContentState(true);
+    }
 
     return(
         <>
         <nav>
             <div className="logo" >
-              <img src="https://web-assets.cred.club/_next/assets/images/home-page/cred-logo.png"/>
+              <img src="https://web-assets.cred.club/_next/assets/images/home-page/cred-logo.png" alt="cred_logo"/>
             </div>
             <ul className="NavLinks">
-               <li><a href="#">blog</a></li> 
-               <li><a href="/careers">we're hiring</a></li> 
+               <li><Link to=''>blog</Link></li> 
+               <li><Link to="/careers">we're hiring</Link></li> 
+               <li><Link to="/login">login</Link></li> 
             </ul>
             <div className="download-btn-nav">
                 <button onClick={openModal}>Download CRED</button> 

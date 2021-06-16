@@ -3,7 +3,7 @@ import Routes from './Routes/Routes';
 
 function App() {
   // DOCUMENT TITLE
-  document.title = "CRED Careers";
+  document.title = "CRED";
 
   return (
     <div className="App">

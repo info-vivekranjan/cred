@@ -10,16 +10,52 @@ import JobApplication from '../Pages/Careers/JobApplication';
 import JobPost from '../Pages/Careers/JobPost';
 import NewJob from '../Pages/Admin/NewJob';
 import Resume from '../Pages/Admin/Resume';
-import HomePage from '../Pages/HomePage';
 import Footer from '../Components/Careers/Footer';
 import Navbar from '../Components/Careers/Navbar';
+
+import CalculatorsPage from '../Pages/calculators/CalculatorsPage';
+import SipCalculator from '../Pages/calculators/SipCalculator';
+import EmiCalculator from '../Pages/calculators/EmiCalculator';
+import CarLoanCalculator from '../Pages/calculators/CarLoanCalculator';
+import HomeLoanCalculator from '../Pages/calculators/HomeLoanCalculator';
+import SimpleLoanCalculator from '../Pages/calculators/SimpleLoanCalculator';
+import FixedDepositCalculator from '../Pages/calculators/FixedDepositCalculator';
+import CompoundInterestCalculator from '../Pages/calculators/CompoundInterestCalculator';
+import HomePage from '../Pages/HomePage';
 
 const Routes = () => {
     return (
         <Switch>
 
-            <Route exact path="/">
-                <HomePage />
+            {/* ---------------------------------------- HOMEPAGE ---------------------------------- */}
+            <Route path="/" exact>
+                <HomePage/>
+            </Route>
+
+            {/* ---------------------------------------- CALCULATORS ---------------------------------- */}        
+            <Route path="/calculators/" exact>
+                <CalculatorsPage/>
+            </Route>
+            <Route path="/calculators/SipCalculator" exact>
+                <SipCalculator/>
+            </Route>
+            <Route path="/calculators/EmiCalculator" exact>
+                <EmiCalculator/>
+            </Route>
+            <Route path="/calculators/CarLoanCalculator" exact>
+                <CarLoanCalculator/>
+            </Route>
+            <Route path="/calculators/HomeLoanCalculator" exact>
+                <HomeLoanCalculator/>
+            </Route>
+            <Route path="/calculators/SimpleLoanCalculator" exact>
+                <SimpleLoanCalculator/>
+            </Route>
+            <Route path="/calculators/FixedDepositCalculator" exact>
+                <FixedDepositCalculator/>
+            </Route>
+            <Route path="/calculators/CompoundInterestCalculator" exact>
+                <CompoundInterestCalculator/>
             </Route>
 
             {/* ---------------------------------------- CAREERS ---------------------------------- */}
@@ -52,7 +88,7 @@ const Routes = () => {
                 <Footer />
             </Route>
 
-            {/* ======================== ADMIN ====================== */}
+            {/* ============================================= ADMIN ============================================== */}
                 {/* ADMIN LOGIN PAGE */}
                 <Route path="/login">
                     <Navbar />
@@ -94,8 +130,6 @@ const Routes = () => {
                 <ErrorPage />
                 <Footer />
             </Route>
-
-            {/* ------------------------------------------------------------------------------------ */}
             
         </Switch>
     )
