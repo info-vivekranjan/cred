@@ -1,5 +1,5 @@
 p{
-    font-family: 'Domine', serif;
+    font-family: 'Domine', serif ;
 }
 
 .blogHomeMainCont{
@@ -22,7 +22,7 @@ p{
 }
 
 .blogHomeHeader>h1 {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
     font-size: 3rem;
     color: #333333;
     width: 95%;

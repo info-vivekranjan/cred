@@ -3,11 +3,14 @@ import { Link, Redirect } from 'react-router-dom';
 import styled from 'styled-components';
 import axios from 'axios';
 import LoadingSpinner from '../../Components/Careers/LoadingSpinner';
-import { BsFileText, BsFillChatSquareDotsFill } from 'react-icons/bs';
+import { BsFileText } from 'react-icons/bs';
 import { FaBloggerB } from 'react-icons/fa';
 import { BiNotepad } from "react-icons/bi";
 import { AiOutlineLogout } from 'react-icons/ai';
+import { IoMdChatbubbles } from 'react-icons/io';
+import { GoRequestChanges } from 'react-icons/go';
 import AuthContext from '../../Context/AuthContext';
+// import { SettingsCellSharp } from '@material-ui/icons';
 
 
 const Dashboard = styled.div`
@@ -58,10 +61,6 @@ const Navbar = styled.div`
         grid-template-columns: 16% 16% 16% 16% 16% 16%;
         text-align: center;
         align-items: center;
-
-        @media (max-width: 950px) {
-            grid-template-columns: 20% 20% 20% 20% 20% ;
-        }
     }
 
     & .logout {
@@ -90,7 +89,7 @@ const Overview = styled.div`
     text-align: center;
 
     & .totalAppl,
-      .totalChats {
+      .totalBlogs {
         text-align: center;
         margin: 2%;
         padding: 2%;
@@ -162,6 +161,15 @@ const AdminDashboard = () => {
     const [rejected, setRejected] = React.useState(0);
     const [pending, setPending] = React.useState(0);
 
+    // BLOG TOTAL
+    const [bestCreditCards,setBestCreditCards] = React.useState(0);
+    const [creditCardsPayment,setCreditCardsPayment] = React.useState(0);
+    const [creditCards,setCreditCards] = React.useState(0);
+    const [moneyMatters,setMoneyMatters] = React.useState(0);
+    const [social,setSocial] = React.useState(0);
+    const [tech,setTech] = React.useState(0);
+
+
     // ACTIONS
     const [loading, setLoading] = React.useState(false);
     const [error, setError] = React.useState(false);
@@ -191,6 +199,25 @@ const AdminDashboard = () => {
                 setError(true);
                 setErrorMsg(err.message);
             })
+            // .finally(() => {
+            //     setLoading(false);
+            // })
+
+            axios.get(`https://json-server-mocker-sm2-196.herokuapp.com/db`)
+            .then(res => {
+                console.log(res.data);
+                setBestCreditCards(res.data.blogBestCreditCards.length);
+                setCreditCardsPayment(res.data.blogCreditCardPayment.length);
+                setCreditCards(res.data.blogCreditCards.length);
+                setMoneyMatters(res.data.blogMoneyMatters.length);
+                setSocial(res.data.blogSocial.length);
+                setTech(res.data.blogTech.length);
+            })
+            .catch(err => {
+                console.log(err.message);
+                setError(true);
+                setErrorMsg(err.message);
+            })
             .finally(() => {
                 setLoading(false);
             })
@@ -208,6 +235,7 @@ const AdminDashboard = () => {
     React.useEffect(() => {
         loadList();
         checkDimensions();
+        window.scroll(0,0);
         // eslint-disable-next-line
     }, []);
 
@@ -230,7 +258,7 @@ const AdminDashboard = () => {
                         <Link to='/applications' className="link">
                             <span className="icon"><BsFileText /> </span>
                             {
-                                width >= 950 ? <span>applications</span> : false
+                                width >= 1100 ? <span>applications</span> : false
                             }
                             {/* { pending ? <span className="pending">{pending}</span> : false } */}
                         </Link>
@@ -241,7 +269,7 @@ const AdminDashboard = () => {
                         <Link to='/category/postblogs' className="link">
                             <span className="icon"><FaBloggerB /> </span>
                             {
-                                width >= 950 ? <span>blog post</span> : false
+                                width >= 1100 ? <span>blog post</span> : false
                             }
                         </Link>
                     </div>
@@ -249,9 +277,9 @@ const AdminDashboard = () => {
                     {/* CHAT MANAGEMENT LINK */}
                     <div>
                         <Link to='/admin/chatrequests' className="link">
-                            <span className="icon"><BsFillChatSquareDotsFill /> </span>
+                            <span className="icon"><GoRequestChanges /> </span>
                             {
-                                width >= 950 ? <span>chat</span> : false
+                                width >= 1100 ? <span>requests</span> : false
                             }
                             {/* { pending ? <span className="pending">{1}</span> : false } */}
                         </Link>
@@ -262,7 +290,7 @@ const AdminDashboard = () => {
                         <Link to='/newJobPost' className="link">
                             <span className="icon"><BiNotepad /> </span>
                             {
-                                width >= 950 ? <span>job post</span> : false
+                                width >= 1100 ? <span>job post</span> : false
                             }
                         </Link>
                     </div>
@@ -271,9 +299,9 @@ const AdminDashboard = () => {
 
                     <div>
                         <Link to='/joinmeeting' className="link">
-                            <span className="icon"><BiNotepad /> </span>
+                            <span className="icon"><IoMdChatbubbles /> </span>
                             {
-                                width >= 950 ? <span>Join Meeting</span> : false
+                                width >= 1100 ? <span>meeting</span> : false
                             }
                         </Link>
                     </div>
@@ -321,20 +349,32 @@ const AdminDashboard = () => {
                             </div>
 
                             {/* CHATS OVERVIEW */}
-                            <div className="totalChats">
-                                <h3>total chatrooms - 0</h3>
+                            <div className="totalBlogs">
+                                <h3>total blogs - {creditCards + creditCardsPayment + moneyMatters + tech + bestCreditCards + social}</h3>
                                 <div className="stats">
                                     <div>
-                                        <h3>active</h3>
-                                        <h2>0</h2>
+                                        <h3>credit cards</h3>
+                                        <h2>{creditCards}</h2>
                                     </div>
                                     <div>
-                                        <h3>closed</h3>
-                                        <h2>0</h2>
+                                        <h3>credit payment</h3>
+                                        <h2>{creditCardsPayment}</h2>
                                     </div>
                                     <div>
-                                        <h3>requests</h3>
-                                        <h2>0</h2>
+                                        <h3>best credit</h3>
+                                        <h2>{bestCreditCards}</h2>
+                                    </div>
+                                    <div>
+                                        <h3>money matters</h3>
+                                        <h2>{moneyMatters}</h2>
+                                    </div>
+                                    <div>
+                                        <h3>tech</h3>
+                                        <h2>{tech}</h2>
+                                    </div>
+                                    <div>
+                                        <h3>social</h3>
+                                        <h2>{social}</h2>
                                     </div>
                                 </div>
                             </div>

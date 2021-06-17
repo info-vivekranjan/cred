@@ -46,6 +46,10 @@ const JobsContainer = styled.div`
         margin: 3% auto;
         margin-left: 7em;
 
+        & * {
+            box-sizing: content-box;
+        }
+
         & input {
             background-color: #ebebeb;
             border-radius: 30px;
@@ -248,6 +252,10 @@ const JobsContainer = styled.div`
 
             & .department, .time {
                 letter-spacing: 0.1em;
+
+                & * {
+                    box-sizing: content-box;
+                }
                 
                 & > div {
                     display: grid;
@@ -616,6 +624,7 @@ const AllJobs = () => {
     // ONLOAD OF PAGE TRIGGERS getData FUNCTION
     React.useEffect(() => {
         getData();
+        window.scroll(0,0);
         // eslint-disable-next-line
     },[]);
 

@@ -87,8 +87,8 @@ const Routes = () => {
             <Route path="/calculators/CompoundInterestCalculator" exact>
                 <CompoundInterestCalculator />
             </Route>
-            {/* ---------------------------------------- BLOGS ---------------------------------- */}
 
+            {/* ---------------------------------------- BLOGS ---------------------------------- */}
 
 
             <Route path="/blogs" exact>
@@ -123,6 +123,7 @@ const Routes = () => {
 
             <Route path="/category/postblogs" exact>
                 <NavTabs />
+                <Footer />
             </Route>
 
 
@@ -131,14 +132,18 @@ const Routes = () => {
                 <RegisterForChat />
             </Route>
             <Route path="/joinmeeting" exact>
+                <Navbar />
                 <Join />
+                <Footer />
             </Route>
             <Route path="/chat">
                 <Chat />
             </Route>
 
             <Route path="/admin/chatrequests">
+                <Navbar />
                 <ChatRequestAdminPage />
+                <Footer />
             </Route>
 
             <Route path="/category/credit-cards/:id" exact>
@@ -234,8 +239,9 @@ const Routes = () => {
                 <Resume />
                 <Footer />
             </Route>
-            {/* =================================================== */}
+            {/* =============================================================================================== */}
 
+            {/* ERROR PAGE */}
             <Route>
                 <Navbar />
                 <ErrorPage />

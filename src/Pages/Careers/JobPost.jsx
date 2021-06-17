@@ -258,6 +258,7 @@ const JobPost = () => {
     // ONLOAD FETCHING DATA
     React.useEffect(() => {
         getData();
+        window.scroll(0,0);
         // eslint-disable-next-line
     },[]);
 

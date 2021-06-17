@@ -156,11 +156,25 @@ const WhyCred = styled.div`
         }
 
         & .circleNumber {
-            width: 30px;
+            width: 60px;
+            height: 60px;
             padding: 1%;
+            display: flex;
+            justify-content: center;
+            align-self: center;
             margin: auto;
             border: 1px solid #f8f8f8;
             border-radius: 50%;
+
+            @media (max-width: 990px) {
+                width: 50px;
+                height: 50px;
+            }
+
+            @media (max-width: 470px) {
+                width: 40px;
+                height: 40px;
+            }
         }
 
         & .reasons {
@@ -405,6 +419,10 @@ const Careers = () => {
         setNum(val);
         videoRef.current.load();
     }
+
+    React.useEffect(() => {
+        window.scroll(0,0);
+    },[]);
 
     return (
         <div>
