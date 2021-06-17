@@ -1,0 +1,95 @@
+.FooterBlogContainer{
+    width: 100%;
+    height: 100vh;
+    background-color: #F8F8F8;
+    display: flex;
+    margin-top: 130px;
+    font-family: 'Domine', serif;
+    color: #ABAAAB;
+    text-align: left;
+    
+}
+
+.leftFooterBlog{
+width: 50%;
+/* border: 1px solid red; */
+padding-left: 8%;
+}
+.rightFooterBlog{
+    width: 50%;
+    /* border: 1px solid red; */
+    padding-left: 8%;
+}
+
+/* .FooterDownloadApp{
+    border: 1px solid blue;
+} */
+
+.FooterBlogParas{
+    margin-bottom: 40px;
+    font-size: 15px;
+    line-height: 30px;
+}
+
+.FooterBlogIcon{
+    margin-bottom: 80px;
+}
+
+.FooterBlogIcon > i:nth-child(1){
+    background-color: #8FC147;
+    color: white;
+    font-size: 20px;
+    padding: 15px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+.FooterBlogIcon > i:nth-child(2){
+    background-color: #B8BFC0;
+    color: white;
+    font-size: 20px;
+    padding: 15px;
+    border-radius: 50%;
+}
+
+/* 
+.FooterCategoryCont{
+    border: 1px solid black;
+}
+
+.FooterReacentPost{
+    border: 1px solid black;
+    
+} */
+.FooterBlogLinkLi{
+    color: #a5a5a5;
+    text-decoration: none;
+    line-height: 30px;
+}
+
+.FooterBlogLinkLi:hover{
+    color: #7a7a7a;
+}
+
+
+.FooterCalculator{
+    /* border: 1px solid blue; */
+    padding-top: 70px;
+}
+
+.FooterBlogSubHeader{
+    font-size: 20px;
+    font-weight: 600;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin-bottom: 20px;
+
+}
+
+.FooterBlogLink{
+    text-decoration: underline;
+    color: #949494;
+    font-size: 15px;
+    margin: 4px;
+}
+.FooterBlogLink:hover{
+    text-decoration: none;
+}

@@ -1,0 +1,95 @@
+.AllBlogFormCont{
+    /* border: 1px solid #F8F8F8; */
+    
+    position: relative;
+    /* background-color: #F8F8F8; */
+    /* border: 1px solid red; */
+    width: 100%;
+}
+
+.BlogFormCont{
+
+    margin: auto;
+    width: 85%;
+    box-shadow: 0 30px 50px 0 rgb(1 1 1 / 15%);
+    padding: 2rem 14% 11rem;
+    background-color: rgba(240, 240, 240, 0.377);
+    position: relative;
+
+}
+
+.allInputsPosting{
+    padding: 10px;
+    font-size: 18px;
+    color: #262626;
+    border: 2px solid #262626;
+    border-radius: 4px;
+    width: 49%;
+    outline-color: #E4265B;
+}
+.allInputsPostingHeader{
+    padding: 1px;
+    font-size: 18px;
+    color: #262626;
+    border: 2px solid #262626;
+    border-radius: 4px;
+    width: 60%;
+    outline-color: #420FAA;
+}
+
+
+.submitBtnBlogPost{
+    text-decoration: none;
+    border: 1px solid #191C27;
+    padding: 10px 50px;
+    font-weight: 500;
+    background-color: #191C27;
+    color: white;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+.submitBtnBlogPost:hover{
+    box-shadow: 0 10px 30px 0 rgb(1 1 1 / 15%);
+    
+}
+
+.goBackBtnBlogPost{
+    text-decoration: none;
+    border: none;
+    outline: none;
+    font-weight: 700;
+    font-size: 13px;
+    color: #191C27;
+    text-transform: uppercase;
+    cursor: pointer;
+    background-color: white;
+}
+.goBackBtnBlogPost:hover{
+    text-decoration: underline;
+}
+
+
+.labelStyles{
+
+    text-align: left;
+     margin-left: 24%;
+      font-weight: 600;
+       font-size: 15px;
+       color: #191C27; 
+}
+
+.labelStylesHeader{
+    text-align: left;
+    margin-left: 19.6%;
+     font-weight: 600;
+      font-size: 15px;
+      color: #191C27; 
+}
+
+.blogSubtitle{
+    color: #262626;
+     font-size: 17px; 
+     font-weight: 600; 
+     margin: 30px;
+      text-decoration: underline; 
+}

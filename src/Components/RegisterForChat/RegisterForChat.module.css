@@ -1,0 +1,56 @@
+.blogHomeMainCont{
+    border: 1px solid #F8F8F8;
+    margin: 300px auto;
+    margin-bottom: 0px;
+    position: relative;
+    background-color: #F8F8F8;
+}
+
+.blogHomeCont{
+    /* border: 1px solid red; */
+    margin: auto;
+    margin-top: -150px;
+    width: 85%;
+    box-shadow: 0 30px 50px 0 rgb(1 1 1 / 15%);
+    padding: 10rem 14% 11rem;
+    background-color: white;
+    position: relative;
+}
+
+
+.registerChatInputCont{
+    margin-bottom: 20px;
+}
+
+.registerChatLabel{
+    font-size: 16px;
+    text-align: left;
+    font-weight: 600;
+    margin-left: 25%;
+    margin-bottom: 5px;
+}
+
+.inputBox{
+    border: 2px solid black;
+    padding: 7px 10px;
+    font-size: 18px;
+    width: 50%;
+    border-radius: 4px;
+    
+}
+
+.registerChatBtn{
+    text-decoration: none;
+    border: 1px solid #191C27;
+    padding: 10px 50px;
+    font-weight: 500;
+    background-color: #191C27;
+    color: white;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+
+.registerChatBtn:hover{
+    box-shadow: 0 10px 30px 0 rgb(1 1 1 / 15%);
+}
