@@ -149,23 +149,23 @@ const AdminDashboard = () => {
     document.title = `Dashboard`;
 
     // AUTH STATUS FROM AUTH CONTEXT
-    const {auth,handleAuth} = React.useContext(AuthContext);
+    const { auth, handleAuth } = React.useContext(AuthContext);
 
     // DISPLAY WIDTH
-    const [width,setWidth] = React.useState("");
+    const [width, setWidth] = React.useState("");
 
     // JSON APPLICATION LINK
     const applUrl = process.env.REACT_APP_JSON_URL_APPLICATION;
 
     // PENDING APPLICATIONS
-    const [selected,setSelected] = React.useState(0);
-    const [rejected,setRejected] = React.useState(0);
-    const [pending,setPending] = React.useState(0);
+    const [selected, setSelected] = React.useState(0);
+    const [rejected, setRejected] = React.useState(0);
+    const [pending, setPending] = React.useState(0);
 
     // ACTIONS
-    const [loading,setLoading] = React.useState(false);
-    const [error,setError] = React.useState(false);
-    const [errorMsg,setErrorMsg] = React.useState("");
+    const [loading, setLoading] = React.useState(false);
+    const [error, setError] = React.useState(false);
+    const [errorMsg, setErrorMsg] = React.useState("");
 
     // LOGOUT
     const handleLogout = () => {
@@ -179,7 +179,7 @@ const AdminDashboard = () => {
         setLoading(true);
         setError(false);
         setErrorMsg("");
-        
+
         axios.get(applUrl)
             .then(res => {
                 setPending(res.data.filter(ele => ele.selected === "pending").length);
@@ -202,14 +202,14 @@ const AdminDashboard = () => {
     }
 
     // EVENT LISTENER FOR WINDOW RESIZE
-    window.addEventListener('resize',checkDimensions);
+    window.addEventListener('resize', checkDimensions);
 
 
     React.useEffect(() => {
         loadList();
         checkDimensions();
         // eslint-disable-next-line
-    },[]);
+    }, []);
 
     // ADMIN NOT LOGGED IN THEN REDIRECT TO LOGIN PAGE 
     if (!auth) {
@@ -238,7 +238,7 @@ const AdminDashboard = () => {
 
                     {/* BLOG POST LINK */}
                     <div>
-                        <Link to='' className="link">
+                        <Link to='/category/postblogs' className="link">
                             <span className="icon"><FaBloggerB /> </span>
                             {
                                 width >= 950 ? <span>blog post</span> : false
@@ -248,7 +248,7 @@ const AdminDashboard = () => {
 
                     {/* CHAT MANAGEMENT LINK */}
                     <div>
-                        <Link to='' className="link">
+                        <Link to='/admin/chatrequests' className="link">
                             <span className="icon"><BsFillChatSquareDotsFill /> </span>
                             {
                                 width >= 950 ? <span>chat</span> : false
@@ -278,54 +278,54 @@ const AdminDashboard = () => {
                 </div>
             </Navbar>
 
-            {   
+            {
                 // LOADING 
-                loading ? <div className="loading"><LoadingSpinner/></div> : 
-                
-                // ERROR
-                error ? <div>ERROR: {errorMsg}</div> :
+                loading ? <div className="loading"><LoadingSpinner /></div> :
 
-                // OVERVIEW
-                <Overview>
+                    // ERROR
+                    error ? <div>ERROR: {errorMsg}</div> :
 
-                    {/* APPLICATION OVERVIEW */}
-                    <div className="totalAppl">
-                        <h3>total applications - {selected + rejected + pending}</h3>
-                        <div className="stats">
-                            <div>
-                                <h3>selected</h3>
-                                <h2>{selected}</h2>
-                            </div>
-                            <div>
-                                <h3>rejected</h3>
-                                <h2>{rejected}</h2>
-                            </div>
-                            <div>
-                                <h3>pending</h3>
-                                <h2>{pending}</h2>
-                            </div>
-                        </div>
-                    </div>
+                        // OVERVIEW
+                        <Overview>
 
-                    {/* CHATS OVERVIEW */}
-                    <div className="totalChats">
-                        <h3>total chatrooms - 0</h3>
-                        <div className="stats">
-                            <div>
-                                <h3>active</h3>
-                                <h2>0</h2>
+                            {/* APPLICATION OVERVIEW */}
+                            <div className="totalAppl">
+                                <h3>total applications - {selected + rejected + pending}</h3>
+                                <div className="stats">
+                                    <div>
+                                        <h3>selected</h3>
+                                        <h2>{selected}</h2>
+                                    </div>
+                                    <div>
+                                        <h3>rejected</h3>
+                                        <h2>{rejected}</h2>
+                                    </div>
+                                    <div>
+                                        <h3>pending</h3>
+                                        <h2>{pending}</h2>
+                                    </div>
+                                </div>
                             </div>
-                            <div>
-                                <h3>closed</h3>
-                                <h2>0</h2>
+
+                            {/* CHATS OVERVIEW */}
+                            <div className="totalChats">
+                                <h3>total chatrooms - 0</h3>
+                                <div className="stats">
+                                    <div>
+                                        <h3>active</h3>
+                                        <h2>0</h2>
+                                    </div>
+                                    <div>
+                                        <h3>closed</h3>
+                                        <h2>0</h2>
+                                    </div>
+                                    <div>
+                                        <h3>requests</h3>
+                                        <h2>0</h2>
+                                    </div>
+                                </div>
                             </div>
-                            <div>
-                                <h3>requests</h3>
-                                <h2>0</h2>
-                            </div>
-                        </div>
-                    </div>
-                </Overview>
+                        </Overview>
             }
         </Dashboard>
     )

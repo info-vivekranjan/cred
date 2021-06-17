@@ -75,7 +75,7 @@ function SideNavbar() {
                                             <Link target="no_blank" className={style.sideNavLink} to="/category/bookmarks">Bookmarks</Link>
                                         </div>
 
-
+                                        {/* 
 
                                         <div className={style.sideNavLinkDiv}>
                                             <Link className={style.sideNavLink} to="/category/postblogs">Post Blogs</Link>
@@ -84,7 +84,7 @@ function SideNavbar() {
                                         <div className={style.sideNavLinkDiv}>
                                             <Link className={style.sideNavLink} to="/admin/chatrequests">Chat Requests</Link>
                                         </div>
-
+ */}
 
                                     </div>
 
