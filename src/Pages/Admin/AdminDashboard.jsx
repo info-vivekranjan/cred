@@ -55,7 +55,7 @@ const Navbar = styled.div`
     & .navLinks {
         padding: 0;
         display: grid;
-        grid-template-columns: 25% 20% 20% 15% 20%;
+        grid-template-columns: 16% 16% 16% 16% 16% 16%;
         text-align: center;
         align-items: center;
 
@@ -266,6 +266,19 @@ const AdminDashboard = () => {
                             }
                         </Link>
                     </div>
+
+                    {/* JOIN MEETING */}
+
+                    <div>
+                        <Link to='/joinmeeting' className="link">
+                            <span className="icon"><BiNotepad /> </span>
+                            {
+                                width >= 950 ? <span>Join Meeting</span> : false
+                            }
+                        </Link>
+                    </div>
+
+
 
                     {/* LOGOUT LINK */}
                     <div className="logout">
