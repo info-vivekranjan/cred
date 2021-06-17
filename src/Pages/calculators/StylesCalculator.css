@@ -1,0 +1,289 @@
+.cal-navbar{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cal-nav-container{
+    display: flex;
+    width: 80%;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgb(197, 188, 188);
+    padding: 20px 0;
+}
+
+.cal-nav-links{
+    width: 80%;
+    display: flex;
+    margin-top: 20px;
+}
+.cal-nav-links li{
+    list-style: none;
+    color: grey;
+}
+
+.cal-nav-links li:nth-child(2), li:nth-child(3){
+    margin-left: 15px;
+}
+
+.cal-navbar button{
+    padding:15px 25px;
+    font-size: 18px;
+    height: fit-content;
+    border-radius: 50px;
+    border:1px solid black;
+    background-color: transparent;
+}
+
+@media screen and (max-width: 600px) {
+    
+}
+
+/* ---------------------------Calculators container------------------ */
+
+.calculators-container{
+    padding: 100px 10%;
+}
+
+.calculators-container-grid{
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 15px;
+    color: rgb(255, 255, 255);
+}
+
+.box-one{
+    grid-column: 1 / 3;
+    border-radius: 10px;
+    padding: 50px;
+    background-image:url("https://images.prismic.io/cred/e83d492d-16da-48c4-ab00-b6bd185bbec4_A3.jpg?auto=compress,format&rect=7565,0,2016,1080&w=560&h=300");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 200px;
+}
+
+.box-two{
+    border-radius: 10px;
+    padding: 50px;
+    background-image:url("https://images.prismic.io/cred/281a5d60-8cbb-4a8f-ac85-5d0d24c3baa9_Fixed+Deposit+Calculator.jpg?auto=compress,format&rect=7565,0,2016,1080&w=560&h=300");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 200px;
+}
+
+.box-three{
+    border-radius: 10px;
+    padding: 50px;
+    background-image:url("https://images.prismic.io/cred/07c2e5ed-9375-44a1-967f-84400d894521_Simple+Loan+Calculator.jpg?auto=compress,format&rect=7565,0,2016,1080&w=560&h=300");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 200px;
+}
+
+.box-four{
+    grid-column: 1 / 3;
+    border-radius: 10px;
+    padding:  50px;
+    background-image:url("https://images.prismic.io/cred/d6e52fc1-2fff-4aea-b712-e6aa2e214571_Recurring+Deposit+Calculator.jpg?auto=compress,format&rect=7565,0,2016,1080&w=560&h=300");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 200px;
+}
+
+.box-five{
+    grid-column: 3 / 5;
+    border-radius: 10px;
+    padding:  50px;
+    background-image:url("https://images.prismic.io/cred/1b21d235-0303-4bae-874b-93dcc6a3066b_car+copy.jpg?auto=compress,format&rect=726,0,560,300&w=560&h=300");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 200px;
+}
+
+.box-six{
+    border-radius: 10px;
+    padding:  50px;
+    background-image:url("https://images.prismic.io/cred/c9130585-1b72-439f-b904-1f065e5c47b5_PPF.jpg?auto=compress,format&rect=1418,0,1120,600&w=560&h=300");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 200px;
+}
+
+.box-seven{
+    border-radius: 10px;
+    padding:  50px;
+    background-image:url("https://images.prismic.io/cred/16d162f6-c263-435e-854e-d7d2be020095_HOMEEMI.jpg?auto=compress,format&rect=1631,0,1120,600&w=560&h=300");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 200px;
+}
+
+.box-eight{
+    border-radius: 10px;
+    padding:  50px;
+    background-image:url("https://images.prismic.io/cred/d1b4baf9-05df-4e87-8e62-b3be6734cea4_EMI.jpg?auto=compress,format&rect=1736,0,1120,600&w=560&h=300");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 200px;
+}
+
+.box-nine{
+    border-radius: 10px;
+    background-image:url("https://images.prismic.io/cred/2b9c9064-7c60-4017-b43a-141bb09d6f6c_SIP.jpg?auto=compress,format&rect=1648,0,1120,600&w=560&h=300");
+    background-size: cover;
+    background-position: center;
+    padding:50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 200px;
+}
+
+.try-now-btn{
+    padding: 10px;;
+    background-color: white;;
+    color: black;
+    border-radius: 50px;
+    border:none;
+    width: fit-content;
+}
+
+@media screen and (max-width: 600px) {
+    .calculators-container-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    .box-one{
+        grid-column: 1/ 3;
+        border-radius: 10px;
+    }
+    .box-five{
+        grid-column: 1 / 3;
+    }
+    .box-four{
+        grid-column: 1 / 3;
+    }
+}
+
+/*--------------------- EmiCalculator -----------------*/
+
+.sip-cal-container{
+    padding: 100px 10%;
+    font-family: sans-serif;
+    line-height: 1.5;
+}
+
+.sip-cal-cover{
+    background-image: url("https://images.prismic.io/cred/2b9c9064-7c60-4017-b43a-141bb09d6f6c_SIP.jpg?auto=compress,format&rect=0,0,2974,600&w=1140&h=230");
+    height: 200px;
+    width: 100%;
+    margin-top: 40px;
+    border-radius: 50px;
+}
+
+.calculator{
+    margin-top: 50px;
+    background: rgb(250, 250, 250);
+    border-radius: 13px;
+    border:10px solid rgb(228, 228, 228);
+    display: flex;
+}
+
+input[type=range] {
+    height: 34px;
+    -webkit-appearance: none;
+    margin: 10px 0;
+    width: 100%;
+    color: -internal-light-dark(black, white);
+    appearance: auto;
+    cursor: pointer;
+}
+
+
+.calculator-col-1{
+    padding: 50px;
+    width: 80%;
+}
+.calculator-col-2{
+    padding: 50px;
+    padding-top: 0px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.calculator-col-1 div{
+    display: flex;
+    justify-content: space-between;
+    font-family: sans-serif;
+    margin-top: 30px;
+}
+
+.calculator-col-1 div:nth-child(7){
+    margin-top: 50px;
+    font-size: 24px;
+}
+
+.pie{
+    height: 220px;
+    width: 220px;
+    background-color: cadetblue;
+    border-radius: 50%;
+}
+
+.calculator-col-2 div:nth-child(2){
+    margin-top: 50px;
+}
+
+.calculator-col-2{
+    margin-top: -40px;
+    /* background-color: blanchedalmond; */
+}
+
+/*---------------------Emi Calculator -----------------*/
+
+.emi-cal-container{
+    padding: 100px 10%;
+    font-family: sans-serif;
+}
+
+@media screen and (max-width: 600px) {
+    .calculator{
+        flex-direction: column;
+    }
+    .calculator-col-2{
+        padding: 50px;
+        padding-top: 0px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
