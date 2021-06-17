@@ -26,28 +26,28 @@ import HomePage from '../Pages/HomePage';
 
 
 
-import { BlogHome } from './BlogHome';
+import { BlogHome } from '../Components/BlogHome';
 
-import { CreditCards } from './BlogCategory/CreditCards'
-import { CreditCardsPayment } from './BlogCategory/CreditCardsPayment';
-import { MoneyMatters } from './BlogCategory/MoneyMatters';
-import { CreditCardsDataPage } from './BlogCategory/CreditCardsDataPage'
-import { MoneyMattersDataPage } from './BlogCategory/MoneyMattersDataPage';
-import { CreditCardsPaymentDataPage } from './BlogCategory/CreditCardsPaymentDataPage';
-import { BookMarks } from './Bookmarks/Bookmarks';
-import { BestCreditCards } from './BlogCategory/BestCreditCards';
-import { BestCreditCardsDataPage } from './BlogCategory/BestCreditCardsDataPage';
-import { SocialAnnouncement } from './BlogCategory/SocialAnnouncement';
-import { SocialDataPage } from './BlogCategory/SocialAnnouncementDataPage';
-import { NavTabs } from './PostBlogCategory/AddAllBlogs';
+import { CreditCards } from '../Components/BlogCategory/CreditCards'
+import { CreditCardsPayment } from '../Components/BlogCategory/CreditCardsPayment';
+import { MoneyMatters } from '../Components/BlogCategory/MoneyMatters';
+import { CreditCardsDataPage } from '../Components/BlogCategory/CreditCardsDataPage'
+import { MoneyMattersDataPage } from '../Components/BlogCategory/MoneyMattersDataPage';
+import { CreditCardsPaymentDataPage } from '../Components/BlogCategory/CreditCardsPaymentDataPage';
+import { BookMarks } from '../Components/Bookmarks/Bookmarks';
+import { BestCreditCards } from '../Components/BlogCategory/BestCreditCards';
+import { BestCreditCardsDataPage } from '../Components/BlogCategory/BestCreditCardsDataPage';
+import { SocialAnnouncement } from '../Components/BlogCategory/SocialAnnouncement';
+import { SocialDataPage } from '../Components/BlogCategory/SocialAnnouncementDataPage';
+import { NavTabs } from '../Components/PostBlogCategory/AddAllBlogs';
 
-import { Chat } from "./Chat/Chat";
-import { Join } from "./Join/Join";
-import { RegisterForChat } from './RegisterForChat/RegisterForChat';
-import { ChatRequestAdminPage } from './ChatRequestAdmin/ChatRequestAdminPage';
+import { Chat } from "../Components/Chat/Chat";
+import { Join } from "../Components/Join/Join";
+import { RegisterForChat } from '../Components/RegisterForChat/RegisterForChat';
+import { ChatRequestAdminPage } from '../Components/ChatRequestAdmin/ChatRequestAdminPage';
 
-import { Tech } from './BlogCategory/Tech';
-import { TechDataPage } from './BlogCategory/TechDataPage';
+import { Tech } from '../Components/BlogCategory/Tech';
+import { TechDataPage } from '../Components/BlogCategory/TechDataPage';
 
 
 
@@ -59,113 +59,113 @@ const Routes = () => {
 
             {/* ---------------------------------------- HOMEPAGE ---------------------------------- */}
             <Route path="/" exact>
-                <HomePage/>
+                <HomePage />
             </Route>
 
-            {/* ---------------------------------------- CALCULATORS ---------------------------------- */}        
+            {/* ---------------------------------------- CALCULATORS ---------------------------------- */}
             <Route path="/calculators/" exact>
-                <CalculatorsPage/>
+                <CalculatorsPage />
             </Route>
             <Route path="/calculators/SipCalculator" exact>
-                <SipCalculator/>
+                <SipCalculator />
             </Route>
             <Route path="/calculators/EmiCalculator" exact>
-                <EmiCalculator/>
+                <EmiCalculator />
             </Route>
             <Route path="/calculators/CarLoanCalculator" exact>
-                <CarLoanCalculator/>
+                <CarLoanCalculator />
             </Route>
             <Route path="/calculators/HomeLoanCalculator" exact>
-                <HomeLoanCalculator/>
+                <HomeLoanCalculator />
             </Route>
             <Route path="/calculators/SimpleLoanCalculator" exact>
-                <SimpleLoanCalculator/>
+                <SimpleLoanCalculator />
             </Route>
             <Route path="/calculators/FixedDepositCalculator" exact>
-                <FixedDepositCalculator/>
+                <FixedDepositCalculator />
             </Route>
             <Route path="/calculators/CompoundInterestCalculator" exact>
-                <CompoundInterestCalculator/>
+                <CompoundInterestCalculator />
             </Route>
-{/* ---------------------------------------- BLOGS ---------------------------------- */}
+            {/* ---------------------------------------- BLOGS ---------------------------------- */}
 
 
 
-                <Route path="/blogs" exact>
-                    <BlogHome />
-                </Route>
-                <Route path="/category/credit-cards" exact>
-                    <CreditCards />
-                </Route>
-                <Route path="/category/credit-card-payment" exact>
-                    <CreditCardsPayment />
-                </Route>
-                <Route path="/category/money-matters" exact>
-                    <MoneyMatters />
-                </Route>
+            <Route path="/blogs" exact>
+                <BlogHome />
+            </Route>
+            <Route path="/category/credit-cards" exact>
+                <CreditCards />
+            </Route>
+            <Route path="/category/credit-card-payment" exact>
+                <CreditCardsPayment />
+            </Route>
+            <Route path="/category/money-matters" exact>
+                <MoneyMatters />
+            </Route>
 
-                <Route path="/category/best-credit-cards" exact>
-                    <BestCreditCards />
-                </Route>
+            <Route path="/category/best-credit-cards" exact>
+                <BestCreditCards />
+            </Route>
 
-                <Route path="/category/social-announcement" exact>
-                    <SocialAnnouncement />
-                </Route>
+            <Route path="/category/social-announcement" exact>
+                <SocialAnnouncement />
+            </Route>
 
-                <Route path="/category/tech" exact>
-                    <Tech />
-                </Route>
-
-
-                <Route path="/category/bookmarks" exact>
-                    <BookMarks />
-                </Route>
-
-                <Route path="/category/postblogs" exact>
-                    <NavTabs />
-                </Route>
+            <Route path="/category/tech" exact>
+                <Tech />
+            </Route>
 
 
+            <Route path="/category/bookmarks" exact>
+                <BookMarks />
+            </Route>
 
-                <Route path="/register-for-meeting" exact>
-                    <RegisterForChat />
-                </Route>
-                <Route path="/joinmeeting" exact>
-                    <Join />
-                </Route>
-                <Route path="/chat">
-                    <Chat />
-                </Route>
-
-                <Route path="/admin/chatrequests">
-                    <ChatRequestAdminPage />
-                </Route>
-
-                <Route path="/category/credit-cards/:id" exact>
-                    <CreditCardsDataPage />
-                </Route>
-
-                <Route path="/category/money-matters/:id" exact>
-                    <MoneyMattersDataPage />
-                </Route>
+            <Route path="/category/postblogs" exact>
+                <NavTabs />
+            </Route>
 
 
-                <Route path="/category/credit-card-payment/:id" exact>
-                    <CreditCardsPaymentDataPage />
-                </Route>
 
-                <Route path="/category/best-credit-cards/:id" exact>
-                    <BestCreditCardsDataPage />
-                </Route>
+            <Route path="/register-for-meeting" exact>
+                <RegisterForChat />
+            </Route>
+            <Route path="/joinmeeting" exact>
+                <Join />
+            </Route>
+            <Route path="/chat">
+                <Chat />
+            </Route>
+
+            <Route path="/admin/chatrequests">
+                <ChatRequestAdminPage />
+            </Route>
+
+            <Route path="/category/credit-cards/:id" exact>
+                <CreditCardsDataPage />
+            </Route>
+
+            <Route path="/category/money-matters/:id" exact>
+                <MoneyMattersDataPage />
+            </Route>
 
 
-                <Route path="/category/social-announcement/:id" exact>
-                    <SocialDataPage />
-                </Route>
+            <Route path="/category/credit-card-payment/:id" exact>
+                <CreditCardsPaymentDataPage />
+            </Route>
 
-                <Route path="/category/tech/:id" exact>
-                    <TechDataPage />
-                </Route>
+            <Route path="/category/best-credit-cards/:id" exact>
+                <BestCreditCardsDataPage />
+            </Route>
+
+
+            <Route path="/category/social-announcement/:id" exact>
+                <SocialDataPage />
+            </Route>
+
+            <Route path="/category/tech/:id" exact>
+                <TechDataPage />
+            </Route>
 
 
 
@@ -200,40 +200,40 @@ const Routes = () => {
             </Route>
 
             {/* ============================================= ADMIN ============================================== */}
-                {/* ADMIN LOGIN PAGE */}
-                <Route path="/login">
-                    <Navbar />
-                    <AdminLogin />
-                    <Footer />
-                </Route>
+            {/* ADMIN LOGIN PAGE */}
+            <Route path="/login">
+                <Navbar />
+                <AdminLogin />
+                <Footer />
+            </Route>
 
-                {/* ADMIN DASHBOARD PAGE */}
-                <Route path="/dashboard">
-                    <Navbar />
-                    <AdminDashboard />
-                    <Footer />
-                </Route>
+            {/* ADMIN DASHBOARD PAGE */}
+            <Route path="/dashboard">
+                <Navbar />
+                <AdminDashboard />
+                <Footer />
+            </Route>
 
-                {/* ADMIN NEW JOB POST FORM */}
-                <Route path="/newJobPost">
-                    <Navbar />
-                    <NewJob />
-                    <Footer />
-                </Route>
-                
-                {/* ADMIN LIST OF JOB APPLICANTIONS */}
-                <Route exact path="/applications">
-                    <Navbar />
-                    <Applications />
-                    <Footer />
-                </Route>
+            {/* ADMIN NEW JOB POST FORM */}
+            <Route path="/newJobPost">
+                <Navbar />
+                <NewJob />
+                <Footer />
+            </Route>
 
-                {/* ADMIN VIEW RESUME */}
-                <Route path="/applications/resume/:name/:id">
-                    <Navbar />
-                    <Resume />
-                    <Footer />
-                </Route>
+            {/* ADMIN LIST OF JOB APPLICANTIONS */}
+            <Route exact path="/applications">
+                <Navbar />
+                <Applications />
+                <Footer />
+            </Route>
+
+            {/* ADMIN VIEW RESUME */}
+            <Route path="/applications/resume/:name/:id">
+                <Navbar />
+                <Resume />
+                <Footer />
+            </Route>
             {/* =================================================== */}
 
             <Route>
@@ -241,7 +241,7 @@ const Routes = () => {
                 <ErrorPage />
                 <Footer />
             </Route>
-            
+
         </Switch>
     )
 }
