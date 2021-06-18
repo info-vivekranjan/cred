@@ -1,70 +1,71 @@
-# Getting Started with Create React App
+# CRED
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+We have Cloned a credit card bill payment platform called cred.
+CRED is an Indian fintech startup, based out of Bangalore, Karnataka, which was founded in 2018 by Kunal Shah. CRED's main feature is allowing users to make credit card payments through its app for which they get rewarded.
 
-## Available Scripts
+In this project , we have tried to make a perfect clone of cred.club.
 
-In the project directory, you can run:
+# Steps to install the project:
 
-### `npm start`
+## Install basic Software:
+* Install NodeJS
+* Install VS Code
+* Install Git
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Clone the following git repository inside any folder:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+* https://github.com/avinashnadkar/cred.git
 
-### `npm test`
+##  Open the cloned git repo in VS Code and install the required dependencies.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* #### Open a terminal and make sure you are in the working directory folder (Inside Cred folder go to : Cred/server for backend), run this command to install the required project dependencies in both back-end and front-end folder.
+  * npm install   
+![Npm install]('./screenshots/cred_npm.JPG)
+* #### Now, Run npm start in sever as well as Cred folder in two separate terminals to start the backend and frontend
 
-### `npm run build`
+* #### Now you can access the app at this URL: http://localhost:3000
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Technologies used
+  
+  * React
+  * CSS
+  * Express
+  * Socket.io
+  * Libraries used
+      
+      * material-ui/core
+      * material-ui/icons
+      * material-ui/lab
+      * uuid
+      * React-dom
+      * React-icons
+      * react-scripts
+      * React-router-dom
+      * React-charts
+      * React-emoji
+      * Socket io client
+      * socket io server
+      * express
+      * react-use
+      * remix-icon
+      
+      
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### End-notes
+ 
+  We have tried our best to give mostly all the functionality available on the actual website and added a couple of additional functionality also.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+  
+  ### Contributors:
 
-### `npm run eject`
+  * Avinash Nadkar
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+    * Github : [avinashnadkar](https://github.com/avinashnadkar)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+  * Martin
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+    * Github : [MaRtin7teen](https://github.com/MaRtin7teen)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+  * Vivek Ranjan
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+    * Github : [info-vivekranjan](https://github.com/info-vivekranjan)
