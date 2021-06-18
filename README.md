@@ -20,7 +20,7 @@ In this project , we have tried to make a perfect clone of cred.club.
 
 * #### Open a terminal and make sure you are in the working directory folder (Inside Cred folder go to : Cred/server for backend), run this command to install the required project dependencies in both back-end and front-end folder.
   * npm install   
-![Npm install]('./screenshots/cred_npm.JPG)
+![Npm install]('./screenshots/cred_npm.JPG')
 * #### Now, Run npm start in sever as well as Cred folder in two separate terminals to start the backend and frontend
 
 * #### Now you can access the app at this URL: http://localhost:3000
