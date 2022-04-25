@@ -49,7 +49,27 @@ In this project , we have tried to make a perfect clone of cred.club.
       * react-use
       * remix-icon
       
-      
+## Project glimpes
+
+  * Homepage
+  ![Homepage](./src/screenshots/home.png)
+
+
+  * Blog post page
+  ![Blog post page](./src/screenshots/blog.png)
+
+
+  * Careers page
+  ![Careers page](./src/screenshots/jobs.png)
+
+  * Chat homepage
+  ![Chat homepage](./src/screenshots/chat1.png)
+
+  * Chat page
+  ![Chat page](./src/screenshots/chat2.png)
+
+  * EMI Calculator
+  ![EMI Calculator page](./src/screenshots/calc.png)
 
 ### End-notes
  
